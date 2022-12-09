@@ -43,14 +43,14 @@
 
 
     <!-- Header Start -->
-    @include('layouts.frontend.header')
+    @include('frontend.layouts.header')
     <!-- Header End -->
  
      <!-- BEGIN MAIN CONTENT -->
      @yield('content')
       <!--END MAIN CONTENT  -->
   <!-- Footer Start  -->
-  @include('layouts.frontend.footer')
+  @include('frontend.layouts.footer')
   <!-- Footer End -->
 
   </main>

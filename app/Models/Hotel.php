@@ -11,7 +11,11 @@ class Hotel extends Model
 
     protected $table = "hotels";
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
+    public function images()
+    {
+        return $this->hasMany(HotelImage::class);
+    }
 
 }

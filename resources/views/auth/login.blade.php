@@ -1,15 +1,15 @@
-@extends('layouts.guest')
+@extends('portal.layouts.guest')
 
 @section('content')
 
 <!--begin::Page bg image-->
 <style>
     body {
-        background-image: url('portal/theme/assets/media/auth/bg4.jpg');
+        background-image: url('portal_assets/theme/assets/media/auth/bg4.jpg');
     }
 
     [data-theme="dark"] body {
-        background-image: url('portal/theme/assets/media/auth/bg4-dark.jpg');
+        background-image: url('portal_assets/theme/assets/media/auth/bg4-dark.jpg');
     }
 </style>
 <!--end::Page bg image-->
@@ -21,7 +21,7 @@
         <div class="d-flex flex-center flex-lg-start flex-column">
             <!--begin::Logo-->
             <a href="../../demo1/dist/index.html" class="mb-7">
-                <!-- <img alt="Logo" src="portal/theme/assets/media/logos/custom-3.svg" /> -->
+                <!-- <img alt="Logo" src="portal_assets/theme/assets/media/logos/custom-3.svg" /> -->
             </a>
             <!--end::Logo-->
             <!--begin::Title-->

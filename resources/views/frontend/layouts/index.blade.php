@@ -1,8 +1,6 @@
-@extends('layouts.frontend.app')
-
+@extends('frontend.layouts.app')
 
 @section('content')
-
 
 <section data-anim-wrap class="masthead -type-1 z-5">
       <div data-anim-child="fade" class="masthead__bg">

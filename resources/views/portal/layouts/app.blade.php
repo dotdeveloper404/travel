@@ -7,14 +7,14 @@
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="{{ asset('portal/theme/assets/media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('portal_assets/theme/assets/media/logos/favicon.ico') }}" />
     <!-- begin::Fonts(mandatory for all pages) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
 
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="{{ asset('portal/theme/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('portal/theme/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('portal_assets/theme/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('portal_assets/theme/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 
     @vite(['resources/js/app.js'])
@@ -28,7 +28,9 @@
     data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
 
     <!--begin::App-->
-    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    <div class="d-flex flex-column flex-root app-root" id="app">
+
+
 
         <!--begin::Page-->
         <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
@@ -128,8 +130,8 @@
     <!--end::App-->
 
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="{{ asset('portal/theme/assets/plugins/global/plugins.bundle.js') }}"></script>
-    <script src="{{ asset('portal/theme/assets/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset('portal_assets/theme/assets/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('portal_assets/theme/assets/js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
 
     @stack('scripts')
