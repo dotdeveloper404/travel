@@ -6,8 +6,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 ">
-                <div class="card ">
-                <transport-edit :transport-data = "{{ $transport }}"></transport-edit>
+                <div class="card card-custom gutter-b example example-compact">
+
+                <hotel-room-list :hotelRooms ="{{$hotelRooms}}"></hotel-room-list>
+                
                 </div>
             </div>
         </div>

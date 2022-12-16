@@ -80,7 +80,7 @@
               <div class="row x-gap-30 y-gap-10">
                 <div class="col-auto">
                   <div class="d-flex items-center">
-                    © 2022 GoTrip LLC All rights reserved.
+                    © 2022 iLink LLC All rights reserved.
                   </div>
                 </div>
 
@@ -131,5 +131,5 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM"></script>
   <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
 
-  <script src="frontend/js/vendors.js"></script>
-  <script src="frontend/js/main.js"></script>    
+  <script src="{{ asset('frontend/js/vendors.js')}}"></script>
+  <script src="{{ asset('frontend/js/main.js')}}"></script>    

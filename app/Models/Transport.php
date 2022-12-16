@@ -13,5 +13,8 @@ class Transport extends Model
 
     protected $guarded = [];
 
-
+    public function images()
+    {
+        return $this->hasMany(TransportImage::class);
+    }
 }

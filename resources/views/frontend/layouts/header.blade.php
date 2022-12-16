@@ -22,7 +22,7 @@
               <div class="menu js-navList">
                 <ul class="menu__nav text-white -is-active">
                   <li>
-                    <a href="{{ route('hotels.listing') }}">Hotels</a>
+                    <a href="{{ route('hotel.index') }}">Hotels</a>
                   </li>
                   <li class="menu-item-has-children">
                     <a data-barba href="">

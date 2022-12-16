@@ -84,6 +84,8 @@
 					<!--end:Menu item-->
 
 
+					
+
 					<!--begin:Menu item-->
 					<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 						<!--begin:Menu link-->
@@ -109,7 +111,7 @@
 							<!--begin:Menu item-->
 							<div class="menu-item">
 								<!--begin:Menu link-->
-								<a class="menu-link" href="{{ route('portal.hotel.index')}}">
+								<a class="menu-link" href="{{ route('portal.transport.index')}}">
 									<span class="menu-bullet">
 										<span class="bullet bullet-dot"></span>
 									</span>
@@ -121,7 +123,7 @@
 							<!--begin:Menu item-->
 							<div class="menu-item">
 								<!--begin:Menu link-->
-								<a class="menu-link" href="{{ route('portal.hotel.create') }}">
+								<a class="menu-link" href="{{ route('portal.transport.create') }}">
 									<span class="menu-bullet">
 										<span class="bullet bullet-dot"></span>
 									</span>

@@ -14,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.frontend.index');
+    return view('frontend.layouts.index');
 });
 
 Auth::routes();
 
-Route::get('/hotels',[App\Http\Controllers\HotelController::class,'index'])->name('hotels.listing');
+Route::resource('hotel',App\Http\Controllers\HotelController::class);
+// ->names([
+//         'show' => 'hotel'
+// ]);
+
+// Route::get('/hotels',[App\Http\Controllers\HotelController::class,'index'])->name('hotels.listing');
+// Route::get('/hotel/view/{$id}',[App\Http\Controllers\HotelController::class,'hotelView'])->name('hotel.view');
 

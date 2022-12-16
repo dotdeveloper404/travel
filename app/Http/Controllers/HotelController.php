@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -13,7 +14,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        return view('frontend.hotels.listing');
+        $hotels = Hotel::with('images')->get();
+        return view('frontend.hotels.listing', compact('hotels'));
     }
 
     /**
@@ -45,7 +47,8 @@ class HotelController extends Controller
      */
     public function show($id)
     {
-        //
+        $hotel = Hotel::with('images')->find($id);
+        return view('frontend.hotels.hotel-single', ['hotel' => $hotel]);
     }
 
     /**

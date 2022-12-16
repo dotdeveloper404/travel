@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('transport', function (Blueprint $table) {
             $table->id();
             $table->string('company');
+            $table->enum('type',['none','featured','top_rated','best_seller'])->default('none');
             $table->string('description')->nullable();
             $table->string('model')->nullable();
             $table->string('made_year')->nullable();
             $table->string('mileage')->nullable();
             $table->string('version')->nullable();
-            $table->string('horsepower')->nullable();
+            $table->string('horse_power')->nullable();
             $table->string('condition')->nullable();
             $table->string('amenities')->nullable();
             $table->string('luggage')->nullable();

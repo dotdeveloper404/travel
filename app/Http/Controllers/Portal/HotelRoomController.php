@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Portal;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PublicController extends Controller
+class HotelRoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class PublicController extends Controller
      */
     public function index()
     {
-        return view('frontend.layouts.index');
+        //
     }
 
     /**
@@ -21,9 +22,9 @@ class PublicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($hotel_id)
     {
-        //
+        return view('portal.hotel-rooms.create',compact('hotel_id'));
     }
 
     /**
@@ -32,7 +33,7 @@ class PublicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($hotel_id,Request $request)
     {
         //
     }

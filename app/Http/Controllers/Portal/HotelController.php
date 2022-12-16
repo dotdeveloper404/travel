@@ -18,8 +18,6 @@ class HotelController extends Controller
      */
     public function index()
     {
-
-
         $hotels = Hotel::all();
         return view('portal.hotels.index', compact('hotels'));
     }
@@ -43,14 +41,13 @@ class HotelController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
-        die;
         $data = $request->validate([
             'hotel.name' => ['required', 'string'],
             'hotel.description' => ['required'],
             'hotel.city' => ['required'],
             'hotel.state' => ['required'],
             'hotel.country' => ['required'],
+            'hotel.stars' => ['required'],
             'hotel.contact_no_1' => ['required'],
             'hotel.contact_no_2' => 'nullable',
             'hotel.property_info' => 'nullable',
@@ -136,45 +133,7 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function updateHotel($id,Request $request)
-    {
-        
-        $data = $request->validate([
-            'hotel.name' => ['required', 'string'],
-            'hotel.description' => ['required'],
-            'hotel.city' => ['required'],
-            'hotel.state' => ['required'],
-            'hotel.country' => ['required'],
-            'hotel.contact_no_1' => ['required'],
-            'hotel.contact_no_2' => 'nullable',
-            'hotel.property_info' => 'nullable',
-            'hotel.main_amenities' => 'nullable',
-            'hotel.about_this_area' => 'nullable',
-            'hotel.about_this_property' => 'nullable',
-            'hotel.at_a_glance' => 'nullable',
-            'hotel.property_amenities' => 'nullable',
-            'hotel.room_amenities' => 'nullable',
-        ]);
-
-        $hotel = Hotel::find($id)->with('images')->update($data['hotel']);
-        if (isset($request->addedImages)) {
-            foreach ($request->addedImages as $image) {
-                $hotel->images()->create([
-                    'name' => $image,
-                ]);
-            }
-        }
-
-        if (isset($request->deletedImages)) {
-            foreach ($request->deletedImages as $image) {
-                File::delete(storage_path('app/public/uploads/hotel_images/' . $image));
-                HotelImage::whereName($image)->delete();
-            }
-        }
-
-        return $this->success('hotel data update successfully');
-    }
+ 
     public function update($id,Request $request)
     {
        
@@ -184,6 +143,7 @@ class HotelController extends Controller
             'hotel.city' => ['required'],
             'hotel.state' => ['required'],
             'hotel.country' => ['required'],
+            'hotel.stars' => ['required'],
             'hotel.contact_no_1' => ['required'],
             'hotel.contact_no_2' => 'nullable',
             'hotel.property_info' => 'nullable',
@@ -195,9 +155,8 @@ class HotelController extends Controller
             'hotel.room_amenities' => 'nullable',
         ]);
 
-
-        $hotel = Hotel::find($id)->update($data['hotel']);
-
+        $hotel = tap(Hotel::find($id))->update($data['hotel']);
+        
         if (isset($request->addedImages)) {
             foreach ($request->addedImages as $image) {
                 $hotel->images()->create([

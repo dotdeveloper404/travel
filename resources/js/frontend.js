@@ -6,9 +6,6 @@
 
  import './bootstrap';
  import { createApp } from 'vue';
- import VueAxios from 'vue-axios';
- import { QuillEditor } from '@vueup/vue-quill'
- import { UploadMedia, UpdateMedia } from 'vue-media-upload';
  import axios from 'axios';
  /**
   * Next, we will create a fresh Vue application instance. You may then begin
@@ -22,9 +19,7 @@
   
  const app = createApp({});
  
- app.component('upload-media' , UploadMedia);
- app.component('update-media' , UpdateMedia);
- app.component('QuillEditor', QuillEditor);
+ 
  // import ExampleComponent from './components/ExampleComponent.vue';
  // app.component('example-component', ExampleComponent);
  
@@ -49,19 +44,5 @@
  app.mount('#app');
  
  
- // require('./bootstrap');
- // window.Vue = require('vue');
- // import App from './App.vue';
- // import VueAxios from 'vue-axios';
- // import axios from 'axios';
  
- // Vue.use(VueAxios,axios);
- 
- // const files = require.context('./', true, /\.vue$/i);
- // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
- 
- // const app  = new Vue({
- //     el : '#app',
- //     render : h => h(App),
- // });
  

@@ -9,13 +9,13 @@
   <!-- Google fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet"> -->
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="frontend/css/vendors.css">
-  <link rel="stylesheet" href="frontend/css/main.css">
-
+  <link rel="stylesheet" href="{{ asset('frontend/css/vendors.css') }}">
+  <link rel="stylesheet" href="{{ asset('frontend/css/main.css')}}">
   <title>@yield('title')</title>
+  @vite(['resources/js/frontend.js'])
 </head>
 
 <body>
@@ -36,24 +36,28 @@
       </div>
     </div>
 
-    <div class="preloader__title">GoTrip</div>
+    <div class="preloader__title">iLinkTurkey</div>
   </div>
 
-  <main>
+  <main id="app">
 
 
     <!-- Header Start -->
     @include('frontend.layouts.header')
     <!-- Header End -->
- 
-     <!-- BEGIN MAIN CONTENT -->
-     @yield('content')
-      <!--END MAIN CONTENT  -->
-  <!-- Footer Start  -->
-  @include('frontend.layouts.footer')
-  <!-- Footer End -->
+
+    <!-- BEGIN MAIN CONTENT -->
+    @yield('content')
+    <!--END MAIN CONTENT  -->
+
+    <!-- Subscribe section -->
+    @include('frontend.layouts.subscribe')
+    <!-- Footer Start  -->
+    @include('frontend.layouts.footer')
+    <!-- Footer End -->
 
   </main>
+
 
   <div class="langMenu is-hidden js-langMenu" data-x="lang" data-x-toggle="is-hidden">
     <div class="langMenu__bg" data-x-click="lang"></div>
@@ -429,7 +433,8 @@
     </div>
   </div>
 
- 
+
+
 </body>
 
 </html>
