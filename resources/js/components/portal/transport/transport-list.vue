@@ -15,10 +15,10 @@
         <tr v-for="item in transportList" :key="item.id">
           <td>{{ item.id }}</td>
           <td>{{ item.company }}</td>
-          <td>{{ item.type }}</td>
+          <td>{{ item.type.replace('_',' ').toUpperCase() }}</td>
           <td>{{ item.model }}</td>
           <td>{{ item.made_year }}</td>
-          <td>{{ item.created_at }}</td>
+          <td>{{ moment(item.created_at).format('DD-MM-YYYY') }}</td>
           <td>
             <div class="btn-group" role="group">
               <button class="btn btn-danger" @click="deletetransport(item.id)">
@@ -36,13 +36,24 @@
   </template>
     
   <script>
+
+import moment from "moment";
+
+
   export default {
     props: ["transports"],
   
     data() {
       return {
         transportList: [],
+        moment : moment,
       };
+    },
+
+    filters:{
+      replace : function(string){
+        return string.replace('_',' ');
+      }
     },
   
     mounted() {

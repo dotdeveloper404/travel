@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Portal;
 
+use App\Enums\ProductType;
 use App\Http\Controllers\Controller;
 use App\Models\Hotel;
 use App\Models\HotelImage;
@@ -29,7 +30,9 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('portal.hotels.create');
+
+        $type = ProductType::values();
+        return view('portal.hotels.create',['type' => $type]);
     }
 
     /**
@@ -122,8 +125,9 @@ class HotelController extends Controller
     {
 
         $hotel = Hotel::with('images')->find($id);
+        $type = ProductType::values();
 
-        return view('portal.hotels.edit', ['hotel' => $hotel]);
+        return view('portal.hotels.edit', ['hotel' => $hotel,'type'=>$type]);
     }
 
     /**

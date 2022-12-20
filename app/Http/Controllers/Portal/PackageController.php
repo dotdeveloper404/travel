@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Portal;
+namespace App\Http\Controllers\portal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HotelRoomController extends Controller
+class PackageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +22,9 @@ class HotelRoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($hotel_id)
+    public function create()
     {
-        return view('portal.hotel-rooms.create',compact('hotel_id'));
+        //
     }
 
     /**
@@ -33,7 +33,7 @@ class HotelRoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($hotel_id,Request $request)
+    public function store(Request $request)
     {
         //
     }

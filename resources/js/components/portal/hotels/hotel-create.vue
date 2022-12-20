@@ -29,20 +29,21 @@
 
           <div class="form-group">
             <h5>Type:</h5>
-            <select v-model="hotel.type" class="form-control">
-                <option  value="0">None</option>
-                <option  value="1">Featured</option>
-                <option  value="2">Top Rated</option>
-                <option  value="3">Best Seller</option>
+            <select v-model="hotel.type"  class="form-control">
+              <option v-for="(item,item_index) in typeData" :key="item_index" value="{{ item_index }}">{{item.replace('_' , ' ')}}</option>
+           
             </select>
           </div>
-
 
           <div class="form-group">
             <h5>Description</h5>
             <div class="">
-              <quill-editor contentType="html" toolbar="full" v-model:content="hotel.description" theme="snow"></quill-editor>
-           
+              <quill-editor
+                contentType="html"
+                toolbar="full"
+                v-model:content="hotel.description"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
@@ -81,30 +82,32 @@
             </div>
           </div>
 
-        
           <div class="form-group">
             <h5>Property Info</h5>
             <div class="">
-              
-              <quill-editor contentType="html" toolbar="full" v-model:content="hotel.property_info" theme="snow"></quill-editor>
-           
+              <quill-editor
+                contentType="html"
+                toolbar="full"
+                v-model:content="hotel.property_info"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>Main Amenities</h5>
             <div class="">
-           
-              <quill-editor contentType="html" toolbar="full" v-model:content="hotel.main_amenities" theme="snow"></quill-editor>
+              <quill-editor
+                contentType="html"
+                toolbar="full"
+                v-model:content="hotel.main_amenities"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
-
         </div>
 
-     
-
         <div class="col-md-6">
-
           <div class="form-group">
             <h5>Contact #1</h5>
             <div class="input-group input-group-lg">
@@ -116,7 +119,6 @@
               />
             </div>
           </div>
-
 
           <div class="form-group">
             <h5>Contact #2</h5>
@@ -132,50 +134,70 @@
           <div class="form-group">
             <h5>About this property</h5>
             <div class="">
-              <quill-editor contentType="html" toolbar="full" v-model:content="hotel.about_this_property" theme="snow"></quill-editor>
+              <quill-editor
+                contentType="html"
+                toolbar="full"
+                v-model:content="hotel.about_this_property"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>At a glance</h5>
             <div class="">
-              
-              <quill-editor contentType="html" toolbar="full" v-model:content="hotel.at_a_glance" theme="snow"></quill-editor>
+              <quill-editor
+                contentType="html"
+                toolbar="full"
+                v-model:content="hotel.at_a_glance"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>Property amenities</h5>
             <div class="">
-             
-              <quill-editor contentType="html" toolbar="full" v-model:content="hotel.property_amenities" theme="snow"></quill-editor>
+              <quill-editor
+                contentType="html"
+                toolbar="full"
+                v-model:content="hotel.property_amenities"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>Room amenities</h5>
             <div class="">
-              <quill-editor contentType="html" toolbar="full" v-model:content="hotel.room_amenities" theme="snow"></quill-editor>
+              <quill-editor
+                contentType="html"
+                toolbar="full"
+                v-model:content="hotel.room_amenities"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
-          
           <div class="form-group">
             <h5>About this area</h5>
             <div class="">
-             
-              <quill-editor contentType="html" toolbar="full" v-model:content="hotel.about_this_area" theme="snow"></quill-editor>
+              <quill-editor
+                contentType="html"
+                toolbar="full"
+                v-model:content="hotel.about_this_area"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>Status:</h5>
             <select v-model="hotel.status" class="form-control">
-                <option  value="1">Active</option>
-                <option value="0">In Active</option>
+              <option value="1">Active</option>
+              <option value="0">In Active</option>
             </select>
           </div>
-
         </div>
 
         <div class="col-md-12">
@@ -197,19 +219,18 @@
 </template>
 
 <script>
-
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
-
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 export default {
-
+  props:['typeData'],
   mounted() {
     console.log("Component mounted.");
   },
+
   data() {
     return {
       hotel: {
-        status : 1
+        status: 1,
       },
       hotelImages: [],
     };

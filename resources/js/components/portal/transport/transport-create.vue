@@ -18,18 +18,18 @@
           <div class="form-group">
             <h5>Type:</h5>
             <select v-model="transport.type" class="form-control">
-                <option selected value="0">None</option>
-                <option value="1">Featured</option>
-                <option value="2">Top Rated</option>
-                <option value="3">Best Seller</option>
+              <option v-for="(item,item_index) in typeData" :key="item_index" value="{{ item_index }}">{{item.replace('_' , ' ')}}</option>
             </select>
           </div>
 
           <div class="form-group">
             <h5>Description:</h5>
-            <quill-editor toolbar="full" v-model="transport.description" theme="snow"></quill-editor>
+            <quill-editor
+              toolbar="full"
+              v-model:content="transport.description"
+              theme="snow"
+            ></quill-editor>
           </div>
-
 
           <div class="form-group">
             <h5>Model:</h5>
@@ -41,7 +41,6 @@
               placeholder="Enter model"
             />
           </div>
-
 
           <div class="form-group">
             <h5>Year:</h5>
@@ -65,7 +64,6 @@
             />
           </div>
 
-          
           <div class="form-group">
             <h5>Version:</h5>
             <input
@@ -99,7 +97,6 @@
             />
           </div>
 
-          
           <div class="form-group">
             <h5>Condition:</h5>
             <input
@@ -110,13 +107,16 @@
               placeholder="Enter condition"
             />
           </div>
-              
+
           <div class="form-group">
             <h5>Amenities:</h5>
-            <quill-editor toolbar="full" v-model="transport.amenities" theme="snow"></quill-editor>
+            <quill-editor
+              toolbar="full"
+              v-model:content="transport.amenities"
+              theme="snow"
+            ></quill-editor>
           </div>
 
-           
           <div class="form-group">
             <h5>Luggage:</h5>
             <input
@@ -131,14 +131,11 @@
           <div class="form-group">
             <h5>Status:</h5>
             <select v-model="transport.status" class="form-control">
-                <option value="1">Active</option>
-                <option value="0">In Active</option>
+              <option value="1">Active</option>
+              <option value="0">In Active</option>
             </select>
           </div>
-
-
         </div>
- 
 
         <div class="col-md-12">
           <div class="form-group">
@@ -159,14 +156,11 @@
 </template>
 
 <script>
-
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
-
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 export default {
-
-  mounted() {
-  },
+  mounted() {},
+  props:['typeData'],
   data() {
     return {
       transport: {

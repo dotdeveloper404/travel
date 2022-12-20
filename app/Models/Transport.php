@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ProductType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,10 @@ class Transport extends Model
     protected $table = "transport";
 
     protected $guarded = [];
+
+    protected $casts = [
+        'type' => ProductType::class
+    ];
 
     public function images()
     {

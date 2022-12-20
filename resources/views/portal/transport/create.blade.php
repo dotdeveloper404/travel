@@ -8,7 +8,7 @@
             <div class="col-lg-12 ">
                 <div class="card card-custom gutter-b example example-compact">
 
-                <transport-create></transport-create>
+                <transport-create :type-data="{{ json_encode($type) }}"></transport-create>
                 
                 </div>
             </div>

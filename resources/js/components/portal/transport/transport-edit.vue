@@ -18,18 +18,15 @@
                 <div class="form-group">
                   <h5>Type:</h5>
                   <select v-model="transport.type" class="form-control">
-                      <option  value="0">None</option>
-                      <option value="1">Featured</option>
-                      <option value="2">Top Rated</option>
-                      <option value="3">Best Seller</option>
+                    <option v-for="(item,item_index) in typeData" :key="item_index" :value="item_index"  >{{item.replace('_' , ' ')}}</option>
                   </select>
                 </div>
       
                 <div class="form-group">
                   <h5>Description:</h5>
-                  <quill-editor toolbar="full" v-model="transport.description" theme="snow"></quill-editor>
+                  <quill-editor toolbar="full"   contentType="html" v-model:content="transport.description" theme="snow"></quill-editor>
                 </div>
-      
+             
       
                 <div class="form-group">
                   <h5>Model:</h5>
@@ -113,7 +110,7 @@
                     
                 <div class="form-group">
                   <h5>Amenities:</h5>
-                  <quill-editor toolbar="full" v-model="transport.amenities" theme="snow"></quill-editor>
+                  <quill-editor toolbar="full" v-model:content="transport.amenities"  contentType="html" theme="snow"></quill-editor>
                 </div>
       
                  
@@ -135,17 +132,21 @@
                       <option value="0">In Active</option>
                   </select>
                 </div>
-      
-      
               </div>
-       
       
               <div class="col-md-12">
                 <div class="form-group">
                   <h5>Transport Images</h5>
                   <div class="input-group input-group-lg">
-                    <upload-media server="/transport/uploadImage" @media="sendMe">
-                    </upload-media>
+                    <update-media
+                server="/transport/uploadImage"
+                media-file-path="/storage/uploads/transport_images"
+                :media-server="'/transport/media/' + this.transport.id"
+                @added-media="addedMedia"
+                @deleted-media="deletedMedia"
+                @saved-media="savedMedia"
+              >
+              </update-media>
                   </div>
                 </div>
               </div>
@@ -163,7 +164,7 @@
   import '@vueup/vue-quill/dist/vue-quill.snow.css';
   
   export default {
-    props: ["transportData"],
+    props: ["transportData","typeData"],
   
     mounted() {
       console.log("Component mounted.");

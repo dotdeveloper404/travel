@@ -153,7 +153,7 @@
 								</span>
 								<!--end::Svg Icon-->
 							</span>
-							<span class="menu-title">Flight</span>
+							<span class="menu-title">Package</span>
 							<span class="menu-arrow"></span>
 						</span>
 						<!--end:Menu link-->
@@ -162,7 +162,7 @@
 							<!--begin:Menu item-->
 							<div class="menu-item">
 								<!--begin:Menu link-->
-								<a class="menu-link" href="{{ route('portal.hotel.index')}}">
+								<a class="menu-link" href="{{ route('portal.package.index')}}">
 									<span class="menu-bullet">
 										<span class="bullet bullet-dot"></span>
 									</span>
@@ -174,7 +174,7 @@
 							<!--begin:Menu item-->
 							<div class="menu-item">
 								<!--begin:Menu link-->
-								<a class="menu-link" href="{{ route('portal.hotel.create') }}">
+								<a class="menu-link" href="{{ route('portal.package.create') }}">
 									<span class="menu-bullet">
 										<span class="bullet bullet-dot"></span>
 									</span>

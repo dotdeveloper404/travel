@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Portal\HotelController;
 use App\Http\Controllers\Portal\HotelRoomController;
+use App\Http\Controllers\portal\PackageController;
 use App\Http\Controllers\Portal\TransportController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::resource('package',PackageController::class);
 Route::resource('hotel',HotelController::class);
 Route::resource('transport',TransportController::class);
 Route::resource('hotel.hotel-rooms',HotelRoomController::class);

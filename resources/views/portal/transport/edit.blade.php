@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12 ">
                 <div class="card ">
-                <transport-edit :transport-data = "{{ $transport }}"></transport-edit>
+                <transport-edit :transport-data = "{{ $transport }}" :type-data="{{json_encode($type)}}"></transport-edit>
                 </div>
             </div>
         </div>

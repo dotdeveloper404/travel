@@ -29,20 +29,19 @@
           <div class="form-group">
             <h5>Type:</h5>
             <select v-model="hotel.type" class="form-control">
-                <option  value="0">None</option>
-                <option  value="1">Featured</option>
-                <option  value="2">Top Rated</option>
-                <option  value="3">Best Seller</option>
+              <option v-for="(item,item_index) in typeData" :key="item_index" :value="item_index"  >{{item.replace('_' , ' ')}}</option>
             </select>
           </div>
-
-          
 
           <div class="form-group">
             <h5>Description</h5>
             <div class="">
-              <quill-editor v-model:content="hotel.description" toolbar="full"  contentType="html"  theme="snow"></quill-editor>
-             
+              <quill-editor
+                v-model:content="hotel.description"
+                toolbar="full"
+                contentType="html"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
@@ -81,34 +80,44 @@
             </div>
           </div>
 
-       
-
           <div class="form-group">
             <h5>Property Info</h5>
             <div class="">
-              <quill-editor v-model:content="hotel.property_info" toolbar="full"  contentType="html"  theme="snow"></quill-editor>
+              <quill-editor
+                v-model:content="hotel.property_info"
+                toolbar="full"
+                contentType="html"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>Main Amenities</h5>
             <div class="">
-            
-              <quill-editor v-model:content="hotel.main_amenities" toolbar="full"  contentType="html"  theme="snow"></quill-editor>
+              <quill-editor
+                v-model:content="hotel.main_amenities"
+                toolbar="full"
+                contentType="html"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>About this area</h5>
             <div class="">
-             
-              <quill-editor v-model:content="hotel.about_this_area" toolbar="full"  contentType="html"  theme="snow"></quill-editor>
+              <quill-editor
+                v-model:content="hotel.about_this_area"
+                toolbar="full"
+                contentType="html"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
         </div>
 
         <div class="col-md-6">
-
           <div class="form-group">
             <h5>Contact #1</h5>
             <div class="input-group input-group-lg">
@@ -120,7 +129,7 @@
               />
             </div>
           </div>
-          
+
           <div class="form-group">
             <h5>Contact #2</h5>
             <div class="input-group input-group-lg">
@@ -129,38 +138,54 @@
                 v-model="hotel.contact_no_2"
                 class="form-control form-control-solid"
               />
-
             </div>
           </div>
 
           <div class="form-group">
             <h5>About this property</h5>
             <div class="">
-           
-              <quill-editor v-model:content="hotel.about_this_property" toolbar="full"  contentType="html"  theme="snow"></quill-editor>
+              <quill-editor
+                v-model:content="hotel.about_this_property"
+                toolbar="full"
+                contentType="html"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>At a glance</h5>
             <div class="">
-              <quill-editor v-model:content="hotel.at_a_glance" toolbar="full"  contentType="html"  theme="snow"></quill-editor>
+              <quill-editor
+                v-model:content="hotel.at_a_glance"
+                toolbar="full"
+                contentType="html"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>Property amenities</h5>
             <div class="">
-           
-              <quill-editor v-model:content="hotel.property_amenities" toolbar="full"  contentType="html"  theme="snow"></quill-editor>
+              <quill-editor
+                v-model:content="hotel.property_amenities"
+                toolbar="full"
+                contentType="html"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
 
           <div class="form-group">
             <h5>Room amenities</h5>
             <div class="">
-              
-              <quill-editor v-model:content="hotel.room_amenities" toolbar="full"  contentType="html"  theme="snow"></quill-editor>
+              <quill-editor
+                v-model:content="hotel.room_amenities"
+                toolbar="full"
+                contentType="html"
+                theme="snow"
+              ></quill-editor>
             </div>
           </div>
         </div>
@@ -175,7 +200,7 @@
                 :media-server="'/hotel/media/' + this.hotel.id"
                 @added-media="addedMedia"
                 @deleted-media="deletedMedia"
-                @saved-media = "savedMedia"
+                @saved-media="savedMedia"
               >
               </update-media>
             </div>
@@ -191,11 +216,10 @@
 </template>
   
   <script>
-
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 export default {
-  props: ["hotelData"],
+  props: ["hotelData","typeData"],
 
   mounted() {
     console.log("Component mounted.");
@@ -206,32 +230,31 @@ export default {
       hotelImages: this.hotelData.images,
       deletedImages: [],
       addedImages: [],
-      savedImages : [],
-    }
-    ;
+      savedImages: [],
+    };
   },
   methods: {
     addedMedia(images) {
       console.log("added media" + images);
       images.forEach((image) => {
-            this.addedImages.push(image.name);
+        this.addedImages.push(image.name);
       });
     },
     deletedMedia(images) {
       console.log("deleted media" + images);
-        images.forEach((image)=>{
-            this.deletedImages.push(image.name);
-        });
+      images.forEach((image) => {
+        this.deletedImages.push(image.name);
+      });
     },
-    savedMedia(images){
-      console.log('saved media' + images)
+    savedMedia(images) {
+      console.log("saved media" + images);
     },
     update() {
       axios
         .post(
           `/hotel/${this.hotel.id}`,
           {
-            _method : 'PUT',
+            _method: "PUT",
             hotel: this.hotel,
             deletedImages: this.deletedImages,
             addedImages: this.addedImages,
@@ -240,8 +263,6 @@ export default {
             headers: {
               "Content-Type": "multipart/form-data",
             },
-          
-         
           }
         )
         .then((response) => {

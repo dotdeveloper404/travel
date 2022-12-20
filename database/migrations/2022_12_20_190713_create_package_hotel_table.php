@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hotel_room_images', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('hotel_room_id');
-            $table->string('name');
-            $table->timestamps();
+        Schema::create('package_hotel', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('package_id');
+            $table->integer('hotel_id');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hotel_room_images');
+      Schema::dropIfExists('package_transport');
     }
 };

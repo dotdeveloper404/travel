@@ -8,7 +8,7 @@
             <div class="col-lg-12 ">
                 <div class="card card-custom gutter-b example example-compact">
 
-                <hotel-create></hotel-create>
+                <hotel-create :type-data="{{ json_encode($type)}}"></hotel-create>
                 
                 </div>
             </div>

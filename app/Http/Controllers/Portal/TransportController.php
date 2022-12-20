@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Portal;
 
+use App\Enums\ProductType;
 use App\Http\Controllers\Controller;
 use App\Models\Transport;
 use App\Models\TransportImage;
@@ -33,7 +34,8 @@ class TransportController extends Controller
     public function create()
     {
         try {
-            return view('portal.transport.create');
+            $type = ProductType::values();
+            return view('portal.transport.create',['type' => $type]);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -61,6 +63,7 @@ class TransportController extends Controller
             'transport.amenities' => 'nullable',
             'transport.luggage' => 'nullable',
         ]);
+
 
         $transport = Transport::create($data['transport']);
 
@@ -95,8 +98,9 @@ class TransportController extends Controller
     public function edit($id)
     {
          try {
-            $transport = Transport::with('images')->get();
-            return view('portal.transport.index',['transport' => $transport]);
+            $transport = Transport::with('images')->find($id);
+            $type = ProductType::values();
+            return view('portal.transport.edit',['transport' => $transport , 'type' => $type]);
          } catch (\Throwable $th) {
             throw $th;
          }
@@ -123,8 +127,50 @@ class TransportController extends Controller
             'transport.condition' => 'nullable',
             'transport.amenities' => 'nullable',
             'transport.luggage' => 'nullable',
+
         ]);
 
+        $transport = tap(Transport::find($id))->update($data['transport']);
+        
+        if (isset($request->addedImages)) {
+            foreach ($request->addedImages as $image) {
+                $transport->images()->create([
+                    'name' => $image,
+                ]);
+            }
+        }
+
+        if (isset($request->deletedImages)) {
+            foreach ($request->deletedImages as $image) {
+                File::delete(storage_path('app/public/uploads/transport_images/' . $image));
+                TransportImage::whereName($image)->delete();
+            }
+        }
+
+        return $this->success('transport data update successfully');
+
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $path = storage_path('app/public/uploads/transport_images');
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        $file = $request->file('image');
+
+        $name = $file->hashName();  
+
+        $file->move($path, $name);
+
+        return ['name' => $name];
+    }
+
+    public function getImages($id)
+    {
+        $images = TransportImage::whereTransportId($id)->get();
+        return ['media' => $images];
     }
 
     /**
@@ -141,7 +187,5 @@ class TransportController extends Controller
             TransportImage::whereName($image)->delete();
         }
         $transport->delete();
-
-         
     }
 }
