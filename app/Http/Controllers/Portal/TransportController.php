@@ -153,6 +153,7 @@ class TransportController extends Controller
 
     public function uploadImage(Request $request)
     {
+
         $path = storage_path('app/public/uploads/transport_images');
 
         if (!file_exists($path)) {

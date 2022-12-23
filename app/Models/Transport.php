@@ -22,4 +22,10 @@ class Transport extends Model
     {
         return $this->hasMany(TransportImage::class);
     }
+
+    public function packages()
+    {
+        return $this->belongsToMany(Package::class, 'package_transport');
+    }
+
 }

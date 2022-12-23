@@ -30,8 +30,7 @@
           <div class="form-group">
             <h5>Type:</h5>
             <select v-model="hotel.type"  class="form-control">
-              <option v-for="(item,item_index) in typeData" :key="item_index" value="{{ item_index }}">{{item.replace('_' , ' ')}}</option>
-           
+              <option v-for="(item,item_index) in typeData" :key="item_index" :value="item_index" >{{item.replace('_' , ' ')}}</option>
             </select>
           </div>
 

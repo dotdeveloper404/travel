@@ -24,7 +24,7 @@
       
                 <div class="form-group">
                   <h5>Description:</h5>
-                  <quill-editor toolbar="full"   contentType="html" v-model:content="transport.description" theme="snow"></quill-editor>
+                  <quill-editor toolbar="full"  contentType="html" v-model:content="transport.description" theme="snow"></quill-editor>
                 </div>
              
       

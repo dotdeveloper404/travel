@@ -34,4 +34,11 @@ class Hotel extends Model
         return $this->hasMany(HotelImage::class);
     }
 
+    public function packages()
+    {
+        return $this->belongsToMany(Package::class, 'package_hotel');
+    }
+
+  
+
 }

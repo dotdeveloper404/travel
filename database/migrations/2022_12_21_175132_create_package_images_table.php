@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('package_transport', function (Blueprint $table) {
-            $table->integer('package_id');
-            $table->integer('transport_id');
+        Schema::create('package_images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('package_id');
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('package_transport');
+        Schema::dropIfExists('package_images');
     }
 };

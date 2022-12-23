@@ -17,10 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('package_name');
             $table->string('package_type');
+            $table->string('product_type');
             $table->integer('nights');
             $table->integer('days');
-            $table->string('package_hotel');
-            $table->string('package_transport');
             $table->text('itenary')->nullable();
             $table->text('features')->nullable();
             $table->float('package_price');
@@ -31,7 +30,8 @@ return new class extends Migration
             $table->string('seasonality')->nullable();
             $table->date('traveling_date_start');
             $table->date('traveling_date_end');
-            $table->boolean('is_active')->default(1);
+            $table->string('featured_image')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

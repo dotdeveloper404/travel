@@ -13,11 +13,17 @@ class Controller extends BaseController
 
     public function success($message)
     {
-        return response()->json(['success' => true,'message' => $message]);
+        return response()->json(['success' => true, 'message' => $message]);
     }
 
     public function error($message)
     {
-        return response()->json(['success'=> false, 'message' => $message]);
+        return response()->json(['success' => false, 'message' => $message]);
+    }
+
+    public function moveFile($file, $path)
+    {
+        $uploadedFile=$file->store($path);
+       return  trim(str_replace($path,'',$uploadedFile),'/');
     }
 }

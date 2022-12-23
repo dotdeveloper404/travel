@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('package_hotel', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('package_id');
             $table->integer('hotel_id');
         });
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-      Schema::dropIfExists('package_transport');
+      Schema::dropIfExists('package_hotel');
     }
 };

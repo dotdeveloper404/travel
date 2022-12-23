@@ -123,7 +123,6 @@ class HotelController extends Controller
      */
     public function edit($id)
     {
-
         $hotel = Hotel::with('images')->find($id);
         $type = ProductType::values();
 
