@@ -1,3 +1,6 @@
+.invalid-feedback{
+  color:red;
+}
 .ratio {
   position: relative;
   display: block;

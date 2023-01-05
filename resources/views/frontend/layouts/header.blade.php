@@ -25,7 +25,7 @@
                     <a href="{{ route('hotel.index') }}">Hotels</a>
                   </li> -->
                   <li>
-                    <a href="{{ route('tour.index') }}">Tours</a>
+                    <a href="{{ route('tours.index') }}">Tours</a>
                   </li>
                   <li>
                     <a href="{{ route('packages.index') }}">Packages</a>

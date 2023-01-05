@@ -14,30 +14,10 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $packages = Package::with('images')->with('hotels')->with('transports')->get();
+        $packages = Package::with('images','hotels','transports')->get();
         return view('frontend.packages.listing', compact('packages'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -45,51 +25,16 @@ class PackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Package $package)
     {
-        $package = Package::with('images')->with('hotels')->with('transports')->whereSlug($slug)->first();
-       
+        $package->load('images', 'hotels', 'transports');
+
         $itenary = null;
         $faqs = null;
-        if ($package != null) {
-            $itenary = $package->itenary  != null  ? collect(json_decode($package->itenary, true)) : null;
-            $faqs = $package->faqs  != null  ? collect(json_decode($package->faqs, true)) : null;
-        }
-           
-        return view('frontend.packages.package-single', ['package' => $package, 'itenaries' => $itenary, 'faqs'=>$faqs]);
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $itenary = $package->itenary  != null  ? collect(json_decode($package->itenary, true)) : null;
+        $faqs = $package->faqs  != null  ? collect(json_decode($package->faqs, true)) : null;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('frontend.packages.package-single', ['package' => $package, 'itenaries' => $itenary, 'faqs' => $faqs]);
     }
 }

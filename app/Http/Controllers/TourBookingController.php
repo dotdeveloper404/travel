@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Frontend\TourBookingStoreRequest;
 use App\Models\Tour;
+use App\Models\TourBooking;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TourBookingController extends Controller
 {
@@ -33,9 +36,15 @@ class TourBookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Tour $tour)
+    public function store(TourBookingStoreRequest $request,Tour $tour)
     {
-        dd($tour);
+      
+        $data = $request->validated();
+        $data['tour_id'] = $tour->id;
+        TourBooking::create($data);
+
+        Alert::success('your tour  has been successfully booked', 'success');
+        return redirect()->back()->with('message','your tour has been booked successfully');
         
     }
 

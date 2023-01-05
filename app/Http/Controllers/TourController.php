@@ -18,37 +18,17 @@ class TourController extends Controller
         return view('frontend.tours.listing', compact('tours'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
+    
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($tour)
+    public function show(Tour $tour)
     {
       
-        $tour = Tour::with('images')->with('transports')->whereSlug($tour)->first();
+        $tour->load('images','transports');
         $itenary = null;
         $faqs= null;
         if ($tour != null) {
@@ -58,37 +38,5 @@ class TourController extends Controller
         return view('frontend.tours.tour-single', ['tour' => $tour, 'itenaries' => $itenary, 'faqs'=> $faqs]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+     
 }

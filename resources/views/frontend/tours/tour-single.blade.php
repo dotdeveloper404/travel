@@ -232,160 +232,138 @@
                     <div class="w-360 lg:w-full d-flex flex-column items-center">
                         <div class="px-30 py-30 rounded-4 border-light bg-white shadow-4">
                             <div class="text-14 text-light-1">
+                                @if(Session::has('message'))
+                                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                                @endif
+
                                 Tour Price<span class="text-20 fw-500 text-dark-1 ml-5">$ {{ $tour->net_amount }}</span>
                             </div>
 
-                            {!! Form::open(['route'=>['tour.booking.store',$tour->id]]) !!}
+                            {!! Form::open(['route'=>['tours.booking.store',$tour->id]]) !!}
                             <div class="row y-gap-20 pt-30">
+
                                 <div class="col-12">
 
-
-                                       <div class="form-group">
+                                    <div class="form-group">
                                         <label>Name</label>
-                                       <input type="text" name="name" class="px-20 py-10  border-light rounded-4" placeholder="Enter your name"  />
-                                       </div>
-                              
-                                       <div class="form-group">
+                                        <input type="text" required name="name" value="{{ old('name') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your name" />
+                                        @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Email</label>
-                                       <input type="email" name="email" class="px-20 py-10  border-light rounded-4" placeholder="Enter your email"  />
-                                       </div>
+                                        <input type="email" required name="email" value="{{ old('email') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your email" />
+                                        @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
 
-                                       <div class="form-group">
+                                    <div class="form-group">
                                         <label>Cell</label>
-                                       <input type="text" name="cell" class="px-20 py-10  border-light rounded-4" placeholder="Enter your cell number"  />
-                                       </div>
+                                        <input type="text" required name="cell" value="{{ old('cell') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your cell number" />
+                                        @error('cell')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
 
-                                       <div class="form-group">
+                                    <div class="form-group">
                                         <label>Phone</label>
-                                       <input type="text" name="phone" class="px-20 py-10  border-light rounded-4" placeholder="Enter your phone number"  />
-                                       </div>
-                                       
-                                       <div class="form-group">
+                                        <input type="text" required name="phone" value="{{ old('phone') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your phone number" />
+                                        @error('phone')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Departure City</label>
-                                       <input type="text" name="departure_city" class="px-20 py-10  border-light rounded-4" placeholder="Enter your departure city"  />
-                                       </div>
+                                        <input type="text" required name="departure_city" value="{{ old('departure_city') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your departure city" />
+                                        @error('departure_city')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
 
-                                       <div class="form-group">
+                                    <div class="form-group">
                                         <label>Departure Date</label>
-                                       <input type="date" name="departure_date"  class="px-20 py-10  border-light rounded-4" placeholder="Enter your departure date"  />
-                                       </div>
+                                        <input type="date" required name="departure_date" value="{{ old('departure_date') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your departure date" />
+                                        @error('departure_date')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
 
-                                       <div class="form-group">
+                                    <div class="form-group">
                                         <label>Contact Preference</label>
-                                       <input type="text" name="contact_preference" class="px-20 py-10  border-light rounded-4" placeholder="Enter your contact preference"  />
-                                       </div>
+                                        <input type="text" required name="contact_preference" value="{{ old('contact_preference') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your contact preference" />
+                                    </div>
 
-                                       <div class="form-group">
+                                    <div class="form-group">
                                         <label>Best time to call</label>
-                                       <input type="text" name="best_time_to_call" class="px-20 py-10  border-light rounded-4" />
-                                       </div>
+                                        <input type="text" name="best_time_to_call " value="{{ old('best_time_to_call') }}" class="px-20 py-10  border-light rounded-4" />
+                                    </div>
 
-                                       <div class="form-group">
+                                    <div class="form-group">
                                         <label>Comments</label>
-                                        <textarea name="comment" class="px-20 py-10  border-light rounded-4"></textarea>
-                                       </div>
-
-                                </div>
-
-                                <div class="col-12">
-
-                                    <div class="searchMenu-guests px-20 py-10 border-light rounded-4 js-form-dd js-form-counters">
-
-                                        <div data-x-dd-click="searchMenu-guests">
-                                            <h4 class="text-15 fw-500 ls-2 lh-16">Number of travelers</h4>
-
-                                            <div class="text-15 text-light-1 ls-2 lh-16">
-                                                <span class="js-count-adult">2</span> adults
-                                                -
-                                                <span class="js-count-child">1</span> childeren
-                                                -
-                                                <span class="js-count-room">1</span> room
-                                            </div>
-                                        </div>
-
-
-                                        <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
-                                            <div class="bg-white px-30 py-30 rounded-4">
-                                                <div class="row y-gap-10 justify-between items-center">
-                                                    <div class="col-auto">
-                                                        <div class="text-15 fw-500">Adults</div>
-                                                    </div>
-
-                                                    <div class="col-auto">
-                                                        <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
-                                                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
-                                                                <i class="icon-minus text-12"></i>
-                                                            </button>
-
-                                                            <div class="flex-center size-20 ml-15 mr-15">
-                                                                <div class="text-15 js-count">2</div>
-                                                            </div>
-
-                                                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
-                                                                <i class="icon-plus text-12"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="border-top-light mt-24 mb-24"></div>
-
-                                                <div class="row y-gap-10 justify-between items-center">
-                                                    <div class="col-auto">
-                                                        <div class="text-15 lh-12 fw-500">Children</div>
-                                                        <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
-                                                    </div>
-
-                                                    <div class="col-auto">
-                                                        <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
-                                                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
-                                                                <i class="icon-minus text-12"></i>
-                                                            </button>
-
-                                                            <div class="flex-center size-20 ml-15 mr-15">
-                                                                <div class="text-15 js-count">1</div>
-                                                            </div>
-
-                                                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
-                                                                <i class="icon-plus text-12"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="border-top-light mt-24 mb-24"></div>
-
-                                                <div class="row y-gap-10 justify-between items-center">
-                                                    <div class="col-auto">
-                                                        <div class="text-15 fw-500">Rooms</div>
-                                                    </div>
-
-                                                    <div class="col-auto">
-                                                        <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
-                                                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
-                                                                <i class="icon-minus text-12"></i>
-                                                            </button>
-
-                                                            <div class="flex-center size-20 ml-15 mr-15">
-                                                                <div class="text-15 js-count">1</div>
-                                                            </div>
-
-                                                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
-                                                                <i class="icon-plus text-12"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <textarea name="comment" class="px-20 py-10  border-light rounded-4">{{ old('comment') }}</textarea>
                                     </div>
 
                                 </div>
 
                                 <div class="col-12">
-                                     <input type="submit" value="BOOK NOW" class="button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-blue-1 text-white" />
+                                    <h4 class="text-15 fw-500 ls-2 lh-16">Number of travelers</h4>
+                                    <div class="searchMenu-guests px-20 py-10 border-light rounded-4 js-form-dd js-form-counters">
+
+                                        <div data-x-dd-click="searchMenu-guests">
+
+
+                                            <div class="text-15 text-light-1 ls-2 lh-16">
+
+                                                <div class="form-group">
+                                                    <label>Adults</label>
+                                                    <input type="number" name="adults" class="px-20 py-10  border-light rounded-4" />
+                                                    @error('adults')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Children</label>
+                                                    <input type="number" name="child" class="px-20 py-10  border-light rounded-4" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Infants</label>
+                                                    <input type="number" name="infants" class="px-20 py-10  border-light rounded-4" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12">
+                                    <input type="submit" value="BOOK NOW" class="button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-blue-1 text-white" />
                                 </div>
                             </div>
+
                             {!! Form::close() !!}
 
                             <div class="d-flex items-center pt-20">
@@ -491,7 +469,7 @@
     <div class="container">
         <div class="row y-gap-20">
             <div class="col-lg-4">
-                <h2 class="text-22 fw-500">FAQs about<br> {{ $tour->name}}</h2>
+                <h2 class="text-22 fw-500">FAQs <br> {{ $tour->name}}</h2>
             </div>
 
             <div class="col-lg-8">

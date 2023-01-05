@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\PackageBookingController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\Portal\HomeController;
 use App\Http\Controllers\PublicController;
@@ -40,14 +41,14 @@ Route::get('/cancelation-policy',[PublicController::class,'cancelationPolicy'])-
 Auth::routes();
 
 Route::resource('hotel',HotelController::class);
-Route::resource('packages',PackageController::class);
-Route::resource('packages.booking',BookingController::class);
-Route::resource('tour',TourController::class);
-Route::resource('tour.booking',TourBookingController::class);
-// ->names([
-//         'show' => 'hotel'
-// ]);
+// Route::resource('packages.booking',BookingController::class);
+// Route::resource('tour.booking',TourBookingController::class);
 
-// Route::get('/hotels',[App\Http\Controllers\HotelController::class,'index'])->name('hotels.listing');
-// Route::get('/hotel/view/{$id}',[App\Http\Controllers\HotelController::class,'hotelView'])->name('hotel.view');
+Route::post('/packages/{package}/booking',[PackageBookingController::class,'store'])->name('packages.booking.store');
+Route::post('/tours/{tour}/booking',[TourBookingController::class,'store'])->name('tours.booking.store');
+
+Route::get('/packages/{package:slug}',[PackageController::class,'show'])->name('packages.show');
+Route::get('/packages',[PackageController::class,'index'])->name('packages.index');
+Route::get('/tours/{tour:slug}',[TourController::class,'show'])->name('tours.show');
+Route::get('/tours',[TourController::class,'index'])->name('tours.index');
 

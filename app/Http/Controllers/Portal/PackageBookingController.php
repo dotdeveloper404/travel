@@ -5,8 +5,13 @@ namespace App\Http\Controllers\Portal;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class PackageBookingController extends Controller
 {
+
+    public function bookingList()
+    {
+        die('not yet');
+    }
     /**
      * Display a listing of the resource.
      *

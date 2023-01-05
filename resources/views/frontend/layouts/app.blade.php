@@ -16,9 +16,14 @@
   <link rel="stylesheet" href="{{ asset('frontend/css/main.css')}}">
   <title>@yield('title')</title>
   @vite(['resources/js/frontend.js'])
+
+
+
 </head>
 
 <body>
+@include('sweetalert::alert')
+
   <div class="preloader js-preloader">
     <div class="preloader__wrap">
       <div > 

@@ -51,24 +51,21 @@ class PackageController extends Controller
      */
     public function store(PackageStoreRequest $request)
     {
-   
-           $data = $request->validated();   
-              
-        //  $data =  $request->safe()->merge(['itenary' => json_encode($request->itenaries)]);
+        $data = $request->validated();
 
-         $data = array_merge($data['package'], ['itenary' => json_encode($request->itenaries),'faqs' => json_encode($request->faqs)]);
-            dd( $data );
+        $data['package']['itenary'] = json_encode($request->itenaries);
+        $data['package']['faqs'] = json_encode($request->faqs);
+       
         if ($request->hasFile('featured_image')) {
-          
+
             $name = $this->moveFile($request->file('featured_image'), Package::getUploadPath());
-            // $data =  $request->safe()->merge(['featured_image' => $name]);
-            $data = array_merge($data, ['featured_image' => $name]);
+             $data['package']['featured_image']  = $name;
+          
         }
-         
-        $package = Package::create($data);
+        $package = Package::create($data['package']);
         $package->hotels()->sync($request->package['hotels']);
         $package->transports()->sync($request->package['transports']);
-    
+
         if ($request->has('images')) {
             foreach ($request->images as $image) {
                 $package->images()->create([
@@ -139,15 +136,15 @@ class PackageController extends Controller
      */
     public function update(PackageUpdateRequest $request, Package $package)
     {
-        $data = $request->validated();    
+        $data = $request->validated();
         //  $data = $data->safe()->merge(['itenary' => json_encode($request->itenaries)]);
-        $data = array_merge($data['package'], ['itenary' => json_encode($request->itenaries),'faqs' => json_encode($request->faqs)]);
+        $data = array_merge($data['package'], ['itenary' => json_encode($request->itenaries), 'faqs' => json_encode($request->faqs)]);
         if ($request->hasFile('featured_image')) {
             $name = $this->moveFile($request->file('featured_image'), Package::getUploadPath());
             // $data =  $request->safe()->merge(['featured_image' => $name]);
-            $data = array_merge($data,['featured_image' => $name]);
+            $data = array_merge($data, ['featured_image' => $name]);
         }
-          
+
         $package = tap($package)->update($data);
         $package->hotels()->sync($request->package_hotel);
         $package->transports()->sync($request->package_transport);

@@ -4221,7 +4221,7 @@
 
                 <div class="col-md-auto text-right md:text-left">
 
-                  <a href="{{ route('tour.show',$tour->slug) }}" class="button -md -dark-1 bg-blue-1 text-white mt-24">
+                  <a href="{{ route('tours.show',$tour->slug) }}" class="button -md -dark-1 bg-blue-1 text-white mt-24">
                     View Detail <div class="icon-arrow-top-right ml-15"></div>
                   </a>
 

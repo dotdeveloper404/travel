@@ -25,11 +25,11 @@ return new class extends Migration
             $table->string('departure_city');
             $table->date('departure_date');
             $table->integer('adults');
-            $table->integer('child');
-            $table->integer('infants');
-            $table->string('contact_preference');
-            $table->string('best_time_to_call');
-            $table->text('comment');
+            $table->integer('child')->nullable();
+            $table->integer('infants')->nullable();
+            $table->string('contact_preference')->nullable();
+            $table->string('best_time_to_call')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

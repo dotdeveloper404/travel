@@ -1,12 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Portal;
 
-use App\Models\Package;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class TourBookingController extends Controller
 {
+    
+
+    public function bookingList()
+    {
+        die('not yet');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -33,9 +40,9 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Package $package)
+    public function store(Request $request)
     {
-        
+        //
     }
 
     /**
