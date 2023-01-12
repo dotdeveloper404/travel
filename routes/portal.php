@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Portal\AgentController;
 use App\Http\Controllers\Portal\BookingController;
 use App\Http\Controllers\Portal\HotelController;
 use App\Http\Controllers\Portal\PackageBookingController;
@@ -14,6 +15,7 @@ Route::resource('package',PackageController::class);
 Route::resource('hotel',HotelController::class);
 Route::resource('transport',TransportController::class);
 Route::resource('tour',TourController::class);
+Route::resource('agent',AgentController::class);
 
 Route::resource('packages.booking',PackageBookingController::class);
 Route::resource('tours.booking',TourBookingController::class);

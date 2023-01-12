@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Portal;
 
 use App\Enums\ProductType;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Portal\TransportStoreRequest;
 use App\Models\Transport;
 use App\Models\TransportImage;
 use Illuminate\Http\Request;
@@ -48,21 +49,9 @@ class TransportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransportStoreRequest $request)
     {
-        $data = $request->validate([
-            'transport.company' => ['required', 'string'],
-            'transport.type' => ['required'],
-            'transport.description' => 'nullable',
-            'transport.model' => 'nullable',
-            'transport.made_year' => 'nullable',
-            'transport.mileage' => 'nullable',
-            'transport.version' => 'nullable',
-            'transport.horse_power' => 'nullable',
-            'transport.condition' => 'nullable',
-            'transport.amenities' => 'nullable',
-            'transport.luggage' => 'nullable',
-        ]);
+        $data = $request->validated();
 
 
         $transport = Transport::create($data['transport']);
@@ -113,22 +102,9 @@ class TransportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TransportStoreRequest $request, $id)
     {
-        $data = $request->validate([
-            'transport.company' => ['required', 'string'],
-            'transport.type' => ['required'],
-            'transport.description' => 'nullable',
-            'transport.model' => 'nullable',
-            'transport.made_year' => 'nullable',
-            'transport.mileage' => 'nullable',
-            'transport.version' => 'nullable',
-            'transport.horse_power' => 'nullable',
-            'transport.condition' => 'nullable',
-            'transport.amenities' => 'nullable',
-            'transport.luggage' => 'nullable',
-
-        ]);
+        $data = $request->validated();
 
         $transport = tap(Transport::find($id))->update($data['transport']);
         

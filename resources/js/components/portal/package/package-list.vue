@@ -1,5 +1,5 @@
 <template>
-  <DataTable  :columns="columns"  :options="{select: true, search:true}"  id="package_table" class="table table-striped border rounded gy-5 gs-7">
+  <table   id="package_table" class="table table-striped border rounded gy-5 gs-7">
     <thead>
       <tr>
         <th>ID</th>
@@ -38,13 +38,10 @@
         </td>
       </tr>
     </tbody>
-  </DataTable >
+  </table>
 </template>
   
 <script>
- import DataTable from 'datatables.net-vue3'
- import DataTablesLib from 'datatables.net';
- DataTable.use(DataTablesLib);
 export default {
   props: ["packages"],
 

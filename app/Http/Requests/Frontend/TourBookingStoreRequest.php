@@ -25,6 +25,7 @@ class TourBookingStoreRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'name' => ['required'],
             'agent_id' => 'nullable',

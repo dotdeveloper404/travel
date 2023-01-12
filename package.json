@@ -17,6 +17,7 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
+        "@andresouzaabreu/vue-data-table": "^3.3.3",
         "@tinymce/tinymce-vue": "^4.0.7",
         "@vitejs/plugin-vue": "^3.2.0",
         "@vueup/vue-quill": "^1.0.0",

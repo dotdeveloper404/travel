@@ -2,24 +2,14 @@
 
 namespace App\Http\Controllers\Portal;
 
-use App\Enums\BookingStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TourBookingUpdateRequest;
-use App\Models\Agent;
-use App\Models\Tour;
-use App\Models\TourBooking;
-use Illuminate\Auth\Access\Gate;
+use App\Http\Requests\Portal\AgentStoreRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate as FacadesGate;
+use Illuminate\Support\Facades\Hash;
 
-class TourBookingController extends Controller
+class AgentController extends Controller
 {
-
-    public function bookingList()
-    {
-        $bookings = TourBooking::with('tour')->get();
-        return view("portal.tour-bookings.index", compact('bookings'));
-    }
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +17,8 @@ class TourBookingController extends Controller
      */
     public function index()
     {
-        //
+        $agents = User::agent()->get();
+        return view('portal.agents.index', compact('agents'));
     }
 
     /**
@@ -37,7 +28,7 @@ class TourBookingController extends Controller
      */
     public function create()
     {
-        //
+        return view('portal.agents.create');
     }
 
     /**
@@ -46,9 +37,14 @@ class TourBookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AgentStoreRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['type'] = "agent";
+        $data['password'] = Hash::make($data['password']);
+        User::create($data);
+
+        return $this->success('agent created successfully');
     }
 
     /**
@@ -70,10 +66,8 @@ class TourBookingController extends Controller
      */
     public function edit($id)
     {
-        $booking = TourBooking::with('tour')->findOrfail($id);
-        $bookingStatus = BookingStatus::values();
-        $agent = Agent::get();
-        return view('portal.tour-bookings.edit', ['booking' => $booking, 'status' => $bookingStatus, 'agents' => $agent]);
+        $agent = User::find($id);
+        return view('portal.agents.edit', ['agent' => $agent]);
     }
 
     /**
@@ -83,14 +77,17 @@ class TourBookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TourBookingUpdateRequest $request, TourBooking $tour)
+    public function update(AgentStoreRequest $request, User $agent)
     {
 
         $data = $request->validated();
+        $data = $data['agent'];
+        if ($request->has('agent.password')) {
+            $data = array_merge($data, ['password' => Hash::make($request->agent['password'])]);
+        }
 
-        $tour->update($data['booking']);
-
-        return $this->success('Booking Updated Successfully');
+        $agent->update($data);
+        return $this->success('agent update successfully');
     }
 
     /**

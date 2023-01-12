@@ -213,6 +213,9 @@
     <div class="card-footer">
       <button type="submit" class="btn btn-primary mr-2">Submit</button>
       <a href="/portal/hotel/" class="btn btn-secondary">Cancel</a>
+        <!-- Partial View VueJS -->
+      <errors :errors="errors" :trimValue="'hotel.'"></errors>
+
     </div>
   </form>
 </template>
@@ -231,6 +234,7 @@ export default {
       hotel: {
         status: 1,
       },
+      errors:[],
       hotelImages: [],
     };
   },
@@ -264,7 +268,10 @@ export default {
             window.location.href = "/portal/hotel";
           }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          console.log(err.response.data.errors);
+          this.errors = err.response.data.errors;
+        })
         .finally(() => (this.loading = false));
     },
   },

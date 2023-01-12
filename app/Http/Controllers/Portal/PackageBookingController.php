@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers\Portal;
 
+use App\Enums\BookingStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PackageBookingUpdateRequest;
+use App\Models\Agent;
+use App\Models\Package;
+use App\Models\PackageBooking;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate as FacadesGate;
 
 class PackageBookingController extends Controller
 {
 
     public function bookingList()
     {
-        die('not yet');
+        $bookings = PackageBooking::with('package')->get();
+        return view("portal.package-bookings.index", compact('bookings'));
     }
     /**
      * Display a listing of the resource.
@@ -62,7 +70,10 @@ class PackageBookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $booking = PackageBooking::with('package')->findOrfail($id);
+        $bookingStatus = BookingStatus::values();
+        $agent = Agent::get();
+        return view('portal.package-bookings.edit', ['booking' => $booking, 'status' => $bookingStatus, 'agents' => $agent]);
     }
 
     /**
@@ -72,9 +83,17 @@ class PackageBookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PackageBookingUpdateRequest $request, Package $package, PackageBooking $packageBooking)
     {
-        //
+        // if (Gate::denies('update', $package)) {
+        //     abort(403);
+        // }
+
+        $data = $request->validated();
+
+        $packageBooking->update($data['booking']);
+
+        return $this->success('Booking Updated Successfully');
     }
 
     /**

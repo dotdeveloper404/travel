@@ -13,7 +13,7 @@ class TourBooking extends Model
 
     protected $guarded = [];
 
-    public function package()
+    public function tour()
     {
         return $this->belongsTo(Tour::class);
     }

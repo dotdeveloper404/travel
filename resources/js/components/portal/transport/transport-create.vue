@@ -152,6 +152,9 @@
       <button type="submit" class="btn btn-primary mr-2">Submit</button>
       <a href="/portal/transport/" class="btn btn-secondary">Cancel</a>
     </div>
+      <!-- Partial View VueJS -->
+      <errors :errors="errors" :trimValue="'transport.'"></errors>
+
   </form>
 </template>
 
@@ -167,6 +170,7 @@ export default {
         status: true,
       },
       transportImages: [],
+      errors:[],
     };
   },
   methods: {
@@ -196,7 +200,10 @@ export default {
             window.location.href = "/portal/transport";
           }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          console.log(err.response.data.errors);
+          this.errors = err.response.data.errors;
+        })
         .finally(() => (this.loading = false));
     },
   },

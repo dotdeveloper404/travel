@@ -11,6 +11,9 @@
  import { UploadMedia, UpdateMedia } from 'vue-media-upload';
  import axios from 'axios';
 import swal from 'sweetalert2';
+import moment from "moment";
+import DataTable from "@andresouzaabreu/vue-data-table";
+
  /**
   * Next, we will create a fresh Vue application instance. You may then begin
   * registering components with the application instance so they are ready
@@ -19,7 +22,7 @@ import swal from 'sweetalert2';
  //  window.Vue = require('vue');
  
  //  Vue.use(VueAxios,axios);
- axios.defaults.baseURL = 'http://travel.test/portal/';
+ axios.defaults.baseURL = 'https://ilinkturkey.com/portal/';//'http://travel.test/portal/';
   
  const app = createApp({});
  
@@ -27,6 +30,8 @@ import swal from 'sweetalert2';
  app.component('update-media' , UpdateMedia);
  app.component('QuillEditor', QuillEditor);
  app.component('swal',swal);
+app.component('moment',moment);
+app.component('data-table',DataTable);
 
  // import ExampleComponent from './components/ExampleComponent.vue';
  // app.component('example-component', ExampleComponent);

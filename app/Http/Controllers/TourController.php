@@ -18,7 +18,7 @@ class TourController extends Controller
         return view('frontend.tours.listing', compact('tours'));
     }
 
-    
+
     /**
      * Display the specified resource.
      *
@@ -27,16 +27,12 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-      
-        $tour->load('images','transports');
-        $itenary = null;
-        $faqs= null;
-        if ($tour != null) {
-            $itenary =   $tour->itenary  != null  ? collect(json_decode($tour->itenary, true)) : null;
-            $faqs =   $tour->faqs  != null  ? collect(json_decode($tour->faqs, true)) : null;
-        }
-        return view('frontend.tours.tour-single', ['tour' => $tour, 'itenaries' => $itenary, 'faqs'=> $faqs]);
-    }
 
-     
+        $tour->load('images', 'transports');
+        $itenary = null;
+        $faqs = null;
+        $itenary =   $tour->itenary  != null  ? collect(json_decode($tour->itenary, true)) : null;
+        $faqs =   $tour->faqs  != null  ? collect(json_decode($tour->faqs, true)) : null;
+        return view('frontend.tours.tour-single', ['tour' => $tour, 'itenaries' => $itenary, 'faqs' => $faqs]);
+    }
 }

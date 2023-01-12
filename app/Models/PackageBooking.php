@@ -17,4 +17,9 @@ class PackageBooking extends Model
     {
         return $this->belongsTo(Package::class);
     }
+
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class);
+    }
 }

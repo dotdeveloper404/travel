@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Portal;
 
 use App\Enums\ProductType;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Portal\HotelStoreRequest;
 use App\Models\Hotel;
 use App\Models\HotelImage;
 use Illuminate\Http\Request;
@@ -41,28 +42,10 @@ class HotelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HotelStoreRequest $request)
     {
-
             
-        $data = $request->validate([
-            'hotel.name' => ['required', 'string'],
-            'hotel.description' => ['required'],
-            'hotel.city' => ['required'],
-            'hotel.state' => ['required'],
-            'hotel.country' => ['required'],
-            'hotel.stars' => ['required'],
-            'hotel.contact_no_1' => ['required'],
-            'hotel.contact_no_2' => 'nullable',
-            'hotel.property_info' => 'nullable',
-            'hotel.main_amenities' => 'nullable',
-            'hotel.about_this_area' => 'nullable',
-            'hotel.about_this_property' => 'nullable',
-            'hotel.at_a_glance' => 'nullable',
-            'hotel.property_amenities' => 'nullable',
-            'hotel.room_amenities' => 'nullable',
-            'hotel.type' => 'nullable',
-        ]);
+        $data = $request->validated();
 
         $hotel = Hotel::create($data['hotel']);
 
@@ -142,24 +125,7 @@ class HotelController extends Controller
     public function update($id,Request $request)
     {
        
-        $data = $request->validate([
-            'hotel.name' => ['required', 'string'],
-            'hotel.description' => ['required'],
-            'hotel.city' => ['required'],
-            'hotel.state' => ['required'],
-            'hotel.country' => ['required'],
-            'hotel.stars' => ['required'],
-            'hotel.contact_no_1' => ['required'],
-            'hotel.contact_no_2' => 'nullable',
-            'hotel.property_info' => 'nullable',
-            'hotel.main_amenities' => 'nullable',
-            'hotel.about_this_area' => 'nullable',
-            'hotel.about_this_property' => 'nullable',
-            'hotel.at_a_glance' => 'nullable',
-            'hotel.property_amenities' => 'nullable',
-            'hotel.room_amenities' => 'nullable',
-            'hotel.type' => 'nullable',
-        ]);
+        $data = $request->validated();
 
         $hotel = tap(Hotel::find($id))->update($data['hotel']);
         
