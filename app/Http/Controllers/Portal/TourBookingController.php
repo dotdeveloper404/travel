@@ -8,6 +8,7 @@ use App\Http\Requests\TourBookingUpdateRequest;
 use App\Models\Agent;
 use App\Models\Tour;
 use App\Models\TourBooking;
+use App\Models\User;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate as FacadesGate;
@@ -68,12 +69,12 @@ class TourBookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,Tour $tour,  TourBooking $tour_booking)
     {
-        $booking = TourBooking::with('tour')->findOrfail($id);
+        $tour_booking->load('tour');
         $bookingStatus = BookingStatus::values();
-        $agent = Agent::get();
-        return view('portal.tour-bookings.edit', ['booking' => $booking, 'status' => $bookingStatus, 'agents' => $agent]);
+        $agent = User::whereType('agent')->get();
+        return view('portal.tour-bookings.edit', ['booking' => $tour_booking, 'status' => $bookingStatus, 'agents' => $agent]);
     }
 
     /**
@@ -83,12 +84,11 @@ class TourBookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TourBookingUpdateRequest $request, TourBooking $tour)
+    public function update(TourBookingUpdateRequest $request,Tour $tour, TourBooking $tourBooking)
     {
-
         $data = $request->validated();
 
-        $tour->update($data['booking']);
+        $tourBooking->update($data['booking']);
 
         return $this->success('Booking Updated Successfully');
     }

@@ -1,31 +1,31 @@
 <template>
-  <form @submit.prevent="update" class="form" >
+  <form @submit.prevent="update" class="form">
     <div class="card-body">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <h5>Tour :</h5>
             <label
-              ><a target="_blank" :href="'/portal/tour/'+ booking.tour.id + '/edit'">{{ booking.tour.tour_name }}</a></label
+              ><a
+                target="_blank"
+                :href="'/portal/tour/' + booking.tour.id + '/edit'"
+                >{{ booking.tour.tour_name }}</a
+              ></label
             >
           </div>
 
           <div class="form-group">
             <h5>Booking Agent:</h5>
-            <select
-              v-model="booking.agent_id"
-              class="form-control"
-            >
+            <select v-model="booking.agent_id" class="form-control">
               <option
                 v-for="(item, item_index) in agents"
                 :key="item_index"
-                :value="item_index"
+                :value="item.id"
               >
-                {{ item }}
+                {{ item.name }}
               </option>
             </select>
           </div>
-
 
           <div class="form-group">
             <h5>Booking Status:</h5>
@@ -178,15 +178,18 @@
             <input
               type="text"
               v-model="booking.comment"
-              class="form-control form-control-solid"  />
+              class="form-control form-control-solid"
+            />
           </div>
         </div>
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary mr-2">Update Booking</button>
+      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">Update Booking</button>
       <a href="/portal/tours/bookings" class="btn btn-secondary">Cancel</a>
-
+      <div v-if="isLoading">
+        <LoaderBar />
+      </div>
       <!-- Partial View VueJS -->
       <errors :errors="errors" :trimValue="'booking.'"></errors>
     </div>
@@ -197,24 +200,27 @@
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 export default {
-  props: ["bookingData", "bookingStatus",'agents'],
+  props: ["bookingData", "bookingStatus", "agents"],
   mounted() {},
 
   data() {
     return {
-      errors:[],
+      errors: [],
       booking: this.bookingData,
+      isLoading: false,
     };
   },
   computed: {},
 
   methods: {
     update() {
+      this.isLoading = true;
+
       axios
         .post(
-          `/tours/${this.booking.tour.id}/booking/${this.booking.id}`,
+          `/tours/${this.booking.tour.id}/tour_booking/${this.booking.id}`,
           {
-            booking:this.booking,
+            booking: this.booking,
             _method: "PUT",
           },
           {
@@ -226,15 +232,17 @@ export default {
         )
         .then((response) => {
           if (response.data.success) {
+            this.isLoading = false;
             window.location.href = "/portal/tours/bookings";
           }
         })
         .catch((err) => {
           console.log(err.response.data.errors);
           this.errors = err.response.data.errors;
+          this.isLoading = false;
         })
 
-        .finally(() => (this.loading = false));
+        .finally(() => (this.isLoading = false));
     },
   },
 };

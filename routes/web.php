@@ -51,4 +51,3 @@ Route::get('/packages/{package:slug}',[PackageController::class,'show'])->name('
 Route::get('/packages',[PackageController::class,'index'])->name('packages.index');
 Route::get('/tours/{tour:slug}',[TourController::class,'show'])->name('tours.show');
 Route::get('/tours',[TourController::class,'index'])->name('tours.index');
-

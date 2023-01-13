@@ -41,7 +41,7 @@
                 Delete
               </button>
               &nbsp;
-              <a class="btn btn-primary" :href="'/portal/tours/'+item.tour.id+'/booking/'+item.id+'/edit'"
+              <a class="btn btn-primary" :href="'/portal/tours/'+item.tour.id+'/tour_booking/'+item.id+'/edit'"
                 >Edit</a
               >
             </div>
@@ -73,7 +73,7 @@
     methods: {
   
       deleteBooking(tour_id,id) {
-        axios.delete(`/tour/${tour_id}/booking/${id}`).then((response) => {
+        axios.delete(`/tour/${tour_id}/tour_booking/${id}`).then((response) => {
           let i = this.bookingList.map((data) => data.id).indexOf(id);
           this.bookingList.splice(i, 1);
           swal('Success', 'Booking Deleted Successfully', 'Success');

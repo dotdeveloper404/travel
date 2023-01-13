@@ -11,17 +11,23 @@ use App\Http\Controllers\Portal\TransportController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::resource('package',PackageController::class);
-Route::resource('hotel',HotelController::class);
-Route::resource('transport',TransportController::class);
-Route::resource('tour',TourController::class);
-Route::resource('agent',AgentController::class);
-
-Route::resource('packages.booking',PackageBookingController::class);
-Route::resource('tours.booking',TourBookingController::class);
+Route::resource('/package',PackageController::class);
+Route::resource('/hotel',HotelController::class);
+Route::resource('/transport',TransportController::class);
+Route::resource('/tour',TourController::class);
+Route::resource('/agent',AgentController::class);
 
 Route::get('/packages/bookings',[PackageBookingController::class,'bookingList'])->name('packages.bookings.list');
+Route::resource('/packages.booking',PackageBookingController::class);
+
 Route::get('/tours/bookings',[TourBookingController::class,'bookingList'])->name('tours.bookings.list');
+Route::resource('/tours.tour_booking',TourBookingController::class, [
+    'names' => [
+        'edit' => 'tour.booking.edit',
+        'update' => 'tour.booking.update',
+    ]
+]); 
+
 
 Route::post('/hotel/uploadImage',[HotelController::class,'uploadImage'])->name('hotel.upload_image');
 Route::get('/hotel/media/{id}', [HotelController::class, 'getImages'])->name('hotel.get_images');

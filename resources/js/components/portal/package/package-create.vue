@@ -323,9 +323,11 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">Submit</button>
       <a href="/portal/package/" class="btn btn-secondary">Cancel</a>
-
+      <div v-if="isLoading">
+        <LoaderBar />
+      </div>
          <!-- Partial View VueJS -->
          <errors :errors="errors" :trimValue="'package.'" ></errors>
 
@@ -350,6 +352,7 @@ export default {
         net_amount: 0,
        
       },
+      isLoading : false,
       errors:[],
       packageImages: [],
       featured_image: "",
@@ -393,6 +396,7 @@ export default {
     },
 
     create() {
+      this.isLoading=true;
       axios
         .post(
           "/package",
@@ -413,6 +417,7 @@ export default {
         )
         .then((response) => {
           if (response.data.success) {
+            this.isLoading=false;
             window.location.href = "/portal/package";
           }
         })
@@ -424,7 +429,7 @@ export default {
          
         )
 
-        .finally(() => (this.loading = false));
+        .finally(() => (this.isLoading = false));
     },
   },
 };

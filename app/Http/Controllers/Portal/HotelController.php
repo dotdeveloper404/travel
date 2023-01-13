@@ -122,7 +122,7 @@ class HotelController extends Controller
      * @return \Illuminate\Http\Response
      */
  
-    public function update($id,Request $request)
+    public function update($id,HotelStoreRequest $request)
     {
        
         $data = $request->validated();

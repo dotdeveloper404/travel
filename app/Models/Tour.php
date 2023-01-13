@@ -11,7 +11,7 @@ class Tour extends Model
     use HasFactory;
     use Sluggable;
     
-    protected $table = "tours";
+    // protected $table = "tours";
     protected $appends = ['image_path'];
     protected $guarded = [];
 

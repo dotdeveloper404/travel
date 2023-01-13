@@ -8,6 +8,7 @@ use App\Http\Requests\PackageBookingUpdateRequest;
 use App\Models\Agent;
 use App\Models\Package;
 use App\Models\PackageBooking;
+use App\Models\User;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate as FacadesGate;
@@ -68,12 +69,12 @@ class PackageBookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request , Package $package, PackageBooking $packageBooking)
     {
-        $booking = PackageBooking::with('package')->findOrfail($id);
+        $packageBooking->load('package');
         $bookingStatus = BookingStatus::values();
-        $agent = Agent::get();
-        return view('portal.package-bookings.edit', ['booking' => $booking, 'status' => $bookingStatus, 'agents' => $agent]);
+        $agent = User::whereType('agent')->get();
+        return view('portal.package-bookings.edit', ['booking' => $packageBooking, 'status' => $bookingStatus, 'agents' => $agent]);
     }
 
     /**
@@ -85,12 +86,12 @@ class PackageBookingController extends Controller
      */
     public function update(PackageBookingUpdateRequest $request, Package $package, PackageBooking $packageBooking)
     {
+
         // if (Gate::denies('update', $package)) {
         //     abort(403);
         // }
 
         $data = $request->validated();
-
         $packageBooking->update($data['booking']);
 
         return $this->success('Booking Updated Successfully');
@@ -102,8 +103,8 @@ class PackageBookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Package $package , PackageBooking $packageBooking)
     {
-        //
+    
     }
 }

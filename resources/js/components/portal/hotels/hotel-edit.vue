@@ -220,9 +220,11 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary mr-2">Update</button>
+      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">Update</button>
       <a href="/portal/hotel/" class="btn btn-secondary">Cancel</a>
-
+      <div v-if="isLoading">
+        <LoaderBar />
+      </div>
           <!-- Partial View VueJS -->
           <errors :errors="errors" :trimValue="'hotel.'"></errors>
 
@@ -241,6 +243,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       hotel: this.hotelData,
       hotelImages: this.hotelData.images,
       deletedImages: [],
@@ -266,6 +269,7 @@ export default {
       console.log("saved media" + images);
     },
     update() {
+      this.isLoading=true;
       axios
         .post(
           `/hotel/${this.hotel.id}`,
@@ -283,6 +287,7 @@ export default {
         )
         .then((response) => {
           if (response.data.success) {
+            this.isLoading=false;
             window.location.href = "/portal/hotel";
           }
         })
@@ -290,7 +295,7 @@ export default {
           console.log(err.response.data.errors);
           this.errors = err.response.data.errors;
         })
-        .finally(() => (this.loading = false));
+        .finally(() => (this.isLoading = false));
     },
   },
 };

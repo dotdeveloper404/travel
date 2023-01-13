@@ -40,7 +40,7 @@ class TourBookingUpdateRequest extends FormRequest
             'booking.contact_preference' =>'nullable',
             'booking.best_time_to_call' =>'nullable',
             'booking.comment' =>'nullable',
-
+            'booking.agent_id' =>'nullable',
         ];
     }
 

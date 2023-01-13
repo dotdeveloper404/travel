@@ -206,7 +206,6 @@
             </div>
           </div>
 
-
           <div class="form-group">
             <h5>Package Price</h5>
             <div class="input-group input-group-lg">
@@ -359,16 +358,18 @@
             </table>
           </div>
         </div>
-
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">
+        Submit
+      </button>
       <a href="/portal/package/" class="btn btn-secondary">Cancel</a>
-
-       <!-- Partial View VueJS -->
-       <errors :errors="errors" :trimValue="'package.'" ></errors>
-
+      <div v-if="isLoading">
+        <LoaderBar />
+      </div>
+      <!-- Partial View VueJS -->
+      <errors :errors="errors" :trimValue="'package.'"></errors>
     </div>
   </form>
 </template>
@@ -393,6 +394,7 @@ export default {
     return {
       packages: this.packageData,
       errors: [],
+      isLoading: false,
       packageImages: [],
       featured_image: "",
       deletedImages: [],
@@ -405,7 +407,7 @@ export default {
           ? [{ day: "", detail: "" }]
           : JSON.parse(this.packageData.itenary),
 
-          faqs:
+      faqs:
         this.packageData.faqs == null
           ? [{ question: "", answer: "" }]
           : JSON.parse(this.packageData.faqs),
@@ -468,13 +470,14 @@ export default {
     deleteRow(index) {
       this.itenaries.splice(index, 1);
     },
-    addFaqRow:function(){
-      this.faqs.push({question: "" , answer : ""});
+    addFaqRow: function () {
+      this.faqs.push({ question: "", answer: "" });
     },
-    deleteFaqRow(index){
-      this.faqs.splice(index,1);
+    deleteFaqRow(index) {
+      this.faqs.splice(index, 1);
     },
     update() {
+      this.isLoading = true;
       axios
         .post(
           `/package/${this.packages.id}`,
@@ -501,12 +504,12 @@ export default {
             window.location.href = "/portal/package";
           }
         })
-        .catch((err) =>{
+        .catch((err) => {
           console.log(err.response.data.errors);
-          this.errors = err.response.data.errors
+          this.errors = err.response.data.errors;
         })
 
-        .finally(() => (this.loading = false));
+        .finally(() => (this.isLoading = false));
     },
 
     inArray: function (item, array) {

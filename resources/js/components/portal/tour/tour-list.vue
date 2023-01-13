@@ -27,8 +27,11 @@
         <td>{{ item.net_amount }}</td>
         <td>
           <div class="btn-group" role="group">
-            <button class="btn btn-danger" @click="deleteTour(item.id)">
-              Delete
+            <button v-if="item.status == 1 "  class="btn btn-success" @click="updateTour(item,1)">
+              Active
+            </button>
+            <button v-if="item.status == 0 " class="btn btn-danger" @click="updateTour(item,0)">
+              Inactive
             </button>
             &nbsp;
             <a class="btn btn-primary" :href="'tour/' + item.id + '/edit'"
@@ -60,11 +63,19 @@ export default {
   },
 
   methods: {
-    deleteTour(id) {
-      axios.delete(`/tour/${id}`).then((response) => {
-        let i = this.tourList.map((data) => data.id).indexOf(id);
-        this.tourList.splice(i, 1);
-        alert("Tour Deleted Successfully");
+    updateTour(item,status)  {
+      axios.delete(`/tour/${item.id}`).then((response) => {
+        
+        this.tourList.forEach((loop_item)=>{
+            if(loop_item.id == item.id){
+            loop_item.status  = status == 0 ? 1 : 0;
+            }
+        });
+
+        // let i = this.tourList.map((data) => data.id).indexOf(id);
+        // this.tourList.splice(i, 1);
+        // alert("Tour Deleted Successfully");
+
       });
     },
   },

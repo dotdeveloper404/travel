@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\File;
 class PackageController extends Controller
 {
 
-
     /**
      * Display a listing of the resource.
      *
@@ -55,12 +54,11 @@ class PackageController extends Controller
 
         $data['package']['itenary'] = json_encode($request->itenaries);
         $data['package']['faqs'] = json_encode($request->faqs);
-       
+
         if ($request->hasFile('featured_image')) {
 
             $name = $this->moveFile($request->file('featured_image'), Package::getUploadPath());
-             $data['package']['featured_image']  = $name;
-          
+            $data['package']['featured_image']  = $name;
         }
         $package = Package::create($data['package']);
         $package->hotels()->sync($request->package['hotels']);
@@ -173,8 +171,11 @@ class PackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Package $package)
     {
-        //
+
+        $package->update(['status'=> $package->status == 1  ?  0 : 1 ]);
+    
+        return $this->success('Package has been inactive');
     }
 }

@@ -29,8 +29,14 @@
 
           <div class="form-group">
             <h5>Type:</h5>
-            <select v-model="hotel.type"  class="form-control">
-              <option v-for="(item,item_index) in typeData" :key="item_index" :value="item_index" >{{item.replace('_' , ' ')}}</option>
+            <select v-model="hotel.type" class="form-control">
+              <option
+                v-for="(item, item_index) in typeData"
+                :key="item_index"
+                :value="item_index"
+              >
+                {{ item.replace("_", " ") }}
+              </option>
             </select>
           </div>
 
@@ -211,11 +217,15 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">
+        Submit
+      </button>
       <a href="/portal/hotel/" class="btn btn-secondary">Cancel</a>
-        <!-- Partial View VueJS -->
+      <!-- Partial View VueJS -->
+      <div v-if="isLoading">
+        <LoaderBar />
+      </div>
       <errors :errors="errors" :trimValue="'hotel.'"></errors>
-
     </div>
   </form>
 </template>
@@ -224,7 +234,7 @@
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 export default {
-  props:['typeData'],
+  props: ["typeData"],
   mounted() {
     console.log("Component mounted.");
   },
@@ -234,7 +244,8 @@ export default {
       hotel: {
         status: 1,
       },
-      errors:[],
+      isLoading: false,
+      errors: [],
       hotelImages: [],
     };
   },
@@ -249,6 +260,7 @@ export default {
       // this.hotelImages = images.name;
     },
     create() {
+      this.isLoading = true;
       axios
         .post(
           "/hotel",
@@ -265,6 +277,7 @@ export default {
         )
         .then((response) => {
           if (response.data.success) {
+            this.isLoading = false;
             window.location.href = "/portal/hotel";
           }
         })
@@ -272,7 +285,7 @@ export default {
           console.log(err.response.data.errors);
           this.errors = err.response.data.errors;
         })
-        .finally(() => (this.loading = false));
+        .finally(() => (this.isLoading = false));
     },
   },
 };

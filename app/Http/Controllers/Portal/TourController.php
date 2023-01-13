@@ -49,22 +49,7 @@ class TourController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'tour.tour_name' => ['required', 'string'],
-            'tour.tour_type' => ['required'],
-            'tour.product_type' => ['required'],
-            'tour.traveling_date_start' => ['required'],
-            'tour.traveling_date_end' => ['required'],
-            'tour.nights' => ['required'],
-            'tour.days' => ['required'],
-            'tour.tour_price' => ['required'],
-            'tour.discount' => 'nullable',
-            'tour.net_amount' => ['required'],
-            'tour.seasonality' => 'nullable',
-            'tour.city' => 'nullable',
-            'tour.description' => 'nullable',
-            'tour.features' => 'nullable',
-            'tour.location_map' => 'nullable',
-            'tour.faqs' => 'nullable',
+          
         ]);
 
         if ($validator->fails()) {
@@ -212,8 +197,11 @@ class TourController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tour $tour)
     {
-        //
+
+        $tour->update(['status'=> $tour->status == 1  ?  0 : 1 ]);
+    
+        return $this->success('Tour has been inactive');
     }
 }

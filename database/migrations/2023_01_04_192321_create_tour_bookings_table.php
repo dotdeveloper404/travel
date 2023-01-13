@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tour_bookings', function (Blueprint $table) {
             $table->id();
-            $table->integer('agent_id')->nullable();
-            $table->integer('package_id'); 
+            $table->foreignId('agent_id')->nullable();
+            $table->foreignId('tour_id'); 
             $table->string('booking_status')->default('pending');
             $table->string('name');
             $table->string('email');

@@ -342,9 +342,11 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">Submit</button>
       <a href="/portal/tour/" class="btn btn-secondary">Cancel</a>
-
+      <div v-if="isLoading">
+        <LoaderBar />
+      </div>
         <!-- Partial View VueJS -->
         <errors :errors="errors" :trimValue="'tour.'" ></errors>
 
@@ -368,7 +370,7 @@ export default {
 
   data() {
     return {
-    
+      isLoading: false,
       tour: this.tourData,
       tourImages: [],
       featured_image: "",

@@ -29,7 +29,7 @@ class PackageUpdateRequest extends FormRequest
         return [
             'package.package_name' => [
                 'required',
-                Rule::unique('packages','package_name')->ignore($this->package['id'])
+                Rule::unique('tours','package_name')->ignore($this->package['id'])
             ],
             'package.package_type' => ['required'],
             'package.product_type' => ['required'],

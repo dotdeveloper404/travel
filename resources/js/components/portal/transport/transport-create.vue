@@ -149,9 +149,15 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">Submit</button>
       <a href="/portal/transport/" class="btn btn-secondary">Cancel</a>
+
+      <div v-if="isLoading">
+        <LoaderBar />
+      </div>
+      
     </div>
+    
       <!-- Partial View VueJS -->
       <errors :errors="errors" :trimValue="'transport.'"></errors>
 
@@ -169,6 +175,7 @@ export default {
       transport: {
         status: true,
       },
+      isLoading:false,
       transportImages: [],
       errors:[],
     };
@@ -181,6 +188,7 @@ export default {
       });
     },
     create() {
+      this.isLoading=true;
       axios
         .post(
           "/transport",
@@ -198,13 +206,14 @@ export default {
         .then((response) => {
           if (response.data.success) {
             window.location.href = "/portal/transport";
+            this.isLoading=false;
           }
         })
         .catch((err) => {
           console.log(err.response.data.errors);
           this.errors = err.response.data.errors;
         })
-        .finally(() => (this.loading = false));
+        .finally(() => (this.isLoading = false));
     },
   },
 };

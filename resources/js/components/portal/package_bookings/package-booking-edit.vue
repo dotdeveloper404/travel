@@ -20,9 +20,9 @@
               <option
                 v-for="(item, item_index) in agents"
                 :key="item_index"
-                :value="item_index"
+                :value="item.id"
               >
-                {{ item }}
+                {{ item.name }}
               </option>
             </select>
           </div>
@@ -185,9 +185,11 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary mr-2">Update Booking</button>
+      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">Update Booking</button>
       <a href="/portal/package/bookings" class="btn btn-secondary">Cancel</a>
-
+      <div v-if="isLoading">
+        <LoaderBar />
+      </div>
       <!-- Partial View VueJS -->
       <errors :errors="errors" :trimValue="'booking.'"></errors>
     </div>
@@ -203,6 +205,7 @@ export default {
 
   data() {
     return {
+      isLoading: false,
       errors:[],
       booking: this.bookingData,
     };
@@ -211,6 +214,7 @@ export default {
 
   methods: {
     update() {
+      this.isLoading = true;
       axios
         .post(
           `/packages/${this.booking.package.id}/booking/${this.booking.id}`,
@@ -233,6 +237,7 @@ export default {
         .catch((err) => {
           console.log(err.response.data.errors);
           this.errors = err.response.data.errors;
+          this.isLoading = false;
         })
 
         .finally(() => (this.loading = false));

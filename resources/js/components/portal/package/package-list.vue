@@ -27,8 +27,11 @@
         <td>{{ item.net_amount }}</td>
         <td>
           <div class="btn-group" role="group">
-            <button class="btn btn-danger" @click="deletePackage(item.id)">
-              Delete
+            <button v-if="item.status == 1 "  class="btn btn-success" @click="updatePackage(item,1)">
+              Active
+            </button>
+            <button v-if="item.status == 0 " class="btn btn-danger" @click="updatePackage(item,0)">
+              Inactive
             </button>
             &nbsp;
             <a class="btn btn-primary" :href="'package/' + item.id + '/edit'"
@@ -59,13 +62,19 @@ export default {
 
   methods: {
 
-    deletePackage(id) {
-      axios.delete(`/package/${id}`).then((response) => {
-        let i = this.packageList.map((data) => data.id).indexOf(id);
-        this.packageList.splice(i, 1);
-        swal('Success', 'Package Deleted Successfully', 'Success');
+    updatePackage(item,status) {
+    
+      axios.delete(`/package/${item.id}`).then((response) => {
+        this.packageList.forEach((loop_item)=>{
+            if(loop_item.id == item.id){
+            loop_item.status  = status == 0 ? 1 : 0;
+            }
+        });
+         
+        // swal('Success', 'Package Deleted Successfully', 'Success');
       });
     },
+   
   },
 };
 </script>

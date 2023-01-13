@@ -19,7 +19,7 @@
      
 
     @vite(['resources/js/app.js'])
-
+    @routes
     @stack('styles')
 </head>
 
