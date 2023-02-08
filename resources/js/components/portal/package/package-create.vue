@@ -7,7 +7,6 @@
             <h5>Package Name:</h5>
             <input
               type="text"
-              
               v-model="packages.package_name"
               class="form-control form-control-solid"
               placeholder="Enter Package name"
@@ -19,7 +18,6 @@
             <div class="input-group input-group-lg">
               <input
                 type="file"
-                
                 ref="file"
                 @change="handleFileUpload"
                 class="form-control form-control-solid"
@@ -39,7 +37,7 @@
                 :key="item_index"
                 :value="item_index"
               >
-                {{ item.replace("_", " ") }}
+                {{ item.replace(/[#_]/g, " ") }}
               </option>
             </select>
           </div>
@@ -47,9 +45,9 @@
           <div class="form-group">
             <h5>Select Hotels:</h5>
             <!-- <multiselect  v-model="packages.hotels"  :options="options" :multiple="true"> </multiselect> -->
- 
-           <select
-             multiple
+
+            <select
+              multiple
               required
               v-model="packages.hotels"
               class="form-control"
@@ -61,13 +59,13 @@
               >
                 {{ item.name }}
               </option>
-            </select>  
+            </select>
           </div>
 
           <div class="form-group">
             <h5>Select Transports:</h5>
             <select
-            multiple
+              multiple
               required
               v-model="packages.transports"
               class="form-control"
@@ -75,8 +73,9 @@
               <option
                 v-for="(item, item_index) in transports"
                 :key="item_index"
-                :value="item.id">
-                {{ item.company }}   {{ item.model }}
+                :value="item.id"
+              >
+                {{ item.company }} {{ item.model }}
               </option>
             </select>
           </div>
@@ -93,7 +92,7 @@
                 :key="item_index"
                 :value="item_index"
               >
-                {{ item.replace("_", " ") }}
+                {{ item.replace(/[#_]/g, " ") }}
               </option>
             </select>
           </div>
@@ -117,6 +116,30 @@
                 type="number"
                 required
                 v-model="packages.days"
+                class="form-control form-control-solid"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h5>Stars</h5>
+            <div class="input-group input-group-lg">
+              <input
+                type="number"
+                placeholder="1 to 5"
+                v-model="packages.stars"
+                class="form-control form-control-solid"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h5>Reviews</h5>
+            <div class="input-group input-group-lg">
+              <input
+                type="number"
+                placeholder="enter any random number for reviews"
+                v-model="packages.reviews"
                 class="form-control form-control-solid"
               />
             </div>
@@ -149,24 +172,58 @@
           <div class="form-group">
             <h5>Features</h5>
             <div class="">
-              <quill-editor
+              <!-- <quill-editor
                 contentType="html"
                 toolbar="full"
+                :modules="modules"
                 v-model:content="packages.features"
                 theme="snow"
-              ></quill-editor>
+              ></quill-editor> -->
+
+              <editor
+                api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+                v-model="packages.features"
+                :init="{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount',
+                  ],
+                  // toolbar: 'pageembed code preview',
+                  toolbar:
+                    'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+                }"
+              />
             </div>
           </div>
 
           <div class="form-group">
             <h5>Description</h5>
             <div class="">
-              <quill-editor
+              <!-- <quill-editor
                 contentType="html"
                 toolbar="full"
                 v-model:content="packages.description"
                 theme="snow"
-              ></quill-editor>
+              ></quill-editor> -->
+              <editor
+                api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+                v-model="packages.description"
+                :init="{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount',
+                  ],
+                  // toolbar: 'pageembed code preview',
+                  toolbar:
+                    'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+                }"
+              />
             </div>
           </div>
         </div>
@@ -191,7 +248,8 @@
                 type="date"
                 required
                 v-model="packages.traveling_date_end"
-                class="form-control form-control-solid" />
+                class="form-control form-control-solid"
+              />
             </div>
           </div>
 
@@ -253,32 +311,51 @@
         </div>
 
         <div class="col-md-12">
-          <div class="panel-body"> 
-           <span >ADD NEW ITENARY <i class="fa fa-plus pull-right"  @click="addRow" style="font-size:25px;color:#337ab7;cursor:pointer"></i> </span>
+          <div class="panel-body">
+            <span
+              >ADD NEW ITENARY
+              <i
+                class="fa fa-plus pull-right"
+                @click="addRow"
+                style="font-size: 25px; color: #337ab7; cursor: pointer"
+              ></i>
+            </span>
             <table class="table table-bordered">
-            <thead class="text text-success">
-                <tr>                            
-                    <th>Day</th>
-                    <th>Detail</th>
-                    <th>Action</th>
+              <thead class="text text-success">
+                <tr>
+                  <th>Day</th>
+                  <th>Detail</th>
+                  <th>Action</th>
                 </tr>
-                </thead>
-                <tbody>
-                   <tr v-for='(itenary, index) in itenaries' :key="index">                            
-                    <td>
-                    <input  v-model="itenary.day"  class="form-control" type="text" />
-                    </td>
-                    <td>
-                    <input v-model="itenary.detail" class="form-control" type="text" />
-                    </td>
-                   
-                    <td>
-                    <i  @click="deleteRow(index)" class="fa fa-remove" style="font-size:25px;color:red;cursor:pointer"></i>
-                    </td>
-                </tr>                        
-        </tbody>
-    </table>
-        </div> 
+              </thead>
+              <tbody>
+                <tr v-for="(itenary, index) in itenaries" :key="index">
+                  <td>
+                    <input
+                      v-model="itenary.day"
+                      class="form-control"
+                      type="text"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      v-model="itenary.detail"
+                      class="form-control"
+                      type="text"
+                    />
+                  </td>
+
+                  <td>
+                    <i
+                      @click="deleteRow(index)"
+                      class="fa fa-remove"
+                      style="font-size: 25px; color: red; cursor: pointer"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="col-md-12">
@@ -291,73 +368,94 @@
           </div>
         </div>
 
-
         <div class="col-md-12">
-          <div class="panel-body"> 
-           <span>ADD FAQs <i class="fa fa-plus pull-right"  @click="addFaqRow" style="font-size:25px;color:#337ab7;cursor:pointer"></i> </span>
+          <div class="panel-body">
+            <span
+              >ADD FAQs
+              <i
+                class="fa fa-plus pull-right"
+                @click="addFaqRow"
+                style="font-size: 25px; color: #337ab7; cursor: pointer"
+              ></i>
+            </span>
             <table class="table table-bordered">
-            <thead class="text text-success">
-                <tr>                            
-                    <th>Question</th>
-                    <th>Answer</th>
-                    <th>Action</th>
+              <thead class="text text-success">
+                <tr>
+                  <th>Question</th>
+                  <th>Answer</th>
+                  <th>Action</th>
                 </tr>
-                </thead>
-                <tbody>
-                   <tr v-for='(faq, index) in faqs' :key="index">                            
-                    <td>
-                    <input  v-model="faq.question"  class="form-control" type="text" />
-                    </td>
-                    <td>
-                    <input v-model="faq.answer" class="form-control" type="text" />
-                    </td>
-                   
-                    <td>
-                    <i  @click="deleteFaqRow(index)" class="fa fa-remove" style="font-size:25px;color:red;cursor:pointer"></i>
-                    </td>
-                </tr>                        
-        </tbody>
-    </table>
-        </div> 
+              </thead>
+              <tbody>
+                <tr v-for="(faq, index) in faqs" :key="index">
+                  <td>
+                    <input
+                      v-model="faq.question"
+                      class="form-control"
+                      type="text"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      v-model="faq.answer"
+                      class="form-control"
+                      type="text"
+                    />
+                  </td>
+
+                  <td>
+                    <i
+                      @click="deleteFaqRow(index)"
+                      class="fa fa-remove"
+                      style="font-size: 25px; color: red; cursor: pointer"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
     <div class="card-footer">
-      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">Submit</button>
+      <button :disabled="isLoading" type="submit" class="btn btn-primary mr-2">
+        Submit
+      </button>
       <a href="/portal/package/" class="btn btn-secondary">Cancel</a>
       <div v-if="isLoading">
         <LoaderBar />
       </div>
-         <!-- Partial View VueJS -->
-         <errors :errors="errors" :trimValue="'package.'" ></errors>
-
+      <!-- Partial View VueJS -->
+      <errors :errors="errors" :trimValue="'package.'"></errors>
     </div>
   </form>
 </template>
 
 <script>
+import Editor from "@tinymce/tinymce-vue";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
-import Multiselect from 'vue-multiselect'
+
+import htmlEditButton from "quill-html-edit-button";
+
+import Multiselect from "vue-multiselect";
 export default {
-  props: ["packageType", "productType",'hotels','transports'],
+  props: ["packageType", "productType", "hotels", "transports"],
   mounted() {
     console.log("Component mounted.");
   },
-  components: { Multiselect },
+  components: { Multiselect, Editor },
   data() {
     return {
-     
       packages: {
         status: 1,
         net_amount: 0,
-       
       },
-      isLoading : false,
-      errors:[],
+      isLoading: false,
+      errors: [],
       packageImages: [],
       featured_image: "",
-      itenaries:[{day:'',detail:''}],    
-      faqs:[{question:'',answer:''}]     
+      itenaries: [{ day: "", detail: "" }],
+      faqs: [{ question: "", answer: "" }],
     };
   },
   computed: {
@@ -366,6 +464,17 @@ export default {
       this.packages.net_amount = total;
       return total;
     },
+  },
+  setup: () => {
+    const modules = {
+      name: "htmlEditButton",
+      module: htmlEditButton,
+      options: {
+        debug: true,
+      },
+    };
+
+    return { modules };
   },
   methods: {
     handleFileUpload(event) {
@@ -381,32 +490,31 @@ export default {
       });
       // this.packageImages = images.name;
     },
-    addRow: function() {      
-       this.itenaries.push({day:'',detail:''})
+    addRow: function () {
+      this.itenaries.push({ day: "", detail: "" });
     },
-    deleteRow(index){    
-        this.itenaries.splice(index,1);             
-    },    
+    deleteRow(index) {
+      this.itenaries.splice(index, 1);
+    },
 
-    addFaqRow:function(){
-      this.faqs.push({question: "" , answer : ""});
+    addFaqRow: function () {
+      this.faqs.push({ question: "", answer: "" });
     },
-    deleteFaqRow(index){
-      this.faqs.splice(index,1);
+    deleteFaqRow(index) {
+      this.faqs.splice(index, 1);
     },
 
     create() {
-      this.isLoading=true;
+      this.isLoading = true;
       axios
         .post(
           "/package",
           {
             package: this.packages,
-            itenaries : this.itenaries,
-            faqs : this.faqs,
+            itenaries: this.itenaries,
+            faqs: this.faqs,
             featured_image: this.featured_image,
             images: this.packageImages,
-          
           },
           {
             headers: {
@@ -417,17 +525,14 @@ export default {
         )
         .then((response) => {
           if (response.data.success) {
-            this.isLoading=false;
+            this.isLoading = false;
             window.location.href = "/portal/package";
           }
         })
-        .catch(
-          (err) => {
-            console.log(err.response.data.errors);
-            this.errors = err.response.data.errors
-          }
-         
-        )
+        .catch((err) => {
+          console.log(err.response.data.errors);
+          this.errors = err.response.data.errors;
+        })
 
         .finally(() => (this.isLoading = false));
     },

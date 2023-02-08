@@ -10,7 +10,7 @@
                     <h1 class="text-30 fw-600">Packages</h1>
                 </div>
 
-                <!-- <div class="mainSearch -col-3-big bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
+                <div class="mainSearch -col-3-big bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
                     <div class="button-grid items-center">
 
                         <div class="searchMenu-loc pr-30 pl-10 lg:py-20 lg:px-0 js-form-dd js-liverSearch">
@@ -36,10 +36,8 @@
                                                 <div class="d-flex">
                                                     <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
                                                     <div class="ml-10">
-                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">London
-                                                        </div>
-                                                        <div class="text-14 lh-12 text-light-1 mt-5">Greater London,
-                                                            United Kingdom</div>
+                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">London</div>
+                                                        <div class="text-14 lh-12 text-light-1 mt-5">Greater London, United Kingdom</div>
                                                     </div>
                                                 </div>
                                             </button>
@@ -50,10 +48,8 @@
                                                 <div class="d-flex">
                                                     <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
                                                     <div class="ml-10">
-                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">New
-                                                            York</div>
-                                                        <div class="text-14 lh-12 text-light-1 mt-5">New York State,
-                                                            United States</div>
+                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">New York</div>
+                                                        <div class="text-14 lh-12 text-light-1 mt-5">New York State, United States</div>
                                                     </div>
                                                 </div>
                                             </button>
@@ -64,8 +60,7 @@
                                                 <div class="d-flex">
                                                     <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
                                                     <div class="ml-10">
-                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">Paris
-                                                        </div>
+                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">Paris</div>
                                                         <div class="text-14 lh-12 text-light-1 mt-5">France</div>
                                                     </div>
                                                 </div>
@@ -77,8 +72,7 @@
                                                 <div class="d-flex">
                                                     <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
                                                     <div class="ml-10">
-                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">Madrid
-                                                        </div>
+                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">Madrid</div>
                                                         <div class="text-14 lh-12 text-light-1 mt-5">Spain</div>
                                                     </div>
                                                 </div>
@@ -90,8 +84,7 @@
                                                 <div class="d-flex">
                                                     <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
                                                     <div class="ml-10">
-                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">
-                                                            Santorini</div>
+                                                        <div class="text-15 lh-12 fw-500 js-search-option-target">Santorini</div>
                                                         <div class="text-14 lh-12 text-light-1 mt-5">Greece</div>
                                                     </div>
                                                 </div>
@@ -3467,633 +3460,885 @@
                             </button>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <section class="layout-pt-md layout-pb-lg">
-    <div class="container">
+      <div class="container">
         <div class="row y-gap-30">
-            <div class="col-xl-3 col-lg-4 lg:d-none">
-            <form method="GET" action="{{ route('packages.index')}}">
-          <aside class="sidebar y-gap-40">
-            <div class="sidebar__item -no-border">
-              <h5 class="text-18 fw-500 mb-10">Package Type</h5>
-              <div class="sidebar-checkbox">
+          <div class="col-xl-3 col-lg-4 lg:d-none">
+            <aside class="sidebar y-gap-40">
+              <div class="sidebar__item -no-border">
+                <h5 class="text-18 fw-500 mb-10">Category Types</h5>
+                <div class="sidebar-checkbox">
 
-                <div class="row y-gap-10 items-center justify-between">
-                  <div class="col-12">
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
 
-                    <div class="d-flex items-center">
-                      <select name="package_type" class="form-control">
-                        <option value="">Select</option>
-                        @foreach($packageType as $key=>$package)
-                        <option  {{ request()->get('package_type') == $key ? 'selected' : ''  }} value="{{$key}}">{{str_replace('_',' ',$package)}}</option>
-                        @endforeach
-                      </select>
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
 
-                    </div>
+                        <div class="text-15 ml-10">Tours</div>
 
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-
-
-            <div class="sidebar__item">
-              <h5 class="text-18 fw-500 mb-10"> </h5>
-              <div class="sidebar-checkbox">
-
-                <div class="row y-gap-10 items-center justify-between">
-                  <div class="col-12">
-
-                    <div class="d-flex items-center">
-                      <select name="product_type" class="form-control">
-                        <option value="">Select</option>
-                        @foreach($productType as $key=>$type)
-                        <option {{ request()->get('product_type') == $key ? 'selected' : '' }} value="{{$key}}">{{str_replace('_',' ',$type)}}</option>
-                        @endforeach
-                      </select>
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-
-            <div class="sidebar__item">
-              <h5 class="text-18 fw-500 mb-10">Nights & Days</h5>
-              <div class="sidebar-checkbox">
-
-                <div class="row y-gap-10 items-center justify-between">
-                  <div class="col-12">
-
-                    <div class="d-flex items-center">
-                      <div class="form-group">
-                        <label>Nights</label>
-                        <input style="border:1 !important;" type="text" value="{{ request()->get('nights') ? request()->nights : '' }}" class="form-control" name="nights" id="">
-                      </div>
-
-                      <div class="form-group">
-                        <label>Days</label>
-                        <input style="border:1 !important;" type="text" value="{{ request()->get('days') ? request()->days : '' }}" class="form-control" name="days" id="">
                       </div>
 
                     </div>
 
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">92</div>
+                    </div>
                   </div>
 
-                </div>
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
 
-              </div>
-            </div>
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
 
-            <div class="sidebar__item">
-              <h5 class="text-18 fw-500 mb-10">Traveling Date</h5>
-              <div class="sidebar-checkbox">
+                        <div class="text-15 ml-10">Attractions </div>
 
-                <div class="row y-gap-10 items-center justify-between">
-                  <div class="col-12">
-
-                    <div class="d-flex items-center">
-                      <div class="form-group">
-                        <label>Start Date</label>
-                        <input type="date" value="{{ request()->get('start_date') ? request()->start_date : '' }}" class="form-control" name="start_date" id="">
-                      </div>
-
-                      <div class="form-group">
-                        <label>End Date</label>
-                        <input type="date" value="{{ request()->get('end_date') ? request()->end_date : '' }}" class="form-control" name="end_date" id="">
                       </div>
 
                     </div>
 
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">45</div>
+                    </div>
+                  </div>
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">Day Trips</div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">21</div>
+                    </div>
+                  </div>
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">Outdoor Activities </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">78</div>
+                    </div>
+                  </div>
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">Concerts &amp; Shows </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">679</div>
+                    </div>
                   </div>
 
                 </div>
-
               </div>
-            </div>
 
+              <div class="sidebar__item">
+                <h5 class="text-18 fw-500 mb-10">Other</h5>
+                <div class="sidebar-checkbox">
 
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
 
-          </aside>
-          <div class="form-group">
-            <input type="submit" class="button -md -dark-1 bg-blue-1 text-white mt-20" value="Search" />
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">Free cancellation</div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">92</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="sidebar__item pb-30">
+                <h5 class="text-18 fw-500 mb-10">Price</h5>
+                <div class="row x-gap-10 y-gap-30">
+                  <div class="col-12">
+                    <div class="js-price-rangeSlider">
+                      <div class="text-14 fw-500"></div>
+
+                      <div class="d-flex justify-between mb-20">
+                        <div class="text-15 text-dark-1">
+                          <span class="js-lower"></span>
+                          -
+                          <span class="js-upper"></span>
+                        </div>
+                      </div>
+
+                      <div class="px-5">
+                        <div class="js-slider"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sidebar__item">
+                <h5 class="text-18 fw-500 mb-10">Duration</h5>
+                <div class="sidebar-checkbox">
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">Up to 1 hour</div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">92</div>
+                    </div>
+                  </div>
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">1 to 4 hours </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">45</div>
+                    </div>
+                  </div>
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">4 hours to 1 day </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">21</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="sidebar__item">
+                <h5 class="text-18 fw-500 mb-10">Languages</h5>
+                <div class="sidebar-checkbox">
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">English</div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">92</div>
+                    </div>
+                  </div>
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">Spanish</div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">45</div>
+                    </div>
+                  </div>
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">French</div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">45</div>
+                    </div>
+                  </div>
+
+                  <div class="row y-gap-10 items-center justify-between">
+                    <div class="col-auto">
+
+                      <div class="d-flex items-center">
+                        <div class="form-checkbox ">
+                          <input type="checkbox" name="name">
+                          <div class="form-checkbox__mark">
+                            <div class="form-checkbox__icon icon-check"></div>
+                          </div>
+                        </div>
+
+                        <div class="text-15 ml-10">Turkish</div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="text-15 text-light-1">21</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </aside>
           </div>
-        </form>
+
+          <div class="col-xl-9 col-lg-8">
+            <div class="row y-gap-10 items-center justify-between">
+              <div class="col-auto">
+                <!-- <div class="text-18"><span class="fw-500">3,269 properties</span> in Europe</div> -->
+              </div>
+
+              <div class="col-auto">
+                <div class="row x-gap-20 y-gap-20">
+                  <div class="col-auto">
+                    <button class="button -blue-1 h-40 px-20 rounded-100 bg-blue-1-05 text-15 text-blue-1">
+                      <i class="icon-up-down text-14 mr-10"></i>
+                      Sort
+                    </button>
+                  </div>
+
+                  <div class="col-auto d-none lg:d-block">
+                    <button data-x-click="filterPopup" class="button -blue-1 h-40 px-20 rounded-100 bg-blue-1-05 text-15 text-blue-1">
+                      <i class="icon-up-down text-14 mr-10"></i>
+                      Filter
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="col-xl-9 col-lg-8">
-                <div class="row y-gap-10 items-center justify-between">
-                    <div class="col-auto">
-                        <!-- <div class="text-18"><span class="fw-500">3,269 properties</span> in Europe</div> -->
-                    </div>
-
-                    <div class="col-auto">
-                        <div class="row x-gap-20 y-gap-20">
-                            <div class="col-auto">
-                                <!-- <button class="button -blue-1 h-40 px-20 rounded-100 bg-blue-1-05 text-15 text-blue-1">
-                                    <i class="icon-up-down text-14 mr-10"></i>
-                                    Sort
-                                </button> -->
-                            </div>
-
-                            <div class="col-auto d-none lg:d-block">
-                                <button data-x-click="filterPopup" class="button -blue-1 h-40 px-20 rounded-100 bg-blue-1-05 text-15 text-blue-1">
-                                    <i class="icon-up-down text-14 mr-10"></i>
-                                    Filter
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="filterPopup bg-white" data-x="filterPopup" data-x-toggle="-is-active">
+              <aside class="sidebar -mobile-filter">
+                <div data-x-click="filterPopup" class="-icon-close">
+                  <i class="icon-close"></i>
                 </div>
 
-                <div class="filterPopup bg-white" data-x="filterPopup" data-x-toggle="-is-active">
-                    <aside class="sidebar -mobile-filter">
-                        <div data-x-click="filterPopup" class="-icon-close">
-                            <i class="icon-close"></i>
-                        </div>
+                <div class="sidebar__item -no-border">
+                  <h5 class="text-18 fw-500 mb-10">Category Types</h5>
+                  <div class="sidebar-checkbox">
 
-                        <div class="sidebar__item -no-border">
-                            <h5 class="text-18 fw-500 mb-10">Category Types</h5>
-                            <div class="sidebar-checkbox">
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
 
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">Tours</div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">92</div>
-                                    </div>
-                                </div>
-
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">Attractions </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">45</div>
-                                    </div>
-                                </div>
-
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">Day Trips</div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">21</div>
-                                    </div>
-                                </div>
-
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">Outdoor Activities </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">78</div>
-                                    </div>
-                                </div>
-
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">Concerts &amp; Shows </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">679</div>
-                                    </div>
-                                </div>
-
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
                             </div>
+                          </div>
+
+                          <div class="text-15 ml-10">Tours</div>
+
                         </div>
 
-                        <div class="sidebar__item">
-                            <h5 class="text-18 fw-500 mb-10">Other</h5>
-                            <div class="sidebar-checkbox">
+                      </div>
 
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">92</div>
+                      </div>
+                    </div>
 
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
 
-                                            <div class="text-15 ml-10">Free cancellation</div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">92</div>
-                                    </div>
-                                </div>
-
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
                             </div>
+                          </div>
+
+                          <div class="text-15 ml-10">Attractions </div>
+
                         </div>
 
-                        <div class="sidebar__item pb-30">
-                            <h5 class="text-18 fw-500 mb-10">Price</h5>
-                            <div class="row x-gap-10 y-gap-30">
-                                <div class="col-12">
-                                    <div class="js-price-rangeSlider">
-                                        <div class="text-14 fw-500"></div>
+                      </div>
 
-                                        <div class="d-flex justify-between mb-20">
-                                            <div class="text-15 text-dark-1">
-                                                <span class="js-lower"></span>
-                                                -
-                                                <span class="js-upper"></span>
-                                            </div>
-                                        </div>
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">45</div>
+                      </div>
+                    </div>
 
-                                        <div class="px-5">
-                                            <div class="js-slider"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
+
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
                             </div>
+                          </div>
+
+                          <div class="text-15 ml-10">Day Trips</div>
+
                         </div>
 
-                        <div class="sidebar__item">
-                            <h5 class="text-18 fw-500 mb-10">Duration</h5>
-                            <div class="sidebar-checkbox">
+                      </div>
 
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">21</div>
+                      </div>
+                    </div>
 
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
 
-                                            <div class="text-15 ml-10">Up to 1 hour</div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">92</div>
-                                    </div>
-                                </div>
-
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">1 to 4 hours </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">45</div>
-                                    </div>
-                                </div>
-
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">4 hours to 1 day </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">21</div>
-                                    </div>
-                                </div>
-
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
                             </div>
+                          </div>
+
+                          <div class="text-15 ml-10">Outdoor Activities </div>
+
                         </div>
 
-                        <div class="sidebar__item">
-                            <h5 class="text-18 fw-500 mb-10">Languages</h5>
-                            <div class="sidebar-checkbox">
+                      </div>
 
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">78</div>
+                      </div>
+                    </div>
 
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
 
-                                            <div class="text-15 ml-10">English</div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">92</div>
-                                    </div>
-                                </div>
-
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">Spanish</div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">45</div>
-                                    </div>
-                                </div>
-
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">French</div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">45</div>
-                                    </div>
-                                </div>
-
-                                <div class="row y-gap-10 items-center justify-between">
-                                    <div class="col-auto">
-
-                                        <div class="d-flex items-center">
-                                            <div class="form-checkbox ">
-                                                <input type="checkbox" name="name">
-                                                <div class="form-checkbox__mark">
-                                                    <div class="form-checkbox__icon icon-check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-15 ml-10">Turkish</div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-15 text-light-1">21</div>
-                                    </div>
-                                </div>
-
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
                             </div>
+                          </div>
+
+                          <div class="text-15 ml-10">Concerts &amp; Shows </div>
+
                         </div>
 
-                    </aside>
+                      </div>
+
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">679</div>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
 
-                <div class="mt-30"></div>
+                <div class="sidebar__item">
+                  <h5 class="text-18 fw-500 mb-10">Other</h5>
+                  <div class="sidebar-checkbox">
 
-                <div class="row y-gap-30">
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
 
-                    @foreach($packages as $package)
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
+                            </div>
+                          </div>
+
+                          <div class="text-15 ml-10">Free cancellation</div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">92</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="sidebar__item pb-30">
+                  <h5 class="text-18 fw-500 mb-10">Price</h5>
+                  <div class="row x-gap-10 y-gap-30">
                     <div class="col-12">
+                      <div class="js-price-rangeSlider">
+                        <div class="text-14 fw-500"></div>
 
-                        <div class="shadow-2 pt-30">
-                            <div class="row x-gap-20 y-gap-20 p-2">
-                                <div class="col-md-auto">
-
-                                    <div class="cardImage ratio ratio-1:1 w-250 md:w-1/1 rounded-4">
-                                        <div class="cardImage__content" id="imgbx">
-
-                                            <img class="rounded-4 col-12 js-lazy" src="#" data-src="{{asset('storage/uploads/package_images/featured_image/' . $package->featured_image)}}" alt="image">
-                                            <!-- <div class="icon-heart"></div> -->
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md">
-                                    <div class="row x-gap-10 items-center">
-                                        <div class="col-auto">
-                                            <p class="text-14 fw-600 text-info-2 lh-14 mb-5">
-                                                {{ str_replace('_',' ' , strtoupper($package->product_type)) }}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <h3 class="text-20 lh-16 fw-800">{{ $package->package_name}}</h3>
-                                    <p class="text-12">
-                                    <div class="d-inline-block ml-10">
-                                            {!! $package->stars == 1 ? '<i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                            {!! $package->stars == 2 ? '<i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                            {!! $package->stars == 3 ? '<i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                            {!! $package->stars == 4 ? '<i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                            {!! $package->stars == 5 ? '<i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                        </div>
-                                     
-                                        <a href="javascript:void(0);" class="text-purple-1">{{$package->reviews != null ? $package->reviews . ' reviews' : '' }} </a>
-                                    </p>
-                                    <p class="text-14 lh-14 mt-5"><i>{{$package->seasonality}}</i>
-                                    </p>
-
-                                    <div class="row mt-2">
-                                        <div class="col-md-6">
-                                            <p class="fw-600 text-13">Destinations</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="text-12">{{ $package->city }}</p>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row mt-2">
-                                        <div class="col-md-6">
-                                            <p class="fw-600 text-13">Traveling Start Date</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="text-12">{{ date('d/m/Y',strtotime($package->traveling_date_start)) }}</p>
-                                        </div>
-
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-6">
-                                            <p class="fw-600 text-13">Traveling End Date</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="text-12">{{ date('d/m/Y',strtotime($package->traveling_date_end)) }}</p>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-auto text-right md:text-left">
-
-                                    <div class="row mt-2 text-left">
-                                        <div class="col-auto">
-                                            <p class="text-12">Tour length <br>
-                                                <strong>{{ $package->days}} days</strong>
-                                                <strong>{{ $package->nights}} nights</strong>
-                                            </p>
-                                            <!-- <p class="text-12">Price per day <br>
-                                                <strong>$94</strong>
-                                            </p> -->
-                                        </div>
-                                        <div class="col">
-                                            @if($package->discount > 0)
-                                            <p class="text-12">From <span class="line-through text-15 fw-600">${{$package->package_price}}
-                                                </span> <br>
-                                                US<strong class="text-info-2 text-20"> ${{$package->net_amount}}</strong>
-                                            </p>
-                                            @else
-                                            <p class="text-12">
-                                                US<strong class="text-info-2 text-20"> ${{$package->net_amount}}</strong>
-                                            </p>
-                                            @endif()
-
-                                        </div>
-                                    </div>
-
-                                    <a href="{{ route('packages.show',$package->slug) }}" class="button -md -dark-1 bg-blue-1 text-white mt-20">
-                                        View Detail <div class="icon-arrow-top-right ml-15"></div>
-                                    </a>
-                                    <!-- <a href="#" class="button -md -dark-1 border-blue-1 text-blue-2 mt-24">
-                                        Download
-                                    </a> -->
-
-                                </div>
-                            </div>
+                        <div class="d-flex justify-between mb-20">
+                          <div class="text-15 text-dark-1">
+                            <span class="js-lower"></span>
+                            -
+                            <span class="js-upper"></span>
+                          </div>
                         </div>
 
+                        <div class="px-5">
+                          <div class="js-slider"></div>
+                        </div>
+                      </div>
                     </div>
-                    @endforeach
-
-
-                </div>
-                <div class="row y-gap-30">
-                <div class="d-flex justify-content-center">
-                {!! $packages->links( "pagination::bootstrap-4") !!}
-                </div>
+                  </div>
                 </div>
 
+                <div class="sidebar__item">
+                  <h5 class="text-18 fw-500 mb-10">Duration</h5>
+                  <div class="sidebar-checkbox">
+
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
+
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
+                            </div>
+                          </div>
+
+                          <div class="text-15 ml-10">Up to 1 hour</div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">92</div>
+                      </div>
+                    </div>
+
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
+
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
+                            </div>
+                          </div>
+
+                          <div class="text-15 ml-10">1 to 4 hours </div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">45</div>
+                      </div>
+                    </div>
+
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
+
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
+                            </div>
+                          </div>
+
+                          <div class="text-15 ml-10">4 hours to 1 day </div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">21</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="sidebar__item">
+                  <h5 class="text-18 fw-500 mb-10">Languages</h5>
+                  <div class="sidebar-checkbox">
+
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
+
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
+                            </div>
+                          </div>
+
+                          <div class="text-15 ml-10">English</div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">92</div>
+                      </div>
+                    </div>
+
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
+
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
+                            </div>
+                          </div>
+
+                          <div class="text-15 ml-10">Spanish</div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">45</div>
+                      </div>
+                    </div>
+
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
+
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
+                            </div>
+                          </div>
+
+                          <div class="text-15 ml-10">French</div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">45</div>
+                      </div>
+                    </div>
+
+                    <div class="row y-gap-10 items-center justify-between">
+                      <div class="col-auto">
+
+                        <div class="d-flex items-center">
+                          <div class="form-checkbox ">
+                            <input type="checkbox" name="name">
+                            <div class="form-checkbox__mark">
+                              <div class="form-checkbox__icon icon-check"></div>
+                            </div>
+                          </div>
+
+                          <div class="text-15 ml-10">Turkish</div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-auto">
+                        <div class="text-15 text-light-1">21</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </aside>
+            </div>
+
+            <div class="mt-30"></div>
+
+            <div class="row y-gap-30">
+
+                @foreach($packages as $package)
+                <div class="col-12">
+
+<div class="border-top-light pt-30">
+  <div class="row x-gap-20 y-gap-20">
+    <div class="col-md-auto">
+
+      <div class="cardImage ratio ratio-1:1 w-250 md:w-1/1 rounded-4">
+        <div class="cardImage__content">
+
+          <img class="rounded-4 col-12 js-lazy" src="#"  data-src="{{asset('storage/uploads/package_images/featured_image/' . $package->featured_image)}}" alt="image">
+
+        </div>
+<!-- 
+        <div class="cardImage__wishlist">
+          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+            <i class="icon-heart text-12"></i>
+          </button>
+        </div> -->
+
+      </div>
+
+    </div>
+
+    <div class="col-md">
+      <div class="row x-gap-10 items-center">
+        <div class="col-auto">
+          <p class="text-14 lh-14 mb-5">{{ str_replace('_',' ' , strtoupper($package->product_type)) }}</p>
+        </div>
+        <!-- <div class="col-auto">
+          <div class="size-3 rounded-full bg-light-1 mb-5"></div>
+        </div> -->
+        <!-- <div class="col-auto">
+          <p class="text-14 lh-14 mb-5">Full-day Tours</p>
+        </div> -->
+      </div>
+
+      <h3 class="text-18 lh-16 fw-500">{{ $package->package_name}}</h3>
+      <p class="text-14 lh-14 mt-5">{{ $package->nights}} Nights & {{$package->days}} Days</p>
+
+      <div class="text-14 lh-15 fw-500 mt-20">{{ str_replace('_',' ' , strtoupper($package->package_type)) }}</div>
+      <div class="text-14 text-green-2 fw-500 lh-15 mt-5">{{ $package->seasonality}}</div>
+    </div>
+
+    <div class="col-md-auto text-right md:text-left">
+
+      <a href="{{ route('packages.show',$package->slug) }}" class="button -md -dark-1 bg-blue-1 text-white mt-24">
+        View Detail <div class="icon-arrow-top-right ml-15"></div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+</div>
+                @endforeach
+ 
 
             </div>
+
+            <!-- <div class="border-top-light mt-30 pt-30">
+              <div class="row x-gap-10 y-gap-20 justify-between md:justify-center">
+                <div class="col-auto md:order-1">
+                  <button class="button -blue-1 size-40 rounded-full border-light">
+                    <i class="icon-chevron-left text-12"></i>
+                  </button>
+                </div>
+
+                <div class="col-md-auto md:order-3">
+                  <div class="row x-gap-20 y-gap-20 items-center md:d-none">
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full">1</div>
+
+                    </div>
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full bg-dark-1 text-white">2</div>
+
+                    </div>
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full">3</div>
+
+                    </div>
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full bg-light-2">4</div>
+
+                    </div>
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full">5</div>
+
+                    </div>
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full">...</div>
+
+                    </div>
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full">20</div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="row x-gap-10 y-gap-20 justify-center items-center d-none md:d-flex">
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full">1</div>
+
+                    </div>
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full bg-dark-1 text-white">2</div>
+
+                    </div>
+
+                    <div class="col-auto">
+
+                      <div class="size-40 flex-center rounded-full">3</div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="text-center mt-30 md:mt-10">
+                    <div class="text-14 text-light-1">1 – 20 of 300+ properties found</div>
+                  </div>
+                </div>
+
+                <div class="col-auto md:order-2">
+                  <button class="button -blue-1 size-40 rounded-full border-light">
+                    <i class="icon-chevron-right text-12"></i>
+                  </button>
+                </div>
+              </div>
+            </div> -->
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
 
 @endsection

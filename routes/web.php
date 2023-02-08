@@ -40,12 +40,15 @@ Route::get('/cancelation-policy',[PublicController::class,'cancelationPolicy'])-
 
 Auth::routes();
 
-Route::resource('hotel',HotelController::class);
+// Route::resource('hotel',HotelController::class);
 // Route::resource('packages.booking',BookingController::class);
 // Route::resource('tour.booking',TourBookingController::class);
 
 Route::post('/packages/{package}/booking',[PackageBookingController::class,'store'])->name('packages.booking.store');
 Route::post('/tours/{tour}/booking',[TourBookingController::class,'store'])->name('tours.booking.store');
+
+Route::get('/hotels/{hotel:slug}',[HotelController::class,'show'])->name('hotels.show');
+Route::get('/hotels',[HotelController::class,'index'])->name('hotels.index');
 
 Route::get('/packages/{package:slug}',[PackageController::class,'show'])->name('packages.show');
 Route::get('/packages',[PackageController::class,'index'])->name('packages.index');

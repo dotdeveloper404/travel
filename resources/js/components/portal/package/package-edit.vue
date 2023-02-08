@@ -39,7 +39,7 @@
                 :key="item_index"
                 :value="item_index"
               >
-                {{ item.replace("_", " ") }}
+              {{ item.replace(/[#_]/g,' ') }}
               </option>
             </select>
           </div>
@@ -56,7 +56,7 @@
                 :key="item_index"
                 :value="item_index"
               >
-                {{ item.replace("_", " ") }}
+              {{ item.replace(/[#_]/g,' ') }}
               </option>
             </select>
           </div>
@@ -122,6 +122,31 @@
           </div>
 
           <div class="form-group">
+            <h5>Stars</h5>
+            <div class="input-group input-group-lg">
+              <input
+                type="number"
+                placeholder="1 to 5"
+                v-model="packages.stars"
+                class="form-control form-control-solid"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h5>Reviews</h5>
+            <div class="input-group input-group-lg">
+              <input
+                type="number"
+                placeholder="enter any random number for reviews"
+                v-model="packages.reviews"
+                class="form-control form-control-solid"
+              />
+            </div>
+          </div>
+
+
+          <div class="form-group">
             <h5>City</h5>
             <div class="input-group input-group-lg">
               <input
@@ -148,24 +173,58 @@
           <div class="form-group">
             <h5>Features</h5>
             <div class="">
-              <quill-editor
+              <!-- <quill-editor
                 contentType="html"
                 toolbar="full"
+                :modules="modules"
                 v-model:content="packages.features"
                 theme="snow"
-              ></quill-editor>
+              ></quill-editor> -->
+
+              <editor
+                api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+                v-model="packages.features"
+                :init="{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount',
+                  ],
+                  toolbar:
+                    'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+                }"
+              />
+
             </div>
           </div>
 
           <div class="form-group">
             <h5>Description</h5>
             <div class="">
-              <quill-editor
+              <!-- <quill-editor
                 contentType="html"
                 toolbar="full"
                 v-model:content="packages.description"
                 theme="snow"
-              ></quill-editor>
+              ></quill-editor> -->
+              <editor
+                api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+                v-model="packages.description"
+                :init="{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount',
+                  ],
+                  // toolbar: 'pageembed code preview',
+                  toolbar:
+                    'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+                }"
+              />
             </div>
           </div>
         </div>
@@ -375,10 +434,13 @@
 </template>
 
 <script>
+import Editor from "@tinymce/tinymce-vue";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import htmlEditButton from "quill-html-edit-button";
 
 export default {
   props: ["packageData", "packageType", "productType", "hotels", "transports"],
+  components: { Editor },
   mounted() {
     console.log("Component mounted.");
     // console.log(this.packageData.itenary);
@@ -413,7 +475,56 @@ export default {
           : JSON.parse(this.packageData.faqs),
 
       hotel_id: [],
+     test :  htmlEditButton.htmlOutputFormatted,
+      editorOption: {
+          theme: 'snow',
+          modules: {
+            toolbar: [
+              ['bold', 'italic', 'underline', 'strike'],
+              ['blockquote', 'code-block'],
+              [{ 'header': 1 }, { 'header': 2 }],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+              [{ 'script': 'sub' }, { 'script': 'super' }],
+              [{ 'indent': '-1' }, { 'indent': '+1' }],
+              [{ 'direction': 'rtl' }],
+              [{ 'size': ['small', false, 'large', 'huge'] }],
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'font': [] }],
+              [{ 'align': [] }],
+              ['clean'],
+              ['link', 'image', 'video']
+            ],
+            ImageResize: {},
+            VideoResize: {},
+            htmlEditButton: {
+              debug: true,
+              msg: "Edit the content in HTML format",
+              okText: "Ok",
+              cancelText: "Cancel",
+              buttonHTML: "HTML",
+              buttonTitle: "Show HTML source",
+              syntax: false,
+              prependSelector: 'div#myelement',
+              editorModules: {}
+            },
+           
+          },
+          placeholder: 'Insert text here ...',
+        },
+        
     };
+  },
+  setup: () => {
+    const modules = {
+      name: 'htmlEditButton',
+      module: htmlEditButton,
+      options: {
+        debug: true
+      },
+    };
+   
+    return {  modules }
   },
   computed: {
     calculateTotalAmount: function () {

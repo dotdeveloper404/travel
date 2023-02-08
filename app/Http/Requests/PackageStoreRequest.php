@@ -47,6 +47,8 @@ class PackageStoreRequest extends FormRequest
             'package.itenary' => 'nullable',
             'package.location_map' => 'nullable',
             'package.faqs' => 'nullable',
+            'package.stars' => 'nullable',
+            'package.reviews' => 'nullable',
         ];
     }
 

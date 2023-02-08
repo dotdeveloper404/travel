@@ -100,6 +100,31 @@
           </div>
 
           <div class="form-group">
+            <h5>Stars</h5>
+            <div class="input-group input-group-lg">
+              <input
+                type="number"
+                placeholder="1 to 5"
+                v-model="tour.stars"
+                class="form-control form-control-solid"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h5>Reviews</h5>
+            <div class="input-group input-group-lg">
+              <input
+                type="number"
+                placeholder="enter any random number for reviews"
+                v-model="tour.reviews"
+                class="form-control form-control-solid"
+              />
+            </div>
+          </div>
+          
+
+          <div class="form-group">
             <h5>City</h5>
             <div class="input-group input-group-lg">
               <input

@@ -8,7 +8,7 @@
             <div class="col-lg-12 ">
                 <div class="card card-custom gutter-b example example-compact">
 
-                 <package-create :hotels="{{ json_encode($hotels) }}" :transports="{{ json_encode($transports)}}" :package-type="{{ json_encode($package_type)}}" :product-type="{{ json_encode($product_type)}}" ></package-create>
+                 <tour-create  :transports="{{ json_encode($transports)}}" :tour-type="{{ json_encode($tour_type)}}" :product-type="{{ json_encode($product_type)}}" ></tour-create>
 
                 </div>
             </div>

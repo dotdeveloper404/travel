@@ -11,11 +11,11 @@ use App\Http\Controllers\Portal\TransportController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::resource('/package',PackageController::class);
 Route::resource('/hotel',HotelController::class);
 Route::resource('/transport',TransportController::class);
 Route::resource('/tour',TourController::class);
 Route::resource('/agent',AgentController::class);
+Route::resource('/package',PackageController::class);
 
 Route::get('/packages/bookings',[PackageBookingController::class,'bookingList'])->name('packages.bookings.list');
 Route::resource('/packages.booking',PackageBookingController::class);

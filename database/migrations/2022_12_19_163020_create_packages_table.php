@@ -34,6 +34,8 @@ return new class extends Migration
             $table->string('featured_image')->nullable();
             $table->text('location_map')->nullable();
             $table->text('faqs')->nullable();
+            $table->integer('stars')->nullable();
+            $table->integer('reviews')->nullable();
             $table->boolean('status')->default(1);
 
             $table->timestamps();

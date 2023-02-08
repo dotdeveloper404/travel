@@ -608,7 +608,7 @@ body {
 select,
 input:not([type="range"]),
 textarea {
-  border: 0;
+  /* border: 0; */
   outline: none;
   width: 100%;
   background-color: transparent;
@@ -11998,3 +11998,263 @@ table.table-5 td {
   height: 100%;
   max-height: 700px;
 }
+
+
+/* custom css start  */
+.custom-accordion-- {
+  background-color: #fff;
+  color: #444;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid var(--color-dark-1);
+  width: 100%;
+  display: block;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.acc-border-0 {
+  border: 0 !important;
+}
+
+.active,
+.custom-accordion--:hover {
+  color: var(--color-purple-1);
+}
+
+.custom-panel-- {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+
+#imgbx .icon-heart {
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  right: 8px;
+  padding: 8px;
+  background-size: 20px;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  box-shadow: 0 1px 2px rgb(3 54 63 / 40%), 0 -1px 2px rgb(3 54 63 / 4%);
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+/* slider start  */
+
+.packageSectionlisting {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("https://cdn.tourradar.com/s3/tour/1500x800/84919_5df9f6d75080a.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+
+.hero .hero__slider.owl-carousel .owl-item.active .hero__text h6 {
+  top: 0;
+  opacity: 1;
+}
+
+.hero .hero__slider.owl-carousel .icon-arrow-left,
+.hero .hero__slider.owl-carousel .icon-arrow-right {
+  color: var(--color-white);
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.hero .hero__slider.owl-carousel .owl-item.active .hero__text h1 {
+  top: 0;
+  opacity: 1;
+}
+
+.hero .hero__slider.owl-carousel .owl-item.active .hero__text p {
+  top: 0;
+  opacity: 1;
+}
+
+.hero .hero__slider.owl-carousel .owl-item.active .hero__text .primary-btn {
+  top: 0;
+  opacity: 1;
+}
+
+.hero .hero__slider.owl-carousel .owl-nav button {
+  font-size: 36px;
+  color: #333333;
+  position: absolute;
+  left: 75px;
+  top: 50%;
+  margin-top: -18px;
+  line-height: 29px;
+}
+
+.hero .hero__slider.owl-carousel .owl-nav button.owl-next {
+  left: auto;
+  right: 75px;
+}
+
+.hero .hero__slider.owl-carousel .hero__items {
+  height: 100%;
+  padding: 100px 0px;
+}
+
+.hero .hero__slider.owl-carousel .hero__text h6 {
+  color: var(--color-orange-1);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  top: 100px;
+  opacity: 0;
+  -webkit-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+}
+
+.hero .hero__slider.owl-carousel .hero__text h1 {
+  color: var(--color-white);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 58px;
+  
+  position: relative;
+  top: 100px;
+  opacity: 0;
+  -webkit-transition: all, 0.6s;
+  -o-transition: all, 0.6s;
+  transition: all, 0.6s;
+}
+
+.hero .hero__slider.owl-carousel .hero__text p {
+  font-size: 16px;
+  line-height: 28px;
+  margin-bottom: 35px;
+  position: relative;
+  color: var(--color-light-2);
+  top: 100px;
+  opacity: 0;
+  -webkit-transition: all, 0.9s;
+  -o-transition: all, 0.9s;
+  transition: all, 0.9s;
+}
+
+.hero .hero__slider.owl-carousel .hero__text .primary-btn {
+  position: relative;
+  top: 100px;
+  opacity: 0;
+  -webkit-transition: all, 1.1s;
+  -o-transition: all, 1.1s;
+  transition: all, 1.1s;
+  padding: 14px 30px;
+  color: var(--color-dark-1);
+  background: var(--color-white);
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.hero .hero__slider.owl-carousel .hero__text .primary-btn:hover {
+  color: var(--color-white);
+  background: var(--color-orange-1);
+}
+
+.hero .hero__slider.owl-carousel .hero__text .primary-btn span {
+  font-size: 20px;
+  position: relative;
+  top: 4px;
+  font-weight: 700;
+  color: var(--color-dark-1);
+}
+
+.hero .hero__slider.owl-carousel .hero__text .primary-btn:hover span {
+  color: var(--color-white);
+}
+
+@media(max-width:468px){
+
+  .hero .hero__slider.owl-carousel .hero__text h1 {
+    font-size: 25px;
+    line-height: 10px;
+    margin-bottom: 30px;
+  }
+
+  .hero .hero__slider.owl-carousel .hero__text p {
+    font-size: 15px;
+    line-height: 0;
+  }
+  .hero .hero__slider.owl-carousel .hero__text h6{
+    margin-bottom: 30px;
+  }
+
+  .hero .hero__slider.owl-carousel .owl-nav{
+    display: none;
+  }  
+
+}
+/* slider end  */
+
+/* tabs start  */
+.main-tabs .overview-tabs-- .tabs-btn {
+  background-color: var(--color-light-2);
+  color: var(--color-black);
+  margin-left: -1px;
+  padding: 18px 28px 14px;
+  border: 1px solid var(--color-border);
+  display: inline-block;
+}
+
+.main-tabs .overview-tabs-- .tabs-btn.show {
+  background-color: var(--color-dark-1);
+  color: #fff;
+}
+
+.main-tabs .overview-tab-content .tabs-transport-content {
+  width: 100%;
+  height: 100%;
+}
+
+.main-tabs .overview-tab-content #tab-hotels-content {
+  display: none;
+}
+
+.main-tabs .overview-tab-content #tab-hotels-content.show {
+  display: block;
+}
+
+.main-tabs .overview-tab-content #tab-transport-content {
+  display: none;
+}
+
+.main-tabs .overview-tab-content #tab-transport-content.show {
+  display: block;
+}
+
+/* tabs end  */
+
+
+
+.page-item.active .page-link {
+  z-index: 3 !important;
+  color: #fff !important;
+  background-color: #eb7346 !important;
+  border-color: #eb7346 !important;
+}
+
+.page-link {
+  position: relative !important;
+  display: block !important;
+  padding: 0.5rem 0.75rem !important;
+  margin-left: -1px !important;
+  line-height: 1.25 !important;
+  color: #367d7d !important;
+  background-color: #fff !important;
+  border: 1px solid #dee2e6 !important;
+  cursor: point !important;
+}
+
+/* custom css end  */
+

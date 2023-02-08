@@ -38,7 +38,7 @@
                 v-for="(item, item_index) in tourType"
                 :key="item_index"
                 :value="item_index">
-                {{ item.replace("_", " ") }}
+                {{ item.replace(/[#_]/g,' ') }}
               </option>
             </select>
           </div>
@@ -72,7 +72,7 @@
                 :key="item_index"
                 :value="item_index"
               >
-                {{ item.replace("_", " ") }}
+                {{ item.replace(/[#_]/g,' ') }}
               </option>
             </select>
           </div>
@@ -96,6 +96,30 @@
                 type="number"
                 required
                 v-model="tour.days"
+                class="form-control form-control-solid"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h5>Stars</h5>
+            <div class="input-group input-group-lg">
+              <input
+                type="number"
+                placeholder="1 to 5"
+                v-model="tour.stars"
+                class="form-control form-control-solid"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h5>Reviews</h5>
+            <div class="input-group input-group-lg">
+              <input
+                type="number"
+                placeholder="enter any random number for reviews"
+                v-model="tour.reviews"
                 class="form-control form-control-solid"
               />
             </div>

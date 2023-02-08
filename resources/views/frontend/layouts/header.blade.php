@@ -6,7 +6,7 @@
       <div class="col-auto">
         <div class="d-flex items-center">
           <h3>
-            <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
+            <a href="/" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
               <img src="{{ asset('frontend/img/ilinkturkey-white.png')}}" alt="logo icon">
                 <img src="{{ asset('frontend/img/ilinkturkey-white.png') }}" alt="logo icon">
            
@@ -21,9 +21,7 @@
 
               <div class="menu js-navList">
                 <ul class="menu__nav text-white -is-active">
-                  <!-- <li>
-                    <a href="{{ route('hotel.index') }}">Hotels</a>
-                  </li> -->
+              
                   <li>
                     <a href="{{ route('tours.index') }}">Tours</a>
                   </li>

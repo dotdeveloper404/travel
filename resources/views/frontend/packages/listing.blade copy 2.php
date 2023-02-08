@@ -10,7 +10,7 @@
                     <h1 class="text-30 fw-600">Packages</h1>
                 </div>
 
-                <!-- <div class="mainSearch -col-3-big bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
+                <div class="mainSearch -col-3-big bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
                     <div class="button-grid items-center">
 
                         <div class="searchMenu-loc pr-30 pl-10 lg:py-20 lg:px-0 js-form-dd js-liverSearch">
@@ -3467,7 +3467,7 @@
                             </button>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
@@ -3477,118 +3477,329 @@
     <div class="container">
         <div class="row y-gap-30">
             <div class="col-xl-3 col-lg-4 lg:d-none">
-            <form method="GET" action="{{ route('packages.index')}}">
-          <aside class="sidebar y-gap-40">
-            <div class="sidebar__item -no-border">
-              <h5 class="text-18 fw-500 mb-10">Package Type</h5>
-              <div class="sidebar-checkbox">
+                <aside class="sidebar y-gap-40">
+                    <div class="sidebar__item -no-border">
+                        <h5 class="text-18 fw-500 mb-10">Category</h5>
+                        <div class="sidebar-checkbox">
 
-                <div class="row y-gap-10 items-center justify-between">
-                  <div class="col-12">
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
 
-                    <div class="d-flex items-center">
-                      <select name="package_type" class="form-control">
-                        <option value="">Select</option>
-                        @foreach($packageType as $key=>$package)
-                        <option  {{ request()->get('package_type') == $key ? 'selected' : ''  }} value="{{$key}}">{{str_replace('_',' ',$package)}}</option>
-                        @endforeach
-                      </select>
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
 
+                                        <div class="text-15 ml-10">Day Trip</div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">92</div>
+                                </div>
+                            </div>
+
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
+
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-15 ml-10">Tours </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">45</div>
+                                </div>
+                            </div>
+
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
+
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-15 ml-10">Packages</div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">21</div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
                     </div>
 
-                  </div>
 
-                </div>
+                    <div class="sidebar__item">
+                        <h5 class="text-18 fw-500 mb-10">Duration</h5>
+                        <div class="sidebar-checkbox">
 
-              </div>
-            </div>
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
 
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
 
-            <div class="sidebar__item">
-              <h5 class="text-18 fw-500 mb-10"> </h5>
-              <div class="sidebar-checkbox">
+                                        <div class="text-15 ml-10">Up to 1 hour</div>
 
-                <div class="row y-gap-10 items-center justify-between">
-                  <div class="col-12">
+                                    </div>
 
-                    <div class="d-flex items-center">
-                      <select name="product_type" class="form-control">
-                        <option value="">Select</option>
-                        @foreach($productType as $key=>$type)
-                        <option {{ request()->get('product_type') == $key ? 'selected' : '' }} value="{{$key}}">{{str_replace('_',' ',$type)}}</option>
-                        @endforeach
-                      </select>
+                                </div>
 
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">92</div>
+                                </div>
+                            </div>
+
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
+
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-15 ml-10">1 to 4 hours </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">45</div>
+                                </div>
+                            </div>
+
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
+
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-15 ml-10">4 hours to 1 day </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">21</div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
-                  </div>
 
-                </div>
-              </div>
-            </div>
+                    <div class="sidebar__item">
+                        <h5 class="text-18 fw-500 mb-10">Special</h5>
+                        <div class="sidebar-checkbox">
 
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
 
-            <div class="sidebar__item">
-              <h5 class="text-18 fw-500 mb-10">Nights & Days</h5>
-              <div class="sidebar-checkbox">
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
 
-                <div class="row y-gap-10 items-center justify-between">
-                  <div class="col-12">
+                                        <div class="text-15 ml-10">Deals & Discount</div>
 
-                    <div class="d-flex items-center">
-                      <div class="form-group">
-                        <label>Nights</label>
-                        <input style="border:1 !important;" type="text" value="{{ request()->get('nights') ? request()->nights : '' }}" class="form-control" name="nights" id="">
-                      </div>
+                                    </div>
 
-                      <div class="form-group">
-                        <label>Days</label>
-                        <input style="border:1 !important;" type="text" value="{{ request()->get('days') ? request()->days : '' }}" class="form-control" name="days" id="">
-                      </div>
+                                </div>
 
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">92</div>
+                                </div>
+                            </div>
+
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
+
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-15 ml-10">Free Cancelation</div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">92</div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
-                  </div>
+                    <div class="sidebar__item">
+                        <h5 class="text-18 fw-500 mb-10">Languages</h5>
+                        <div class="sidebar-checkbox">
 
-                </div>
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
 
-              </div>
-            </div>
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
 
-            <div class="sidebar__item">
-              <h5 class="text-18 fw-500 mb-10">Traveling Date</h5>
-              <div class="sidebar-checkbox">
+                                        <div class="text-15 ml-10">English</div>
 
-                <div class="row y-gap-10 items-center justify-between">
-                  <div class="col-12">
+                                    </div>
 
-                    <div class="d-flex items-center">
-                      <div class="form-group">
-                        <label>Start Date</label>
-                        <input type="date" value="{{ request()->get('start_date') ? request()->start_date : '' }}" class="form-control" name="start_date" id="">
-                      </div>
+                                </div>
 
-                      <div class="form-group">
-                        <label>End Date</label>
-                        <input type="date" value="{{ request()->get('end_date') ? request()->end_date : '' }}" class="form-control" name="end_date" id="">
-                      </div>
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">92</div>
+                                </div>
+                            </div>
 
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
+
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-15 ml-10">Spanish</div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">45</div>
+                                </div>
+                            </div>
+
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
+
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-15 ml-10">French</div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">45</div>
+                                </div>
+                            </div>
+
+                            <div class="row y-gap-10 items-center justify-between">
+                                <div class="col-auto">
+
+                                    <div class="d-flex items-center">
+                                        <div class="form-checkbox ">
+                                            <input type="checkbox" name="name">
+                                            <div class="form-checkbox__mark">
+                                                <div class="form-checkbox__icon icon-check"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-15 ml-10">Turkish</div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="text-15 text-light-1">21</div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
-                  </div>
+                    <div class="sidebar__item pb-30">
+                        <h5 class="text-18 fw-500 mb-10">Price</h5>
+                        <div class="row x-gap-10 y-gap-30">
+                            <div class="col-12">
+                                <div class="js-price-rangeSlider">
+                                    <div class="text-14 fw-500"></div>
 
-                </div>
+                                    <div class="d-flex justify-between mb-20">
+                                        <div class="text-15 text-dark-1">
+                                            <span class="js-lower"></span>
+                                            -
+                                            <span class="js-upper"></span>
+                                        </div>
+                                    </div>
 
-              </div>
-            </div>
+                                    <div class="px-5">
+                                        <div class="js-slider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-          </aside>
-          <div class="form-group">
-            <input type="submit" class="button -md -dark-1 bg-blue-1 text-white mt-20" value="Search" />
-          </div>
-        </form>
+                </aside>
             </div>
 
             <div class="col-xl-9 col-lg-8">
@@ -3600,10 +3811,10 @@
                     <div class="col-auto">
                         <div class="row x-gap-20 y-gap-20">
                             <div class="col-auto">
-                                <!-- <button class="button -blue-1 h-40 px-20 rounded-100 bg-blue-1-05 text-15 text-blue-1">
+                                <button class="button -blue-1 h-40 px-20 rounded-100 bg-blue-1-05 text-15 text-blue-1">
                                     <i class="icon-up-down text-14 mr-10"></i>
                                     Sort
-                                </button> -->
+                                </button>
                             </div>
 
                             <div class="col-auto d-none lg:d-block">
@@ -3995,17 +4206,12 @@
                                     </div>
 
                                     <h3 class="text-20 lh-16 fw-800">{{ $package->package_name}}</h3>
-                                    <p class="text-12">
-                                    <div class="d-inline-block ml-10">
-                                            {!! $package->stars == 1 ? '<i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                            {!! $package->stars == 2 ? '<i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                            {!! $package->stars == 3 ? '<i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                            {!! $package->stars == 4 ? '<i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                            {!! $package->stars == 5 ? '<i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i>' : '' !!}
-                                        </div>
-                                     
-                                        <a href="javascript:void(0);" class="text-purple-1">{{$package->reviews != null ? $package->reviews . ' reviews' : '' }} </a>
-                                    </p>
+                                    <!-- <p class="text-12"><i class="icon-star text-yellow-3"></i><i
+                                            class="icon-star text-yellow-3"></i><i
+                                            class="icon-star text-yellow-3"></i><i
+                                            class="icon-star text-yellow-3"></i><i class="icon-star text-yellow-3"></i>
+                                        <a href="#" class="text-purple-1">10 reviews</a>
+                                    </p> -->
                                     <p class="text-14 lh-14 mt-5"><i>{{$package->seasonality}}</i>
                                     </p>
 
@@ -4070,9 +4276,9 @@
                                     <a href="{{ route('packages.show',$package->slug) }}" class="button -md -dark-1 bg-blue-1 text-white mt-20">
                                         View Detail <div class="icon-arrow-top-right ml-15"></div>
                                     </a>
-                                    <!-- <a href="#" class="button -md -dark-1 border-blue-1 text-blue-2 mt-24">
+                                    <a href="#" class="button -md -dark-1 border-blue-1 text-blue-2 mt-24">
                                         Download
-                                    </a> -->
+                                    </a>
 
                                 </div>
                             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Portal;
 use App\Http\Controllers\Controller;
 use App\Enums\ProductType;
 use App\Enums\TourType;
+use App\Http\Requests\Portal\TourStoreRequest;
 use App\Models\Tour;
 use App\Models\TourImage;
 use App\Models\Transport;
@@ -46,17 +47,18 @@ class TourController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TourStoreRequest $request)
     {
-        $validator = Validator::make($request->all(), [
+        // $validator = Validator::make($request->all(), [
           
-        ]);
+        // ]);
 
-        if ($validator->fails()) {
-            return $this->validationError($validator->errors(), 'Failed to save data');
-        }
+        // if ($validator->fails()) {
+        //     return $this->validationError($validator->errors(), 'Failed to save data');
+        // }
 
-        $data = $validator->validated();
+        $data = $request->validated();
+
 
         $data = array_merge($data['tour'], ['itenary' => json_encode($request->itenaries), 'faqs' => json_encode($request->faqs)]);
         if ($request->hasFile('featured_image')) {
@@ -135,33 +137,10 @@ class TourController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tour $tour)
+    public function update(TourStoreRequest $request, Tour $tour)
     {
-
-        $validator = Validator::make($request->all(), [
-            'tour.tour_name' => ['required', 'string'],
-            'tour.tour_type' => ['required'],
-            'tour.product_type' => ['required'],
-            'tour.traveling_date_start' => ['required'],
-            'tour.traveling_date_end' => ['required'],
-            'tour.nights' => ['required'],
-            'tour.days' => ['required'],
-            'tour.tour_price' => ['required'],
-            'tour.discount' => 'nullable',
-            'tour.net_amount' => ['required'],
-            'tour.seasonality' => 'nullable',
-            'tour.city' => 'nullable',
-            'tour.description' => 'nullable',
-            'tour.features' => 'nullable',
-            'tour.location_map' => 'nullable',
-            'tour.faqs' => 'nullable',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->validationError($validator->errors(), 'Failed to save data');
-        }
-
-        $data = $validator->validated();
+        
+        $data = $request->validated();
 
         $data = array_merge($data['tour'], ['itenary' => json_encode($request->itenaries), 'faqs' => json_encode($request->faqs)]);
 

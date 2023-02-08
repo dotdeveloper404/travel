@@ -5,6 +5,7 @@ namespace App\Http\Requests\Portal;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class TourStoreRequest extends FormRequest
 {
@@ -25,24 +26,57 @@ class TourStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'tour.tour_name' => ['required', 'string'],
-            'tour.tour_type' => ['required'],
-            'tour.product_type' => ['required'],
-            'tour.traveling_date_start' => ['required'],
-            'tour.traveling_date_end' => ['required'],
-            'tour.nights' => ['required'],
-            'tour.days' => ['required'],
-            'tour.tour_price' => ['required'],
-            'tour.discount' => 'nullable',
-            'tour.net_amount' => ['required'],
-            'tour.seasonality' => 'nullable',
-            'tour.city' => 'nullable',
-            'tour.description' => 'nullable',
-            'tour.features' => 'nullable',
-            'tour.location_map' => 'nullable',
-            'tour.faqs' => 'nullable',
-        ];
+      
+
+        if ($this->isMethod('post')) {
+            return [
+                'tour.tour_name' => [
+                    'required',
+                    Rule::unique('tours','tour_name')
+                ],
+                'tour.tour_name' => ['required', 'string'],
+                'tour.tour_type' => ['required'],
+                'tour.product_type' => ['required'],
+                'tour.traveling_date_start' => ['required'],
+                'tour.traveling_date_end' => ['required'],
+                'tour.nights' => ['required'],
+                'tour.days' => ['required'],
+                'tour.tour_price' => ['required'],
+                'tour.discount' => 'nullable',
+                'tour.net_amount' => ['required'],
+                'tour.seasonality' => 'nullable',
+                'tour.city' => 'nullable',
+                'tour.description' => 'nullable',
+                'tour.features' => 'nullable',
+                'tour.location_map' => 'nullable',
+                'tour.faqs' => 'nullable',
+                'tour.stars' => 'nullable',
+                'tour.reviews' => 'nullable',
+            ];
+        }
+    
+        if ($this->isMethod('put')) {
+            return [
+                'tour.tour_name' => ['required', 'string'],
+                'tour.tour_type' => ['required'],
+                'tour.product_type' => ['required'],
+                'tour.traveling_date_start' => ['required'],
+                'tour.traveling_date_end' => ['required'],
+                'tour.nights' => ['required'],
+                'tour.days' => ['required'],
+                'tour.tour_price' => ['required'],
+                'tour.discount' => 'nullable',
+                'tour.net_amount' => ['required'],
+                'tour.seasonality' => 'nullable',
+                'tour.city' => 'nullable',
+                'tour.description' => 'nullable',
+                'tour.features' => 'nullable',
+                'tour.location_map' => 'nullable',
+                'tour.faqs' => 'nullable',
+                'tour.stars' => 'nullable',
+                'tour.reviews' => 'nullable',
+            ];
+        }
     }
 
 

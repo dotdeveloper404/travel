@@ -4,9 +4,9 @@ namespace App\Enums;
 
 enum PackageType:string{
 
-        case Type1 = "type_1";
-        case Type2 = "type_2";
-        case Type3 = "type_3";
+        case Type_1 = "type_1";
+        case Type_2 = "type_2";
+        case Type_3 = "type_3";
 
        public static function values():array
        {
