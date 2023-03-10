@@ -614,8 +614,8 @@
 
 
                                     <li>
-                                        <a href="{{ route('blogs')}}">
-                                            Destinations
+                                        <a href="{{ url('/blog') }}">
+                                            Blogs
                                         </a>
                                     </li>
 
