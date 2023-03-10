@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Portal;
 
+use App\Enums\Duration;
+use App\Enums\Languages;
 use App\Http\Controllers\Controller;
 use App\Enums\ProductType;
 use App\Enums\TourType;
 use App\Http\Requests\Portal\TourStoreRequest;
+use App\Models\City;
+use App\Models\Hotel;
 use App\Models\Tour;
 use App\Models\TourImage;
 use App\Models\Transport;
@@ -38,7 +42,11 @@ class TourController extends Controller
         $tourType = TourType::values();
         $productType = ProductType::values();
         $transports =  Transport::get();
-        return view('portal.tours.create', ['product_type' => $productType, 'tour_type' => $tourType, 'transports' => $transports]);
+        $languages = Languages::values();
+        $duration =  Duration::values();
+        $cities= City::get();
+
+        return view('portal.tours.create', ['product_type' => $productType, 'tour_type' => $tourType, 'transports' => $transports,'languages' => $languages , 'duration' => $duration , 'cities'=>$cities]);
     }
 
     /**
@@ -60,12 +68,11 @@ class TourController extends Controller
         $data = $request->validated();
 
 
-        $data = array_merge($data['tour'], ['itenary' => json_encode($request->itenaries), 'faqs' => json_encode($request->faqs)]);
+        $data = array_merge($data['tour'], ['itenary' => json_encode($request->itenaries), 'faqs' => json_encode($request->faqs),'destinations' => json_encode($request->destinations)]);
         if ($request->hasFile('featured_image')) {
             $name = $this->moveFile($request->file('featured_image'), Tour::getUploadPath());
             $data = array_merge($data, ['featured_image' => $name]);
         }
-
         $tour = Tour::create($data);
         $tour->transports()->sync($request->tour['transports']);
 
@@ -126,7 +133,11 @@ class TourController extends Controller
         $tourType = TourType::values();
         $productType = ProductType::values();
         $transports =  Transport::get();
-        return view('portal.tours.edit', ['tour' => $tour, 'product_type' => $productType, 'tour_type' => $tourType, 'transports' => $transports]);
+        $languages = Languages::values();
+        $duration =  Duration::values();
+        $cities = City::get();
+        $duration =  Duration::values();
+        return view('portal.tours.edit', ['tour' => $tour, 'product_type' => $productType, 'tour_type' => $tourType, 'transports' => $transports,'languages' => $languages , 'duration' => $duration,'cities' => $cities]);
     }
 
 
@@ -142,7 +153,7 @@ class TourController extends Controller
         
         $data = $request->validated();
 
-        $data = array_merge($data['tour'], ['itenary' => json_encode($request->itenaries), 'faqs' => json_encode($request->faqs)]);
+        $data = array_merge($data['tour'], ['itenary' => json_encode($request->itenaries), 'faqs' => json_encode($request->faqs),'destinations' => json_encode($request->destinations)]);
 
         if ($request->hasFile('featured_image')) {
             $name = $this->moveFile($request->file('featured_image'), Tour::getUploadPath());

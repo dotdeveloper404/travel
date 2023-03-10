@@ -7,12 +7,12 @@
 
               <div class="mt-30">
                 <div class="text-14 mt-30">Toll Free Customer Care</div>
-                <a href="#" class="text-18 fw-500 text-blue-1 mt-5">+(1) 123 456 7890</a>
+                <a href="#" class="text-18 fw-500 text-blue-1 mt-5">  +(1) 123 456 7890</a>
               </div>
 
               <div class="mt-35">
                 <div class="text-14 mt-30">Need live support?</div>
-                <a href="#" class="text-18 fw-500 text-blue-1 mt-5">hi@gotrip.com</a>
+                <a href="#" class="text-18 fw-500 text-blue-1 mt-5">hi@ilinkturkey.com</a>
               </div>
             </div>
 
@@ -80,7 +80,7 @@
               <div class="row x-gap-30 y-gap-10">
                 <div class="col-auto">
                   <div class="d-flex items-center">
-                    © 2022 iLink LLC All rights reserved.
+                    © {{ date('Y')}} iLinkTurkey  All rights reserved.
                   </div>
                 </div>
 

@@ -4,9 +4,9 @@ namespace App\Enums;
 
 enum PackageType:string{
 
-        case Type_1 = "type_1";
-        case Type_2 = "type_2";
-        case Type_3 = "type_3";
+        case Day_Trip = "Day Trip";
+        case Multiday_Trip = "Multiday Trip";
+        case All_Inclusive = "All Inclusive";
 
        public static function values():array
        {

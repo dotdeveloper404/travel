@@ -15,6 +15,28 @@
           </div>
 
           <div class="form-group">
+            <h5>Description</h5>
+            <div class="">
+              <editor
+                api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+                v-model="packages.description"
+                :init="{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount',
+                  ],
+                  // toolbar: 'pageembed code preview',
+                  toolbar:
+                    'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+                }"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
             <h5>Featured Image</h5>
             <div class="input-group input-group-lg">
               <input
@@ -39,7 +61,7 @@
                 :key="item_index"
                 :value="item_index"
               >
-              {{ item.replace(/[#_]/g,' ') }}
+                {{ item.replace(/[#_]/g, " ") }}
               </option>
             </select>
           </div>
@@ -56,13 +78,105 @@
                 :key="item_index"
                 :value="item_index"
               >
-              {{ item.replace(/[#_]/g,' ') }}
+                {{ item.replace(/[#_]/g, " ") }}
               </option>
             </select>
           </div>
 
           <div class="form-group">
-            <h5>Select Hotels:</h5>
+            <h5>Languages:</h5>
+            <select
+              required
+              multiple
+              v-model="packages.languages"
+              class="form-control"
+            >
+              <option
+                v-for="(item, item_index) in languages"
+                :key="item_index"
+                :value="item_index"
+              >
+                {{ item.replace(/[#_]/g, " ") }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <h5>Recomended:</h5>
+            <select required v-model="packages.recomended" class="form-control">
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <h5>Duration:</h5>
+            <select
+              required
+              v-model="packages.duration"
+              class="form-control"
+            >
+              <option
+                v-for="(item, item_index) in duration"
+                :key="item_index"
+                :value="item_index"
+              >
+                {{ item.replace(/[#_]/g, " ") }}
+              </option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <h5>Deals & Discount:</h5>
+            <select
+              required
+              v-model="packages.deals_and_discount"
+              class="form-control"
+            >
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <h5>Free Cancelation:</h5>
+            <select
+              required
+              v-model="packages.free_cancelation"
+              class="form-control"
+            >
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <h5>Group Type:</h5>
+            <select
+              required
+              v-model="packages.group_type"
+              class="form-control"
+            >
+              <option value="Private">Private</option>
+              <option value="Group">Group</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <h5>
+              Select Hotels:
+              <label class="lbl_select_hotels">
+                <input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_hotel_included"
+                />
+                Included ?</label
+              >
+            </h5>
             <select
               multiple
               required
@@ -80,7 +194,18 @@
           </div>
           <!-- :selected="inArray(item, packages.transports)" -->
           <div class="form-group">
-            <h5>Select Transports:</h5>
+            <h5>
+              Select Transports:
+              <label class="lbl_select_transports"
+                ><input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_transport_included"
+                />Included ?</label
+              >
+            </h5>
+
             <select
               multiple
               required
@@ -145,21 +270,21 @@
             </div>
           </div>
 
-
-          <div class="form-group">
+            <div class="form-group">
             <h5>City</h5>
-            <div class="input-group input-group-lg">
-              <input
-                type="text"
-                required
-                v-model="packages.city"
-                class="form-control form-control-solid"
-              />
+            <div class="">
+              <select multiple v-model="packages.city" class="form-control">
+                  <option v-for="(item,item_index) in cities" :key="item_index" :value="item.name">
+                  {{ item.name}}
+                  </option>
+
+              </select>
             </div>
           </div>
+ 
 
           <div class="form-group">
-            <h5>Seasonality</h5>
+            <h5>Season</h5>
             <div class="input-group input-group-lg">
               <input
                 type="text"
@@ -170,17 +295,9 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <h5>Features</h5>
             <div class="">
-              <!-- <quill-editor
-                contentType="html"
-                toolbar="full"
-                :modules="modules"
-                v-model:content="packages.features"
-                theme="snow"
-              ></quill-editor> -->
-
               <editor
                 api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
                 v-model="packages.features"
@@ -198,34 +315,99 @@
               />
 
             </div>
+          </div> -->
+
+          <div class="form-group">
+            <h5>
+              Visa
+              <label>
+                <input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_visa_included"
+                />
+                Included?</label
+              >
+            </h5>
+
+            <editor
+              api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+              v-model="packages.visa"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+              }"
+            />
           </div>
 
           <div class="form-group">
-            <h5>Description</h5>
-            <div class="">
-              <!-- <quill-editor
-                contentType="html"
-                toolbar="full"
-                v-model:content="packages.description"
-                theme="snow"
-              ></quill-editor> -->
-              <editor
-                api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
-                v-model="packages.description"
-                :init="{
-                  height: 500,
-                  menubar: false,
-                  plugins: [
-                    'advlist autolink lists link image charmap print preview anchor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount',
-                  ],
-                  // toolbar: 'pageembed code preview',
-                  toolbar:
-                    'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
-                }"
-              />
-            </div>
+            <h5>
+              Meals
+              <label>
+                <input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_meals_included"
+                />
+                Included?</label
+              >
+            </h5>
+
+            <editor
+              api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+              v-model="packages.meals"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+              }"
+            />
+          </div>
+
+          <div class="form-group">
+            <h5>
+              Optional
+              <label>
+                <input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_optional_included"
+                />
+                Included?</label
+              >
+            </h5>
+
+            <editor
+              api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+              v-model="packages.optional"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+              }"
+            />
           </div>
         </div>
 
@@ -300,6 +482,180 @@
                 class="form-control form-control-solid"
               />
             </div>
+          </div>
+
+          <div class="form-group">
+            <h5>
+              Acommodation
+              <label>
+                <input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_acommodation_included"
+                />
+                Included?</label
+              >
+            </h5>
+
+            <editor
+              api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+              v-model="packages.acommodation"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+              }"
+            />
+          </div>
+
+          <div class="form-group">
+            <h5>
+              Guide
+              <label>
+                <input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_guide_included"
+                />
+                Included?</label
+              >
+            </h5>
+
+            <editor
+              api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+              v-model="packages.guide"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+              }"
+            />
+          </div>
+
+          <div class="form-group">
+            <h5>
+              Additional Services
+              <label>
+                <input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_additional_services_included"
+                />
+                Included?</label
+              >
+            </h5>
+
+            <editor
+              api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+              v-model="packages.additional_services"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+              }"
+            />
+          </div>
+
+          <div class="form-group">
+            <h5>
+              Insurance
+              <label>
+                <input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_insurance_included"
+                />
+                Included?</label
+              >
+            </h5>
+
+            <editor
+              api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+              v-model="packages.insurance"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+              }"
+            />
+          </div>
+
+          <div class="form-group">
+            <h5>
+              Flights
+              <label>
+                <input
+                  type="checkbox"
+                  true-value="1"
+                  false-value="0"
+                  v-model="packages.is_flights_included"
+                />
+                Included?</label
+              >
+            </h5>
+
+            <editor
+              api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+              v-model="packages.flights"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+              }"
+            />
+          </div>
+
+          <div class="form-group">
+            <h5>Important Information</h5>
+            <editor
+              api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
+              v-model="packages.more_information"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
+              }"
+            />
           </div>
 
           <div class="form-group">
@@ -417,6 +773,51 @@
             </table>
           </div>
         </div>
+
+        <div class="col-md-12">
+          <div class="panel-body">
+            ADD NEW DESTINATION<i
+              class="fa fa-plus pull-right"
+              @click="addDestinationRow"
+              style="font-size: 25px; color: #337ab7; cursor: pointer"
+            ></i>
+            <table class="table table-bordered">
+              <thead class="text text-success">
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(destination, index) in destinations" :key="index">
+                  <td>
+                    <input
+                      v-model="destination.name"
+                      class="form-control"
+                      type="text"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      v-model="destination.description"
+                      class="form-control"
+                      type="text"
+                    />
+                  </td>
+
+                  <td>
+                    <i
+                      @click="deleteDestinationRow(index)"
+                      class="fa fa-remove"
+                      style="font-size: 25px; color: red; cursor: pointer"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     <div class="card-footer">
@@ -439,7 +840,16 @@ import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import htmlEditButton from "quill-html-edit-button";
 
 export default {
-  props: ["packageData", "packageType", "productType", "hotels", "transports"],
+  props: [
+    "packageData",
+    "packageType",
+    "productType",
+    "languages",
+    "hotels",
+    "transports",
+    'duration',
+    'cities',
+  ],
   components: { Editor },
   mounted() {
     console.log("Component mounted.");
@@ -474,57 +884,24 @@ export default {
           ? [{ question: "", answer: "" }]
           : JSON.parse(this.packageData.faqs),
 
+      destinations:
+        this.packageData.destinations == null
+          ? [{ name: "", description: "" }]
+          : JSON.parse(this.packageData.destinations),
+
       hotel_id: [],
-     test :  htmlEditButton.htmlOutputFormatted,
-      editorOption: {
-          theme: 'snow',
-          modules: {
-            toolbar: [
-              ['bold', 'italic', 'underline', 'strike'],
-              ['blockquote', 'code-block'],
-              [{ 'header': 1 }, { 'header': 2 }],
-              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-              [{ 'script': 'sub' }, { 'script': 'super' }],
-              [{ 'indent': '-1' }, { 'indent': '+1' }],
-              [{ 'direction': 'rtl' }],
-              [{ 'size': ['small', false, 'large', 'huge'] }],
-              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-              [{ 'color': [] }, { 'background': [] }],
-              [{ 'font': [] }],
-              [{ 'align': [] }],
-              ['clean'],
-              ['link', 'image', 'video']
-            ],
-            ImageResize: {},
-            VideoResize: {},
-            htmlEditButton: {
-              debug: true,
-              msg: "Edit the content in HTML format",
-              okText: "Ok",
-              cancelText: "Cancel",
-              buttonHTML: "HTML",
-              buttonTitle: "Show HTML source",
-              syntax: false,
-              prependSelector: 'div#myelement',
-              editorModules: {}
-            },
-           
-          },
-          placeholder: 'Insert text here ...',
-        },
-        
     };
   },
   setup: () => {
     const modules = {
-      name: 'htmlEditButton',
+      name: "htmlEditButton",
       module: htmlEditButton,
       options: {
-        debug: true
+        debug: true,
       },
     };
-   
-    return {  modules }
+
+    return { modules };
   },
   computed: {
     calculateTotalAmount: function () {
@@ -587,6 +964,15 @@ export default {
     deleteFaqRow(index) {
       this.faqs.splice(index, 1);
     },
+
+    addDestinationRow: function () {
+      this.destinations.push({ name: "", description: "" });
+    },
+
+    deleteDestinationRow: function (index) {
+      this.destinations.splice(index, 1);
+    },
+
     update() {
       this.isLoading = true;
       axios
@@ -598,6 +984,7 @@ export default {
             package_transport: this.package_transport,
             package_hotel: this.package_hotel,
             itenaries: this.itenaries,
+            destinations: this.destinations,
             faqs: this.faqs,
             featured_image: this.featured_image,
             deletedImages: this.deletedImages,

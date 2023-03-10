@@ -17,6 +17,8 @@ class AgentController extends Controller
      */
     public function index()
     {
+        // $user  = User::with('permissions')->get();
+       
         $agents = User::agent()->get();
         return view('portal.agents.index', compact('agents'));
     }
@@ -40,9 +42,9 @@ class AgentController extends Controller
     public function store(AgentStoreRequest $request)
     {
         $data = $request->validated();
-        $data['type'] = "agent";
-        $data['password'] = Hash::make($data['password']);
-        User::create($data);
+        $data['agent']['type'] = "agent";
+        $data['agent']['password'] = Hash::make($data['agent']['password']);
+        User::create($data['agent']);
 
         return $this->success('agent created successfully');
     }
@@ -85,6 +87,7 @@ class AgentController extends Controller
         if ($request->has('agent.password')) {
             $data = array_merge($data, ['password' => Hash::make($request->agent['password'])]);
         }
+
 
         $agent->update($data);
         return $this->success('agent update successfully');

@@ -86133,3 +86133,13 @@ body {
     left: 70px;
   }
 }
+
+.lbl_select_hotels{
+  background: #009688;
+  font-size: 16px;
+}
+.lbl_select_transport{
+  background: #009688;
+  font-size: 16px;
+}
+

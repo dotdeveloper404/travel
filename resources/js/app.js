@@ -12,7 +12,6 @@
  import axios from 'axios';
 import swal from 'sweetalert2';
 import moment from "moment";
-import DataTable from "@andresouzaabreu/vue-data-table";
 import LoaderBar from "./components/LoaderBar.vue";
 // import { ZiggyVue } from 'ziggy';
 
@@ -24,8 +23,8 @@ import LoaderBar from "./components/LoaderBar.vue";
  //  window.Vue = require('vue');
  
  //  Vue.use(VueAxios,axios);
-//  axios.defaults.baseURL = 'https://ilinkturkey.com/portal/';
- axios.defaults.baseURL = 'http://travel.test/portal/';
+ axios.defaults.baseURL = 'https://ilinkturkey.com/portal/';
+//  axios.defaults.baseURL = 'http://travel.test/portal/';
 
  const app = createApp({});
  
@@ -34,7 +33,6 @@ import LoaderBar from "./components/LoaderBar.vue";
  app.component('QuillEditor', QuillEditor);
  app.component('swal',swal);
  app.component('moment',moment);
- app.component('data-table',DataTable);
  app.component('LoaderBar',LoaderBar);
 //  app.component(ZiggyVue, Ziggy);
  // import ExampleComponent from './components/ExampleComponent.vue';

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Portal\AgentController;
 use App\Http\Controllers\Portal\BookingController;
+use App\Http\Controllers\Portal\CityController;
 use App\Http\Controllers\Portal\HotelController;
 use App\Http\Controllers\Portal\PackageBookingController;
 use App\Http\Controllers\Portal\PackageController;
@@ -16,6 +17,7 @@ Route::resource('/transport',TransportController::class);
 Route::resource('/tour',TourController::class);
 Route::resource('/agent',AgentController::class);
 Route::resource('/package',PackageController::class);
+Route::resource('city',CityController::class);
 
 Route::get('/packages/bookings',[PackageBookingController::class,'bookingList'])->name('packages.bookings.list');
 Route::resource('/packages.booking',PackageBookingController::class);

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Portal;
 
+use App\Enums\Duration;
+use App\Enums\Languages;
 use App\Enums\PackageType;
 use App\Enums\ProductType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PackageStoreRequest;
 use App\Http\Requests\PackageUpdateRequest;
+use App\Models\City;
 use App\Models\Hotel;
 use App\Models\Package;
 use App\Models\PackageImage;
@@ -37,9 +40,12 @@ class PackageController extends Controller
     {
         $packageType = PackageType::values();
         $productType = ProductType::values();
+        $languages = Languages::values();
         $hotels =  Hotel::get();
+        $city = City::get();
         $transports =  Transport::get();
-        return view('portal.packages.create', ['product_type' => $productType, 'package_type' => $packageType, 'hotels' => $hotels, 'transports' => $transports]);
+        $duration = Duration::values();
+        return view('portal.packages.create', ['product_type' => $productType, 'package_type' => $packageType, 'languages' => $languages, 'hotels' => $hotels, 'transports' => $transports, 'duration' => $duration , 'cities' => $city]);
     }
 
     /**
@@ -51,9 +57,10 @@ class PackageController extends Controller
     public function store(PackageStoreRequest $request)
     {
         $data = $request->validated();
-
         $data['package']['itenary'] = json_encode($request->itenaries);
         $data['package']['faqs'] = json_encode($request->faqs);
+        $data['package']['destinations'] = json_encode($request->destinations);
+
 
         if ($request->hasFile('featured_image')) {
 
@@ -120,9 +127,12 @@ class PackageController extends Controller
         $package = Package::with('images')->with('hotels')->with('transports')->find($id);
         $packageType = PackageType::values();
         $productType = ProductType::values();
+        $languages = Languages::values();
+        $city = City::get();
         $hotels =  Hotel::get();
         $transports =  Transport::get();
-        return view('portal.packages.edit', ['package' => $package, 'product_type' => $productType, 'package_type' => $packageType, 'hotels' => $hotels, 'transports' => $transports]);
+        $duration =  Duration::values();
+        return view('portal.packages.edit', ['package' => $package, 'product_type' => $productType, 'package_type' => $packageType, 'languages' => $languages, 'hotels' => $hotels, 'transports' => $transports , 'duration' => $duration ,'cities'=> $city ]);
     }
 
     /**
@@ -136,13 +146,14 @@ class PackageController extends Controller
     {
         $data = $request->validated();
         //  $data = $data->safe()->merge(['itenary' => json_encode($request->itenaries)]);
-        $data = array_merge($data['package'], ['itenary' => json_encode($request->itenaries), 'faqs' => json_encode($request->faqs)]);
+        $data = array_merge($data['package'], ['itenary' => json_encode($request->itenaries), 'faqs' => json_encode($request->faqs), 'destinations' => json_encode($request->destinations)]);
         if ($request->hasFile('featured_image')) {
             $name = $this->moveFile($request->file('featured_image'), Package::getUploadPath());
             // $data =  $request->safe()->merge(['featured_image' => $name]);
             $data = array_merge($data, ['featured_image' => $name]);
         }
 
+      
         $package = tap($package)->update($data);
         $package->hotels()->sync($request->package_hotel);
         $package->transports()->sync($request->package_transport);
@@ -174,8 +185,8 @@ class PackageController extends Controller
     public function destroy(Package $package)
     {
 
-        $package->update(['status'=> $package->status == 1  ?  0 : 1 ]);
-    
+        $package->update(['status' => $package->status == 1  ?  0 : 1]);
+
         return $this->success('Package has been inactive');
     }
 }

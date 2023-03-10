@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Duration;
+use App\Enums\Languages;
 use App\Enums\ProductType;
 use App\Enums\TourType;
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 
@@ -17,43 +21,39 @@ class TourController extends Controller
     public function index(Request $request)
     {
 
-        $tours =  Tour::where('status', 1)->with('images')->with('transports'); //->paginate(10); //Tour::with('images')->with('transports')->paginate(10);
+        $request_cities = array();
 
 
-        //$tours = Tour::query();
-
-        if ($request->tour_type != null) {
-
-            $tours->where('tour_type', $request->tour_type);
+        $tours =  Tour::with('images')->with('transports')->where('status', 1); //->paginate(10); //Tour::with('images')->with('transports')->paginate(10);
+        if($request->has('free_cancelation')){
+            $tours->orWhere('free_cancelation',1);
         }
-        if ($request->product_type != null) {
-            $tours->orWhere('product_type', $request->product_type);
-        }
-        if ($request->nights != null) {
-            $tours->orWhere('nights', $request->nights);
-        }
-        if ($request->days != null) {
-            $tours->orWhere('days', $request->days);
-        }
-        if ($request->start_date != null) {
-            $tours->orWhere('traveling_date_start', '>=', $request->start_date);
-        }
-        if ($request->end_date != null) {
-            $tours->orWhere('traveling_date_end', '<=', $request->end_date);
+        if($request->has('deals_and_discount')){
+            $tours->orWhere('deals_and_discount',1);
         }
 
-        // $tours->get();
-        $tours =  $tours->paginate(10);
-        // dd($tours->get());
-        // dd( $tours->paginate(10));
-        //  $tours->with('images')->with('transports')->paginate(10);
+        if($request->has('tour_type')){
+            foreach($request->tour_type as $key=>$type){
+            $tours->orWhere('tour_type',$type);
+            }
+        }
+        if($request->has('city')){
+            $tours->orWhere('city','like','%'.$request->city.'%');
+            $request_cities =    $request->get('cities');
 
-        // dd($tours->paginate(2));
-
+        }
+        if($request->has('p1') && $request->p1 > 0 ){
+            $tours->orWhereBetween('net_amount',[$request->p1,$request->p2]);
+        }
+        $tours = $tours->paginate(10);
         $tourType = TourType::values();
         $productType = ProductType::values();
+        $languages = Languages::values();
+        $countries = Country::whereIsActive(1)->get();
+        $cities = City::get();
+        $duration = Duration::values();
 
-        return view('frontend.tours.listing', compact('tours', 'productType', 'tourType'));
+        return view('frontend.tours.listing', compact('tours', 'productType', 'tourType','languages','countries','cities', 'duration','request_cities'));
     }
 
     /**

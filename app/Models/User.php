@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles;
 
     public const TYPE_SUPER_ADMIN = "super_admin";
     public const TYPE_ADMIN = "admin";
@@ -23,6 +25,8 @@ class User extends Authenticatable
         self::TYPE_AGENT =>'Agent',
         self::TYPE_CLIENT => 'Client',
     ];
+
+    // public $appends = ["permission"];
 
     /**
      * The attributes that are mass assignable.
@@ -60,5 +64,9 @@ class User extends Authenticatable
 
         return $query->whereType('agent');
     }
+
+    // public function getPermissionAttribute(){
+    //     return $this->getAllPermissions();
+    // }
 
 }

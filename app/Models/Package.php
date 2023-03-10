@@ -25,7 +25,25 @@ class Package extends Model
             ];
     }
 
- 
+
+    protected $casts = [
+        'languages' => 'array',
+        'city' => 'array',
+        // 'is_transport_included' => 'boolean',
+        // 'is_acommodation_included' => 'boolean',
+        // 'is_guide_included' => 'boolean',
+        // 'is_additional_services_included' => 'boolean',
+    ];
+
+
+    // public function setIsHotelIncludedAttribute($value){
+    //     $this->attributes['is_hotel_included'] = $value ? 1 : 0;
+    // }
+
+    // public function setIsAdditionalServicesIncludedAttribute($value){
+    //     $this->attributes['is_additional_services_included'] = $value ? 1 : 0;
+    // }
+
     
     public function hotels()
     {

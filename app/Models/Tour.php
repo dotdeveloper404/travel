@@ -24,6 +24,11 @@ class Tour extends Model
             ];
     }
 
+    protected $casts = [
+        'languages' => 'array',
+        'city' => 'array',
+    ];
+
     public function transports()
     {
         return $this->belongsToMany(Transport::class,'tour_transports');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\PackageBookingController;
 use App\Http\Controllers\PackageController;
@@ -32,11 +33,12 @@ Route::get('/storage-link',function(){
 });
 
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/',[PublicController::class,'index'])->name('home');
 
 Route::get('/cancelation-policy',[PublicController::class,'cancelationPolicy'])->name('cancelation_policy');
+Route::get('/contact',[PublicController::class,'contactUs'])->name('contact_us');
+Route::get('/about',[PublicController::class,'aboutUs'])->name('about_us');
+Route::get('/testemail',[PublicController::class,'testEmail'])->name('test_emal');
 
 Auth::routes();
 
@@ -54,3 +56,6 @@ Route::get('/packages/{package:slug}',[PackageController::class,'show'])->name('
 Route::get('/packages',[PackageController::class,'index'])->name('packages.index');
 Route::get('/tours/{tour:slug}',[TourController::class,'show'])->name('tours.show');
 Route::get('/tours',[TourController::class,'index'])->name('tours.index');
+
+Route::get('/destinations/{destination:slug}',[DestinationController::class,'show'])->name('destinations.show');
+Route::get('/destinations',[DestinationController::class,'index'])->name('destinations.index');

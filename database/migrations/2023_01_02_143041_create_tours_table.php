@@ -27,7 +27,25 @@ return new class extends Migration
             $table->float('discount')->default(0);
             $table->float('net_amount');
             $table->text('description')->nullable();
-            $table->string('city')->nullable();
+            $table->boolean('is_transport_included')->nullable()->default(0);
+            $table->text('acommodation')->nullable();
+            $table->boolean('is_acommodation_included')->nullable()->default(0);
+            $table->text('guide')->nullable();
+            $table->boolean('is_guide_included')->nullable()->default(0);
+            $table->text('additional_services')->nullable();
+            $table->boolean('is_additional_services_included')->nullable()->default(0);
+            $table->boolean('is_visa_included')->nullable()->default(0);
+            $table->text('visa')->nullable();
+            $table->boolean('is_meals_included')->nullable()->default(0);
+            $table->text('meals')->nullable();
+            $table->boolean('is_optional_included')->nullable()->default(0);
+            $table->text('optional')->nullable();
+            $table->boolean('is_insurance_included')->nullable()->default(0);
+            $table->text('insurance')->nullable();
+            $table->boolean('is_flights_included')->nullable()->default(0);
+            $table->text('flights')->nullable();
+            $table->text('more_information')->nullable();
+            $table->json('city')->nullable();
             $table->string('seasonality')->nullable();
             $table->date('traveling_date_start');
             $table->date('traveling_date_end');
@@ -37,6 +55,11 @@ return new class extends Migration
             $table->integer('stars')->nullable();
             $table->integer('reviews')->nullable();
             $table->boolean('status')->default(1);
+            $table->text('destinations')->nullable();
+            $table->json('languages')->nullable();
+            $table->boolean('reomended')->nullable();
+            $table->string('duration')->nullable();
+
             $table->timestamps();
         });
     }

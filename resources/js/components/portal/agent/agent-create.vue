@@ -17,7 +17,7 @@
             <div class="form-group">
               <h5>Email Address:</h5>
               <input
-                type="password"
+                type="email"
                 required
                 v-model="agent.email"
                 class="form-control form-control-solid"
