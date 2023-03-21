@@ -22,19 +22,12 @@
   <!-- Stylesheets -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('frontend/js/bootstrap.min.js') }}">
   
-  
-
   <link rel="stylesheet" href="{{ asset('frontend/css/vendors.css') }}">
 
   <link rel="stylesheet" href="{{ asset('frontend/css/main.css')}}">
 
   <title>@yield('title')</title>
-
-  <meta name="description" content="@yield('description')">
- <meta name="keywords" content="@yield('keywords')">
-
 
   <!-- Requird for slider  Start -->
 
@@ -53,6 +46,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
   <!-- required for package single for icons end -->
   
+  
+   <link rel="stylesheet" href="{{ asset('frontend/js/bootstrap.min.js') }}">
+
 
 
   @yield('css')
@@ -895,15 +891,17 @@
     </div>
 
   </div>
- 
-  
-  @vite(['resources/js/frontend.js'])
 
+ 
 
 </body>
 
 
+
 @stack('scripts')
+
+<!--@vite(['resources/js/frontend.js'])-->
+
 
 
 </html>

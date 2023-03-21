@@ -4,6 +4,24 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
+            <h5>Meta Title:</h5>
+            <input
+              type="text"
+              v-model="packages.meta_title"
+              class="form-control form-control-solid"
+              placeholder="Enter Meta Title"
+            />
+          </div>
+          <div class="form-group">
+            <h5>Meta Description:</h5>
+            <input
+              type="text"
+              v-model="packages.meta_description"
+              class="form-control form-control-solid"
+              placeholder="Enter Meta Description"
+            />
+          </div>
+          <div class="form-group">
             <h5>Package Name:</h5>
             <input
               type="text"

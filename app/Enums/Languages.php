@@ -4,11 +4,10 @@ namespace App\Enums;
 
 enum Languages:string{
 
-        case English = "english";
-        case Turkish = "turkish";
-        case Urdu = "urdu";
-        case French = "french";
-        case Spanish = "spanish";
+        case English = "English";
+        case Turkish = "Turkish";
+        case French = "French";
+        case Spanish = "Spanish";
 
        public static function values():array
        {

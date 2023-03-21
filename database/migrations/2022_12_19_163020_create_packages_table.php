@@ -29,7 +29,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->boolean('is_hotel_included')->nullable()->default(0);
             $table->boolean('is_transport_included')->nullable()->default(0);
-             $table->text('acommodation')->nullable();
+            $table->text('acommodation')->nullable();
             $table->boolean('is_acommodation_included')->nullable()->default(0);
             $table->text('guide')->nullable();
             $table->boolean('is_guide_included')->nullable()->default(0);
@@ -58,8 +58,10 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             $table->text('destinations')->nullable();
             $table->json('languages')->nullable();
-            $table->boolean('reomended')->nullable();
+            $table->boolean('recomended')->nullable();
             $table->string('duration')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
 
             $table->timestamps();
         });

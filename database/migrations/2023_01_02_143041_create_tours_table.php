@@ -57,8 +57,10 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             $table->text('destinations')->nullable();
             $table->json('languages')->nullable();
-            $table->boolean('reomended')->nullable();
+            $table->boolean('recomended')->nullable();
             $table->string('duration')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
 
             $table->timestamps();
         });

@@ -32,6 +32,10 @@ class PackageController extends Controller
             $packages->orWhere('deals_and_discount', 1);
         }
 
+        if ($request->has('group_type')) {
+            $packages->orWhere('group_type', $request->group_type);
+        }
+
         if ($request->has('package_type')) {
             foreach ($request->package_type as $key => $type) {
                 $packages->orWhere('package_type', $type);
@@ -84,5 +88,23 @@ class PackageController extends Controller
         $similar_packages = Package::where('package_type', $package->package_type)->get();
 
         return view('frontend.packages.package-single', ['package' => $package, 'itenaries' => $itenary, 'faqs' => $faqs, 'similar_packages' => $similar_packages]);
+    }
+
+    public function packageWithTopCategory($package_type){
+
+        $request_cities = array();
+
+        $packages = Package::with('images', 'hotels', 'transports')->where('status', 1)->wherePackageType($package_type);
+
+        $packages  =  $packages->paginate(10);
+        $packageType = PackageType::values();
+        $productType = ProductType::values();
+        $languages = Languages::values();
+        $countries = Country::whereIsActive(1)->get();
+        $cities = City::get();
+        $duration = Duration::values();
+     
+        return view('frontend.packages.listing', compact('packages', 'packageType', 'productType', 'languages', 'countries', 'cities', 'duration','request_cities'));
+   
     }
 }

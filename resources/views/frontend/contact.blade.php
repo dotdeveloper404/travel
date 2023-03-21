@@ -1,5 +1,10 @@
 @extends('frontend.layouts.app')
 
+@section('title', 'Contact iLinkTurkey - Reach out to our Travel Experts')
+@section('description', 'Get in touch with our team of travel experts at iLinkTurkey. We are here to help you plan your dream vacation to Turkey. Contact us today for personalized travel recommendations, tour packages, and more.')
+@section('keywords', 'Contact iLinkTurkey - Reach out to our Travel Experts')
+
+
 @section('content')
 
 <div class="overlay" data-overlay></div>
@@ -289,23 +294,7 @@
     </div>
 </div>
 <!-- Top attractions end  -->
- 
-
-<!-- secondary banner section start  -->
-<!-- <div class="secondary__banner bg-info-1">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="text-center py-30">
-                    <h4 class="text-40 md:text-20 fw-600 lh-13 text-black mb-20">Keep things flexible</h4>
-                    <p class="text-black">Use Reserve Now & Pay Later to secure the activities you don't want to
-                        miss without being locked in.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- secondary banner section end -->
+  
 
 <!-- top destination start  -->
 <div class="top__destination py-40">

@@ -1,5 +1,10 @@
 @extends('frontend.layouts.app')
 
+@section('title'){{$tour->meta_title}} @endsection 
+@section('description'){{$tour->meta_description}} @endsection 
+@section('keywords'){{$tour->meta_description}} @endsection 
+
+
 @section('content')
 
 <section class="pt-40 js-pin-container">
@@ -16,7 +21,6 @@
                         </div>
 
                         @endforeach
- 
 
                     </div>
 
@@ -158,7 +162,7 @@
                                     </div>
                                     <div class="button text-dark-1 text-right w-100 fw-600">
                                         <!-- <i class="fas fa-chevron-down"></i> -->
-                                </div>
+                                    </div>
                                 </div>
 
                                 <div class="accordion__content">
@@ -362,7 +366,7 @@
 
 
                     </div>
- 
+
 
                     @if($tour->is_transport_included == 1 && count($tour->transports) > 0)
 
@@ -826,15 +830,15 @@
                     <p class="mb-2"><strong> <img style="width:35px;" src="{{ asset('/frontend/img/night.png') }}" /> {{$tour->nights}} Nights </strong></p>
                     <p class="mb-2">Season <strong>{{$tour->seasonality}}</strong></p>
                     <p class="mb-2">City
-                          @foreach($tour->city as $city)
-                                            <span class="text-13 tag_selector_orange">{{$city}} </span>
-                                            @endforeach
-                      </p>
+                        @foreach($tour->city as $city)
+                        <span class="text-13 tag_selector_orange">{{$city}} </span>
+                        @endforeach
+                    </p>
                     <p class="mb-2">Destinations
                         @if($tour->destinations != null)
 
                         @foreach (json_decode($tour->destinations) as $destination)
-                        <strong class="strong tag_selector">  {{$destination->name}}  &nbsp; </strong>
+                        <strong class="strong tag_selector"> {{$destination->name}} &nbsp; </strong>
                         @endforeach
 
                         @endif()
@@ -842,9 +846,9 @@
                     </p>
                     @if($tour->languages != null)
                     <p class="mb-2"> Languages
-                       
+
                         @foreach ($tour->languages as $language)
-                        <strong class="strong tag_selector">{{$language}}  &nbsp; </strong>
+                        <strong class="strong tag_selector">{{$language}} &nbsp; </strong>
                         @endforeach
                     </p>
                     @endif()
@@ -872,9 +876,9 @@
                             <div class="row y-gap-20 pt-30">
                                 <div class="col-12">
 
-                                    <div class="form-group mb-3">
+                                    <div class="form-group">
                                         <label>Name</label>
-                                        <input type="text" required name="name" value="{{ old('name') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your name" />
+                                        <input type="text" required name="name" value="{{ old('name') }}" class="px-20 py-5  border-light rounded-4" placeholder="Enter your name" />
                                         @error('name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -882,9 +886,9 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group mb-3">
+                                    <div class="form-group">
                                         <label>Email</label>
-                                        <input type="email" required name="email" value="{{ old('email') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your email" />
+                                        <input type="email" required name="email" value="{{ old('email') }}" class="px-20 py-5  border-light rounded-4" placeholder="Enter your email" />
                                         @error('email')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -892,9 +896,9 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group mb-3">
+                                    <div class="form-group">
                                         <label>Cell</label>
-                                        <input type="text" required name="cell" value="{{ old('cell') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your cell number" />
+                                        <input type="text" required name="cell" value="{{ old('cell') }}" class="px-20 py-5  border-light rounded-4" placeholder="Enter your cell number" />
                                         @error('cell')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -902,9 +906,9 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group mb-3">
+                                    <div class="form-group">
                                         <label>Phone</label>
-                                        <input type="text" required name="phone" value="{{ old('phone') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your phone number" />
+                                        <input type="text" required name="phone" value="{{ old('phone') }}" class="px-20 py-5  border-light rounded-4" placeholder="Enter your phone number" />
                                         @error('phone')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -912,19 +916,21 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group mb-3">
-                                        <label>Departure City</label>
-                                        <input type="text" required name="departure_city" value="{{ old('departure_city') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your departure city" />
-                                        @error('departure_city')
+
+                                    <div class="form-group">
+                                        <label>Arrival City</label>
+                                        <input type="date" required name="arrival_city" value="{{ old('arrival_city') }}" class="px-20 py-5  border-light rounded-4" />
+                                        @error('arrival_city')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
 
-                                    <div class="form-group mb-3">
+
+                                    <div class="form-group">
                                         <label>Arrival Date</label>
-                                        <input type="date" required name="departure_date" value="{{ old('departure_date') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your departure date" />
+                                        <input type="date" required name="departure_date" value="{{ old('departure_date') }}" class="px-20 py-5  border-light rounded-4" />
                                         @error('departure_date')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -932,19 +938,67 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group mb-3">
+                                    <div class="form-group">
+                                        <label>Arrival Time</label>
+                                        <input type="time" required name="arrival_time" value="{{ old('arrival_time') }}" class="px-20 py-5  border-light rounded-4" />
+                                        @error('arrival_time')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label>Departure City</label>
+                                        <input type="text" required name="departure_city" value="{{ old('departure_city') }}" class="px-20 py-5  border-light rounded-4" placeholder="Enter your departure city" />
+                                        @error('departure_city')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Departure Date</label>
+                                        <input type="date" required name="departure_date" value="{{ old('departure_date') }}" class="px-20 py-5  border-light rounded-4" placeholder="Enter your departure date" />
+                                        @error('departure_date')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Departure Time</label>
+                                        <input type="time" required name="departure_time" value="{{ old('departure_time') }}" class="px-20 py-5  border-light rounded-4" />
+                                        @error('departure_time')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+
+                                    <div class="form-group">
                                         <label>Contact Preference</label>
-                                        <input type="text" name="contact_preference" value="{{ old('contact_preference') }}" class="px-20 py-10  border-light rounded-4" placeholder="Enter your contact preference" />
+                                        <select required name="contact_preference" class="form-control">
+                                            <option value="">Select</option>
+                                            <option>By Email</option>
+                                            <option>By Phone</option>
+                                        </select>
                                     </div>
 
-                                    <div class="form-group mb-3">
+                                    <div class="form-group">
                                         <label>Best time to call</label>
-                                        <input type="text" name="best_time_to_call " value="{{ old('best_time_to_call') }}" class="px-20 py-10  border-light rounded-4" />
+                                        <input type="text" name="best_time_to_call " value="{{ old('best_time_to_call') }}" class="px-20 py-5  border-light rounded-4" />
                                     </div>
+ 
 
-                                    <div class="form-group mb-3">
+                                    <div class="form-group">
                                         <label>Comments</label>
-                                        <textarea name="comment" class="px-20 py-10  border-light rounded-4">{{ old('comment') }}</textarea>
+                                        <textarea name="comment" class="px-20 py-5  border-light rounded-4">{{ old('comment') }}</textarea>
                                     </div>
 
                                 </div>
@@ -1177,11 +1231,11 @@
                                 <span>{{$tour->tour_name}}</span>
                             </h4>
 
-                            <p> <span class="tag_selector">   {{ str_replace('_',' ' , ucfirst($tour->tour_type)) }}</span></p>
+                            <p> <span class="tag_selector"> {{ str_replace('_',' ' , ucfirst($tour->tour_type)) }}</span></p>
                             @foreach($tour->city as $city)
                             <span class="text-light-1 lh-14 text-14 mt-5 tag_selector_orange">{{$city}}</span>
-                                            @endforeach
-                         
+                            @endforeach
+
                             <div class="d-inline-block">
                                 {!! $tour->stars == 1 ? '<i class="icon-star  text-yellow-3"></i>' : '' !!}
                                 {!! $tour->stars == 2 ? '<i class="icon-star  text-yellow-3"></i><i class="icon-star  text-yellow-3"></i>' : '' !!}

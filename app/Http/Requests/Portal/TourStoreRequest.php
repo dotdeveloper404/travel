@@ -79,6 +79,8 @@ class TourStoreRequest extends FormRequest
                 'tour.deals_and_discount' => 'nullable',
                 'tour.group_type' => 'nullable',
                 'tour.duration' => 'nullable',
+                'tour.meta_title' => 'nullable',
+                'tour.meta_description' => 'nullable',
             ];
         }
     
@@ -127,6 +129,8 @@ class TourStoreRequest extends FormRequest
                 'tour.deals_and_discount' => 'nullable',
                 'tour.group_type' => 'nullable',
                 'tour.duration' => 'nullable',
+                'tour.meta_title' => 'nullable',
+                'tour.meta_description' => 'nullable',
     
             ];
         }

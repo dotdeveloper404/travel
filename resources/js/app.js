@@ -23,8 +23,8 @@ import LoaderBar from "./components/LoaderBar.vue";
  //  window.Vue = require('vue');
  
  //  Vue.use(VueAxios,axios);
- axios.defaults.baseURL = 'https://ilinkturkey.com/portal/';
-//  axios.defaults.baseURL = 'http://travel.test/portal/';
+//  axios.defaults.baseURL = 'https://ilinkturkey.com/portal/';
+ axios.defaults.baseURL = 'http://travel.test/portal/';
 
  const app = createApp({});
  

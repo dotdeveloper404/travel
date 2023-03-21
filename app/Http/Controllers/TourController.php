@@ -32,6 +32,11 @@ class TourController extends Controller
             $tours->orWhere('deals_and_discount',1);
         }
 
+        if ($request->has('group_type')) {
+            $packages->orWhere('group_type', $request->group_type);
+        }
+
+
         if($request->has('tour_type')){
             foreach($request->tour_type as $key=>$type){
             $tours->orWhere('tour_type',$type);

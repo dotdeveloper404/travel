@@ -54,6 +54,10 @@ Route::get('/hotels',[HotelController::class,'index'])->name('hotels.index');
 
 Route::get('/packages/{package:slug}',[PackageController::class,'show'])->name('packages.show');
 Route::get('/packages',[PackageController::class,'index'])->name('packages.index');
+
+Route::get('/packages/top-category/{package:package_type}',[PackageController::class,'packageWithTopCategory'])->name('packages.top_category');
+
+
 Route::get('/tours/{tour:slug}',[TourController::class,'show'])->name('tours.show');
 Route::get('/tours',[TourController::class,'index'])->name('tours.index');
 

@@ -79,7 +79,7 @@
 }
 
 :root {
-  --font-primary: "Jost", sans-serif;
+  --font-primary: "Poppins", sans-serif;
 }
 
 :root {
@@ -5274,7 +5274,7 @@ div[data-slider]>input[type=range]::-ms-tooltip {
 }
 
 .hotelsCard.-type-1 .hotelsCard__title span {
-  background-image: linear-gradient(transparent 24px, black 20px);
+  /* background-image: linear-gradient(transparent 24px, black 20px); */
   background-size: 0;
   background-repeat: no-repeat;
   transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
@@ -13111,7 +13111,7 @@ table.table-5 td {
 /* slider start  */
 
 .packageSectionlisting {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("../img/package-banner.png") no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("../img/package-banner.png") no-repeat;
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -13119,7 +13119,7 @@ table.table-5 td {
 }
 
 .tourSectionlisting {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("https://cdn.tourradar.com/s3/tour/1500x800/84919_5df9f6d75080a.jpg") no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("../img/tour-banner.png") no-repeat;
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -13525,8 +13525,8 @@ table.table-5 td {
 .tag_selector {
   /* border: 1px solid #009688; */
   color: #009688;
-  padding: 2px;
-  margin: 0px 5px 0px 0px;
+  /* padding: 2px;
+  margin: 0px 5px 0px 0px; */
 }
 
 .tag_selector_orange {

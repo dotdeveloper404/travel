@@ -1,5 +1,9 @@
 @extends('frontend.layouts.app')
 
+@section('title')Affordable and best turkey Custom Tour Packages @endsection 
+@section('description')Discover Turkey's rich cultural heritage and natural beauty with our custom tour packages. Explore our diverse range of tour packages, covering destinations like Istanbul, Cappadocia, Ephesus, and more. @endsection 
+@section('keywords')Affordable and best turkey Custom Tour Packages @endsection 
+
 @section('content')
 
 <section class="pt-40 pb-40 bg-light-2 packageSectionlisting flex-center">
@@ -27,14 +31,13 @@
                                 <div class="row y-gap-10 items-center justify-between">
                                     <div class="col-12">
                                         <select name="country" class="form-control dd_country">
-                                            <option value="">Select </option>
+                                            <option value="">Select</option>
                                             @foreach($countries as $country)
                                             <option {{ request()->get('country') == $country->id ? 'selected' : ''  }} value="{{$country->id}}">{{$country->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
@@ -44,7 +47,7 @@
 
                                 @foreach($cities as $city)
 
-                               
+
                                 <div class="all_cities row y-gap-10 items-center justify-between country_{{$city->country_id}}  {{ $city->country_id == request()->get('country')  ?  'show_city' : 'hide_city'}} ">
                                     <div class="col-auto">
 
@@ -73,6 +76,22 @@
                             </div>
                         </div>
 
+                        <div class="sidebar__item -no-border">
+                            <h5 class="text-18 fw-500 mb-10">Type</h5>
+                            <div class="sidebar-checkbox">
+
+                                <div class="row y-gap-10 items-center justify-between">
+                                    <div class="col-12">
+                                        <select name="group_type" class="form-control dd_country">
+                                            <option value="">Select </option>
+                                            <option {{ request()->get('group_type') == 'private'  ? 'selected' : '' }} value="Private">Private</option>
+                                            <option {{ request()->get('group_type') == 'group' ? 'selected' : '' }} value="Group">Group</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
 
 
                         <div class="sidebar__item">
@@ -696,6 +715,7 @@
                                 </div>
 
                                 <div class="col-md">
+
                                     <div class="row x-gap-10 items-center">
                                         <div class="col-auto">
                                             <p class="text-14 fw-600 text-info-2 lh-14 mb-5">
@@ -715,26 +735,8 @@
                                     </p>
 
 
-
                                     <div class="row mt-2">
 
-                                        <div class="col-md-6 col-4">
-                                            <p class="fw-600 text-13">Destinations</p>
-                                        </div>
-                                        <div class="col-md-6 col-8">
-                                            <p class="text-12">
-
-                                                @if($package->destinations != null)
-
-                                                @foreach (json_decode($package->destinations) as $destination)
-                                                <strong class="strong tag_selector">{{$destination->name}}</strong>
-                                                @endforeach
-
-                                                @endif()
-
-
-                                            </p>
-                                        </div>
                                         <div class="col-md-6 col-4">
                                             <p class="fw-600 text-13">Country </p>
                                         </div>
@@ -746,13 +748,12 @@
                                         </div>
                                         <div class="col-md-6 col-8">
 
-
                                             @foreach($package->city as $city)
-                                            <span class="text-13 tag_selector_orange">{{$city}} </span>
+                                            <span class="text-13 tag_selector">{{$city}} |</span>
                                             @endforeach
 
-
                                         </div>
+
                                         <!-- 
                                         <div class="col-md-6 col-4">
                                             <p class="fw-600 text-13">Highlights </p>
@@ -783,7 +784,7 @@
                                             @if($package->languages != null)
 
                                             @foreach ($package->languages as $language)
-                                            <span class="strong tag_selector">{{$language}} </span>
+                                            <span class="strong tag_selector">{{$language}} |</span>
                                             @endforeach
 
                                             @endif()
@@ -793,7 +794,25 @@
                                             <p class="fw-600 text-13">Group/Private</p>
                                         </div>
                                         <div class="col-md-6 col-8">
-                                            <span class="text-13">{{$package->group_type}}</span>
+                                            <span class="text-13 tag_selector">{{$package->group_type}}</span>
+                                        </div>
+
+                                        <div class="col-md-6 col-4">
+                                            <p class="fw-600 text-13">Destinations</p>
+                                        </div>
+                                        <div class="col-md-6 col-8">
+                                            <p class="text-12">
+
+                                                @if($package->destinations != null)
+
+                                                @foreach (json_decode($package->destinations) as $destination)
+                                                <a href="#"><strong class="strong tag_selector">{{$destination->name}} |</strong></a>
+                                                @endforeach
+
+                                                @endif()
+
+
+                                            </p>
                                         </div>
 
 
@@ -929,15 +948,14 @@
 
 @push('scripts')
 <script>
-   
     $(document).ready(function() {
 
         $('form').submit(function(e) {
-    
-        $(".js-lower-input").val($(".js-lower").html());
-        $(".js-upper-input").val($(".js-upper").html());
 
-    });
+            $(".js-lower-input").val($(".js-lower").html());
+            $(".js-upper-input").val($(".js-upper").html());
+
+        });
 
 
         $(".dd_country").change(function() {

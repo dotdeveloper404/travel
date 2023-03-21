@@ -1,5 +1,9 @@
 @extends('frontend.layouts.app')
 
+@section('title', 'About iLinkTurkey - Your Gateway to the Best of Turkey')
+@section('description', ' Learn about iLinkTurkey, a leading travel agency offering customized travel packages and tours that showcase the best of Turkey. Discover our team's passion for travel and their commitment to creating unforgettable experiences for our clients.')
+@section('keywords', 'About iLinkTurkey - Your Gateway to the Best of Turkey')
+
 @section('content')
 
 <div class="overlay" data-overlay></div>

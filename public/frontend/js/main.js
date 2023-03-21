@@ -285,7 +285,7 @@
       const slider = el.querySelector('.js-slider')
 
       noUiSlider.create(slider, {
-        start: [0, 5000],
+        start: [0, 0],
         step: 100,
         connect: true,
         range: {

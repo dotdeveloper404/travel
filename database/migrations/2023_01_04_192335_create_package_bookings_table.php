@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('phone');
             $table->string('departure_city');
             $table->date('departure_date');
+            $table->time('departure_time');
+            $table->string('arrival_city');
+            $table->date('arrival_date');
+            $table->time('arrival_time');
             $table->integer('adults');
             $table->integer('child')->nullable();
             $table->integer('infants')->nullable();

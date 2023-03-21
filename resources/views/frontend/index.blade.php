@@ -1,10 +1,11 @@
 @extends('frontend.layouts.app')
 
-@push('css')
+ 
 
-<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   -->
-@endpush()
+@section('title')Discover Turkey with iLinkTurkey - Custom Travel Packages & Tours @endsection 
+@section('description')Discover the beauty of Turkey with iLinkTurkey. We offer customized travel packages, tours, and experiences that showcase the best of Turkey. Explore our website to plan your next adventure! @endsection 
+@section('keywords')Discover Turkey with iLinkTurkey - Custom Travel Packages & Tours @endsection 
+
 
 @section('content')
 
@@ -13,59 +14,8 @@
 <!-- slider hero section start  -->
 <section class="hero">
 
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{ asset('frontend/img/home-banner.png')}}" class="d-block w-100" alt="../frontend/img/home-banner.png">
-                <div class="carousel-caption  d-md-block">
-                    <h3>ILINKTURKEY</h3>
-                    <h6>Tours Collection</h6>
-                    <h1>Adventure Begins Here</h1>
-                    <p>Choose from thousands of organized adventures</p>
-                    <a target="_blank" href="{{ route('packages.index')}}" class="primary-btn">Book now <span class="icon-arrow-right"></span></a>
-
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('frontend/img/home-banner-2.png')}}" class="d-block w-100" alt="{{ asset('frontend/img/home-banner.png')}}">
-                <div class="carousel-caption  d-md-block">
-                    <h3>ILINKTURKEY</h3>
-                    <h6>Tours Collection</h6>
-                    <h1>Adventure Begins Here</h1>
-                    <p>Choose from thousands of organized adventures</p>
-                    <a target="_blank" href="{{ route('packages.index')}}" class="primary-btn">Book now <span class="icon-arrow-right"></span></a>
-
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('frontend/img/home-banner-3.png')}}" class="d-block w-100" alt="{{ asset('frontend/img/home-banner.png')}}">
-                <div class="carousel-caption  d-md-block">
-                    <h3>ILINKTURKEY</h3>
-                    <h6>Tours Collection</h6>
-                    <h1>Adventure Begins Here</h1>
-                    <p>Choose from thousands of organized adventures</p>
-                    <a target="_blank" href="{{ route('packages.index')}}" class="primary-btn">Book now <span class="icon-arrow-right"></span></a>
-
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-    <!-- <div class="hero__slider owl-carousel">
-        <div class="hero__items set-bg" data-setbg="../frontend/img/home-banner.png" style="background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)) ,url('../frontend/img/home-banner.png') no-repeat;background-size: cover;
+    <div class="hero__slider owl-carousel">
+        <div class="hero__items set-bg" data-setbg="../frontend/img/home-banner.png" style="background:linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)) ,url('../frontend/img/home-banner.png') no-repeat;background-size: cover;
   background-position: center;">
             <div class="container">
                 <div class="row">
@@ -81,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="hero__items set-bg" data-setbg="{{ asset('frontend/img/top-attractions/home-banner.png')}}" style="background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)) ,url('../frontend/img/home-banner-2.png') no-repeat;background-size: cover;
+        <div class="hero__items set-bg" data-setbg="{{ asset('frontend/img/home-banner-2.png')}}" style="background:linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)) ,url('../frontend/img/home-banner-2.png') no-repeat;background-size: cover;
   background-position: center;">
             <div class="container">
                 <div class="row">
@@ -97,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="hero__items set-bg" data-setbg="../frontend/img/home-banner-3.png" style="background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)) ,url('../frontend/img/home-banner-3.png') no-repeat;background-size: cover;
+        <div class="hero__items set-bg" data-setbg="../frontend/img/home-banner-3.png" style="background:linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)) ,url('../frontend/img/home-banner-3.png') no-repeat;background-size: cover;
   background-position: center;">
             <div class="container">
                 <div class="row">
@@ -112,7 +62,8 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+
 </section>
 <!-- slider hero section end  -->
 
@@ -184,7 +135,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-left">
-                <h2 class="sectionTitle__title">Top attractions </h2>
+                <h2 class="sectionTitle__title">Top Categories </h2>
                 <p class="sectionTitle__text mt-5 sm:mt-0">Discover breathtaking views, cultural landmarks, outdoor
                     adventures.</p>
             </div>
@@ -193,7 +144,7 @@
             <div class="col-md-4 mb-3">
 
                 <div class="__minibox bg-white shadow-sm p-2 rounded-8">
-                    <a href="#">
+                    <a href="{{ route('packages.top_category','families-and-kids-attractions')}}">
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <div class="__imgbx">
@@ -202,7 +153,7 @@
                             </div>
                             <div class="col">
                                 <div class="__content">
-                                    <span class="fw-600 text-18 d-block">Bayside Marketplace</span>
+                                    <span class="fw-600 text-18 d-block">Families & Kids Attractions</span>
                                     <span>99 Tours and Activities</span>
                                 </div>
                             </div>
@@ -214,7 +165,7 @@
             <div class="col-md-4 mb-3">
 
                 <div class="__minibox bg-white shadow-sm p-2 rounded-8">
-                    <a href="#">
+                    <a href="{{ route('packages.top_category','sightseeing-and-tours')}}">
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <div class="__imgbx">
@@ -223,7 +174,7 @@
                             </div>
                             <div class="col">
                                 <div class="__content">
-                                    <span class="fw-600 text-18 d-block">Bayside Marketplace</span>
+                                    <span class="fw-600 text-18 d-block">Sightseeing & Tours</span>
                                     <span>99 Tours and Activities</span>
                                 </div>
                             </div>
@@ -235,7 +186,7 @@
             <div class="col-md-4 mb-3">
 
                 <div class="__minibox bg-white shadow-sm p-2 rounded-8">
-                    <a href="#">
+                    <a href="{{ route('packages.top_category','cruises')}}">
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <div class="__imgbx">
@@ -244,7 +195,7 @@
                             </div>
                             <div class="col">
                                 <div class="__content">
-                                    <span class="fw-600 text-18 d-block">Bayside Marketplace</span>
+                                    <span class="fw-600 text-18 d-block">Cruises</span>
                                     <span>99 Tours and Activities</span>
                                 </div>
                             </div>
@@ -256,7 +207,7 @@
             <div class="col-md-4 mb-3">
 
                 <div class="__minibox bg-white shadow-sm p-2 rounded-8">
-                    <a href="#">
+                    <a href="{{ route('packages.top_category','events-and-festivals')}}">
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <div class="__imgbx">
@@ -265,7 +216,7 @@
                             </div>
                             <div class="col">
                                 <div class="__content">
-                                    <span class="fw-600 text-18 d-block">Bayside Marketplace</span>
+                                    <span class="fw-600 text-18 d-block">Events & Festivals</span>
                                     <span>99 Tours and Activities</span>
                                 </div>
                             </div>
@@ -277,7 +228,7 @@
             <div class="col-md-4 mb-3">
 
                 <div class="__minibox bg-white shadow-sm p-2 rounded-8">
-                    <a href="#">
+                    <a href="{{ route('packages.top_category','food-lovers')}}">
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <div class="__imgbx">
@@ -286,7 +237,7 @@
                             </div>
                             <div class="col">
                                 <div class="__content">
-                                    <span class="fw-600 text-18 d-block">Bayside Marketplace</span>
+                                    <span class="fw-600 text-18 d-block">Food lovers </span>
                                     <span>99 Tours and Activities</span>
                                 </div>
                             </div>
@@ -298,7 +249,7 @@
             <div class="col-md-4 mb-3">
 
                 <div class="__minibox bg-white shadow-sm p-2 rounded-8">
-                    <a href="#">
+                    <a href="{{ route('packages.top_category','ticket-and-passes')}}">
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <div class="__imgbx">
@@ -307,7 +258,7 @@
                             </div>
                             <div class="col">
                                 <div class="__content">
-                                    <span class="fw-600 text-18 d-block">Bayside Marketplace</span>
+                                    <span class="fw-600 text-18 d-block">Ticket & Passes </span>
                                     <span>99 Tours and Activities</span>
                                 </div>
                             </div>
@@ -316,48 +267,7 @@
                 </div>
 
             </div>
-            <div class="col-md-4 mb-3">
 
-                <div class="__minibox bg-white shadow-sm p-2 rounded-8">
-                    <a href="#">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <div class="__imgbx">
-                                    <img src="{{ asset('frontend/img/top-attractions/7.png')}}" class="rounded-8 d-block" alt="">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="__content">
-                                    <span class="fw-600 text-18 d-block">Bayside Marketplace</span>
-                                    <span>99 Tours and Activities</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-            <div class="col-md-4 mb-3">
-
-                <div class="__minibox bg-white shadow-sm p-2 rounded-8">
-                    <a href="#">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <div class="__imgbx">
-                                    <img src="{{ asset('frontend/img/top-attractions/8.png')}}" class="rounded-8 d-block" alt="">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="__content">
-                                    <span class="fw-600 text-18 d-block">Bayside Marketplace</span>
-                                    <span>99 Tours and Activities</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
         </div>
     </div>
 </div>
@@ -2362,4 +2272,3 @@
 
 
 @endsection
-

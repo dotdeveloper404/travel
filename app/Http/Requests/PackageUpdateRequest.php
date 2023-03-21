@@ -74,6 +74,8 @@ class PackageUpdateRequest extends FormRequest
             'package.deals_and_discount' => 'nullable',
             'package.group_type' => 'nullable',
             'package.duration' => 'nullable',
+            'package.meta_title' => 'nullable',
+            'package.meta_description' => 'nullable',
 
         ];
     }
