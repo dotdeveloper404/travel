@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-6">
-          <div class="form-group">
+             <div class="form-group">
             <h5>Meta Title:</h5>
             <input
               type="text"
@@ -21,7 +21,6 @@
               placeholder="Enter Meta Description"
             />
           </div>
-          
           <div class="form-group">
             <h5>Package Name:</h5>
             <input
@@ -288,19 +287,41 @@
               />
             </div>
           </div>
+          
+          <div class="form-group">
+            <h5>Country</h5>
+            <div class="">
+              <select  v-model="packages.country" class="form-control">
+                  <option v-for="(item,item_index) in countries" :key="item_index" :value="item.name">
+                  {{ item.name}}</option>
+              </select>
+            </div>
+          </div>
+
 
             <div class="form-group">
             <h5>City</h5>
             <div class="">
               <select multiple v-model="packages.city" class="form-control">
-                  <option v-for="(item,item_index) in cities" :key="item_index" :value="item.name">
+                  <option v-for="(item,item_index) in cities" :key="item_index" :value="item.id">
                   {{ item.name}}
                   </option>
-
               </select>
             </div>
           </div>
  
+          <div class="form-group">
+            <h5>Destinations</h5>
+            <div class="">
+                <select multiple v-model="packages.destinations" class="form-control">
+                    <option  v-for="(items,index) in destinations" :key="index" :value="items.id">
+                      {{ items.name }}
+                    </option>
+                </select>
+            </div>
+          </div>
+ 
+
 
           <div class="form-group">
             <h5>Season</h5>
@@ -313,28 +334,6 @@
               />
             </div>
           </div>
-
-          <!-- <div class="form-group">
-            <h5>Features</h5>
-            <div class="">
-              <editor
-                api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
-                v-model="packages.features"
-                :init="{
-                  height: 500,
-                  menubar: false,
-                  plugins: [
-                    'advlist autolink lists link image charmap print preview anchor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount',
-                  ],
-                  toolbar:
-                    'pageembed code preview | undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help',
-                }"
-              />
-
-            </div>
-          </div> -->
 
           <div class="form-group">
             <h5>
@@ -793,7 +792,7 @@
           </div>
         </div>
 
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
           <div class="panel-body">
             ADD NEW DESTINATION<i
               class="fa fa-plus pull-right"
@@ -836,7 +835,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="card-footer">
@@ -868,6 +867,8 @@ export default {
     "transports",
     'duration',
     'cities',
+    'countries',
+    'destinations'
   ],
   components: { Editor },
   mounted() {
@@ -903,10 +904,10 @@ export default {
           ? [{ question: "", answer: "" }]
           : JSON.parse(this.packageData.faqs),
 
-      destinations:
-        this.packageData.destinations == null
-          ? [{ name: "", description: "" }]
-          : JSON.parse(this.packageData.destinations),
+    //  destinations:
+        // this.packageData.destinations == null
+        //   ? [{ name: "", description: "" }]
+        //   : JSON.parse(this.packageData.destinations),
 
       hotel_id: [],
     };
@@ -984,13 +985,13 @@ export default {
       this.faqs.splice(index, 1);
     },
 
-    addDestinationRow: function () {
-      this.destinations.push({ name: "", description: "" });
-    },
+    // addDestinationRow: function () {
+    //   this.destinations.push({ name: "", description: "" });
+    // },
 
-    deleteDestinationRow: function (index) {
-      this.destinations.splice(index, 1);
-    },
+    // deleteDestinationRow: function (index) {
+    //   this.destinations.splice(index, 1);
+    // },
 
     update() {
       this.isLoading = true;
@@ -1003,7 +1004,7 @@ export default {
             package_transport: this.package_transport,
             package_hotel: this.package_hotel,
             itenaries: this.itenaries,
-            destinations: this.destinations,
+            // destinations: this.destinations,
             faqs: this.faqs,
             featured_image: this.featured_image,
             deletedImages: this.deletedImages,

@@ -69,7 +69,7 @@ class PackageBookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request , Package $package, PackageBooking $packageBooking)
+    public function edit(Request $request, Package $package, PackageBooking $packageBooking)
     {
         $packageBooking->load('package');
         $bookingStatus = BookingStatus::values();
@@ -103,8 +103,10 @@ class PackageBookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Package $package , PackageBooking $packageBooking)
+    public function destroy(Package $package, PackageBooking $packageBooking)
     {
-    
+
+        $packageBooking->delete();
+        return $this->success('Package Booking Deleted Successfully');
     }
 }

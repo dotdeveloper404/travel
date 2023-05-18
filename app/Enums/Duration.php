@@ -4,10 +4,11 @@ namespace App\Enums;
 
 enum Duration:string{
 
-     case Upto_1_hour = "Upto_one_hour";
-     case _1_to_2_hours = "One_to_four_hours";
-     case _1_to_3_hours = "One_to_three_hours";
-     case _3_plus_days = "Three_plus_days";
+     case Upto_1_hour = "Upto 1 hour";
+     case _1_to_4_hours = "1 to 4 hours";
+     case _1_to_3_days = "1 to 3 days";
+     case _3_plus_days = "3 + days";
+     
 
        public static function values():array
        {

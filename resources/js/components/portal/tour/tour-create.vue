@@ -4,6 +4,8 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
+              
+              <div class="form-group">
             <h5>Meta Title:</h5>
             <input
               type="text"
@@ -21,7 +23,7 @@
               placeholder="Enter Meta Description"
             />
           </div>
-          <div class="form-group">
+          
             <h5>tour Name:</h5>
             <input
               type="text"
@@ -259,6 +261,16 @@
                 v-model="tours.reviews"
                 class="form-control form-control-solid"
               />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h5>Country</h5>
+            <div class="">
+              <select  v-model="tours.country" class="form-control">
+                <option v-for="(item,item_index) in countries" :key="item_index" :value="item.name">
+                  {{ item.name}}</option>
+              </select>
             </div>
           </div>
 

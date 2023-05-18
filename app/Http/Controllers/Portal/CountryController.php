@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Portal\CountryStoreRequest;
+use App\Models\Country;
+use Elementor\Core\Utils\Str;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\Count;
 
 class CountryController extends Controller
 {
@@ -14,7 +18,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $countries = Country::get();
+        return view('portal.country.index', compact('countries'));
     }
 
     /**
@@ -24,7 +29,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('portal.country.create');
     }
 
     /**
@@ -33,9 +38,17 @@ class CountryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CountryStoreRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['country']['name'] = strtolower($data['country']['name']);
+        if ($request->hasFile('image')) {
+            $name = $this->moveFile($request->file('image'), Country::getUploadPath());
+            $data['country']['image']  = $name;
+        }
+        Country::create($data['country']);
+
+        return  $this->success('country created successfully');
     }
 
     /**
@@ -46,7 +59,6 @@ class CountryController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -57,7 +69,9 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $countries = Country::get();
+        $country = Country::find($id);
+        return view('portal.country.edit', ['country' => $country, 'countries' => $countries]);
     }
 
     /**
@@ -67,9 +81,18 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CountryStoreRequest $request, Country $country)
     {
-        //
+        $data = $request->validated();
+        $data['country']['name'] = strtolower($data['country']['name']);
+        if ($request->hasFile('image')) {
+            $name = $this->moveFile($request->file('image'), Country::getUploadPath());
+            $data['country']  =array_merge( $data['country'], ['image' => $name]);
+        }
+
+        $country->update($data['country']);
+
+        return   $this->success('country updated successfully');
     }
 
     /**
@@ -80,6 +103,8 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $country = Country::find($id);
+        $country->delete();
+        return $this->success('country deleted');
     }
 }

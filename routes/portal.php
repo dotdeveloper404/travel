@@ -3,6 +3,8 @@
 use App\Http\Controllers\Portal\AgentController;
 use App\Http\Controllers\Portal\BookingController;
 use App\Http\Controllers\Portal\CityController;
+use App\Http\Controllers\Portal\CountryController;
+use App\Http\Controllers\Portal\DestinationControler;
 use App\Http\Controllers\Portal\HotelController;
 use App\Http\Controllers\Portal\PackageBookingController;
 use App\Http\Controllers\Portal\PackageController;
@@ -18,6 +20,10 @@ Route::resource('/tour',TourController::class);
 Route::resource('/agent',AgentController::class);
 Route::resource('/package',PackageController::class);
 Route::resource('city',CityController::class);
+Route::resource('country',CountryController::class);
+Route::resource('destination',DestinationControler::class);
+
+Route::post('/package/softdelete/',[PackageController::class,'softDelete'])->name('package.softdelete');
 
 Route::get('/packages/bookings',[PackageBookingController::class,'bookingList'])->name('packages.bookings.list');
 Route::resource('/packages.booking',PackageBookingController::class);

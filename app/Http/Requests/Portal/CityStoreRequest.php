@@ -29,12 +29,20 @@ class CityStoreRequest extends FormRequest
         if ($this->isMethod('post')) {
             return [
                 'city.name' => ['required', 'string'],
-                'city.country_id' => ['required', 'integer']
+                'city.meta_title' => ['nullable', 'string'],
+                'city.meta_description' => ['nullable', 'string'],
+                'city.content' => ['nullable','string'],
+                'city.country_id' => ['required', 'integer'],
+                'city.top' => ['required', 'integer'],
             ];
         } else if ($this->isMethod('put')) {
             return [
                 'city.name' => ['required', 'string'],
-                'city.country_id' => ['required', 'integer']
+                'city.meta_title' => ['nullable', 'string'],
+                'city.meta_description' => ['nullable', 'string'],
+                'city.content' => ['nullable','string'],
+                'city.country_id' => ['required', 'integer'],
+                'city.top' => ['required', 'integer'],
             ];
         }
     }
@@ -50,7 +58,6 @@ class CityStoreRequest extends FormRequest
            'city.country_id' =>'Country  field is required',
        ];
    }
-
 
    /**
     * Handle a failed validation attempt.

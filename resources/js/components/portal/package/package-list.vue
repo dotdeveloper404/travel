@@ -1,4 +1,5 @@
 <template>
+  <span class="{{ success != '' ?  'btn btn-success' : '' }}">{{ success }}</span>
   <table
     id="package_table"
     class="table table-striped border rounded gy-5 gs-7"
@@ -18,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in packageList" :key="item.id">
+      <tr v-for="(item, index) in packageList" :key="item.id">
         <td>{{ item.id }}</td>
         <td>{{ item.package_name }}</td>
         <td>{{ item.package_type.replace("_", " ").toUpperCase() }}</td>
@@ -32,21 +33,26 @@
           <button
             v-if="item.status == 1"
             class="btn btn-success"
-            @click="updatePackage(item, 1)"
+            @click="updatePackage(item, 0)"
           >
-            Active
+            Deactivate
           </button>
           <button
             v-if="item.status == 0"
-            class="btn btn-danger"
-            @click="updatePackage(item, 0)"
+            class="btn btn-default"
+            @click="updatePackage(item, 1)"
           >
-            Inactive
+            Activate
           </button>
+
           &nbsp;
           <a class="btn btn-primary" :href="'package/' + item.id + '/edit'"
             >Edit</a
           >
+
+          <button class="btn btn-danger" @click="deletePackage(item, index)">
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>
@@ -68,6 +74,7 @@ export default {
       packageList: [],
       users: [],
       dtRef: null,
+      success: "",
     };
   },
 
@@ -89,14 +96,54 @@ export default {
 
   methods: {
     updatePackage(item, status) {
-      axios.delete(`/package/${item.id}`).then((response) => {
-        this.packageList.forEach((loop_item) => {
-          if (loop_item.id == item.id) {
-            loop_item.status = status == 0 ? 1 : 0;
+      this.success = '';
+      axios
+        .post(
+          `/package/softdelete`,
+          { id: item.id },
+          {
+            headers:{
+              "Content-type": "application/x-www-form-urlencoded",
+            },
           }
+        )
+        .then((response) => {
+          if (response.data.success) {
+            this.packageList.forEach((loop_item) => {
+              if (loop_item.id == item.id) {
+               status == 0 ? 1 : 0;
+               loop_item.status  = status;
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.data.errors);
+          this.errors = err.response.data.errors;
         });
 
-        // swal('Success', 'Package Deleted Successfully', 'Success');
+      //   axios.delete(`/package/${item.id}`).then((response) => {
+      //   this.packageList.forEach((loop_item) => {
+      //     if (loop_item.id == item.id) {
+      //       loop_item.status = status == 0 ? 1 : 0;
+      //     }
+      //   });
+
+      //   // swal('Success', 'Package Deleted Successfully', 'Success');
+      // });
+    },
+
+    deletePackage(item, index) {
+      this.success = '';
+
+      axios.delete(`/package/${item.id}`).then((response) => {
+        this.packageList.forEach((_item) => {
+          if (_item.id == item.id) {
+          //  swal("Success", "Package Deleted Successfully", "Success");
+          this.success = "Package Deleted Successfully";
+            this.packageList.splice(index,1);
+          }
+        });
       });
     },
   },

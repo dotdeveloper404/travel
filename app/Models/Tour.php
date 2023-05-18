@@ -27,11 +27,16 @@ class Tour extends Model
     protected $casts = [
         'languages' => 'array',
         'city' => 'array',
+        'destinations'=>'array'
     ];
 
     public function transports()
     {
         return $this->belongsToMany(Transport::class,'tour_transports');
+    }
+
+    public function bookings(){
+        return $this->hasMany(TourBooking::class);
     }
 
     public function images()

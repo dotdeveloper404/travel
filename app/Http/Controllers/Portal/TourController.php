@@ -9,6 +9,7 @@ use App\Enums\ProductType;
 use App\Enums\TourType;
 use App\Http\Requests\Portal\TourStoreRequest;
 use App\Models\City;
+use App\Models\Country;
 use App\Models\Hotel;
 use App\Models\Tour;
 use App\Models\TourImage;
@@ -45,8 +46,9 @@ class TourController extends Controller
         $languages = Languages::values();
         $duration =  Duration::values();
         $cities= City::get();
+        $country = Country::get();
 
-        return view('portal.tours.create', ['product_type' => $productType, 'tour_type' => $tourType, 'transports' => $transports,'languages' => $languages , 'duration' => $duration , 'cities'=>$cities]);
+        return view('portal.tours.create', ['product_type' => $productType, 'tour_type' => $tourType, 'transports' => $transports,'languages' => $languages , 'duration' => $duration , 'cities'=>$cities,'countries'=>$country]);
     }
 
     /**
@@ -137,7 +139,8 @@ class TourController extends Controller
         $duration =  Duration::values();
         $cities = City::get();
         $duration =  Duration::values();
-        return view('portal.tours.edit', ['tour' => $tour, 'product_type' => $productType, 'tour_type' => $tourType, 'transports' => $transports,'languages' => $languages , 'duration' => $duration,'cities' => $cities]);
+        $country = Country::get();
+        return view('portal.tours.edit', ['tour' => $tour, 'product_type' => $productType, 'tour_type' => $tourType, 'transports' => $transports,'languages' => $languages , 'duration' => $duration,'cities' => $cities,'countries'=>$country]);
     }
 
 

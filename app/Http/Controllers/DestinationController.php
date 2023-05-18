@@ -8,6 +8,7 @@ use App\Enums\PackageType;
 use App\Enums\ProductType;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Destination;
 use App\Models\Package;
 use Illuminate\Http\Request;
 
@@ -70,18 +71,10 @@ class DestinationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Package $package)
+    public function show(Destination $destination)
     {
-        $package->load('images', 'hotels', 'transports');
+        $destination->load('city');
+        return view('frontend.destinations.destination-single', ['destination' => $destination]);
 
-        $itenary = null;
-        $faqs = null;
-
-        $itenary = $package->itenary  != null  ? collect(json_decode($package->itenary, true)) : null;
-        $faqs = $package->faqs  != null  ? collect(json_decode($package->faqs, true)) : null;
-
-        $similar_packages = Package::where('package_type', $package->package_type)->get();
-
-        return view('frontend.packages.package-single', ['package' => $package, 'itenaries' => $itenary, 'faqs' => $faqs, 'similar_packages' => $similar_packages]);
     }
 }

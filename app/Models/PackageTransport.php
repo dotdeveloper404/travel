@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class PackageTransport extends Pivot
 {
 
+    protected $table = "package_hotel";
+
+    
     public function transport()
     {
         return $this->belongsTo(Transport::class);

@@ -16,8 +16,8 @@
   */
  //  window.Vue = require('vue');
  
- //  Vue.use(VueAxios,axios);
-//  axios.defaults.baseURL = 'https://ilinkturkey.com/portal/';
+    Vue.use(VueAxios,axios);
+  axios.defaults.baseURL = 'https://ilinkturkey.com/';
 //  axios.defaults.baseURL = 'http://travel.test/portal/';
 
  const app = createApp({});

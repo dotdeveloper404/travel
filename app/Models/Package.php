@@ -29,6 +29,7 @@ class Package extends Model
     protected $casts = [
         'languages' => 'array',
         'city' => 'array',
+        'destinations'=>'array'
         // 'is_transport_included' => 'boolean',
         // 'is_acommodation_included' => 'boolean',
         // 'is_guide_included' => 'boolean',
@@ -58,6 +59,10 @@ class Package extends Model
     public function images()
     {
         return $this->hasMany(PackageImage::class);
+    }
+
+    public function bookings(){
+        return $this->hasMany(PackageBooking::class);
     }
 
     public function getImagePathAttribute(){

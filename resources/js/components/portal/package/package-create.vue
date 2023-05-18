@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-6">
-          <div class="form-group">
+             <div class="form-group">
             <h5>Meta Title:</h5>
             <input
               type="text"
@@ -21,6 +21,7 @@
               placeholder="Enter Meta Description"
             />
           </div>
+          
           <div class="form-group">
             <h5>Package Name:</h5>
             <input
@@ -293,12 +294,35 @@
           </div>
 
           <div class="form-group">
+            <h5>Country</h5>
+            <div class="">
+              <select  v-model="packages.country" class="form-control">
+                <option v-for="(item,item_index) in countries" :key="item_index" :value="item.name">
+                  {{ item.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
             <h5>City</h5>
             <div class="">
               <select multiple v-model="packages.city" class="form-control">
-                  <option v-for="(item,item_index) in cities" :key="item_index" :value="item"></option>
+                  <option v-for="(item,item_index) in cities" :key="item_index" :value="item.id">
+                  {{item.name}}
+                </option>
               </select>
             </div>
+          </div>
+
+          <div class="form-group">
+              <h5>Destinations</h5>
+              <div>
+                <select multiple v-model="packages.destinations" class="form-control">
+                    <option v-for="(item,index) in destinations" :key="index" :value="item.id">
+                          {{ item.name }}
+                    </option>
+                </select>
+              </div>
           </div>
 
           <div class="form-group">
@@ -791,7 +815,7 @@
           </div>
         </div>
 
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
           <div class="panel-body">
             <span
               >ADD DESTINATIONS
@@ -837,7 +861,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="card-footer">
@@ -862,7 +886,7 @@ import htmlEditButton from "quill-html-edit-button";
 
 import Multiselect from "vue-multiselect";
 export default {
-  props: ["packageType", "productType", "languages", "hotels", "transports","duration","cities"],
+  props: ["packageType", "productType", "languages", "hotels", "transports","duration","cities","countries","destinations"],
   mounted() {
     console.log("Component mounted.");
   },
@@ -879,7 +903,7 @@ export default {
       featured_image: "",
       itenaries: [{ day: "", detail: "" }],
       faqs: [{ question: "", answer: "" }],
-      destinations: [{ name: "", description: "" }],
+      // destinations: [{ name: "", description: "" }],
     };
   },
   computed: {
@@ -928,13 +952,13 @@ export default {
       this.faqs.splice(index, 1);
     },
 
-    addDestinationRow: function () {
-      this.destinations.push({ name: "", description: "" });
-    },
+    // addDestinationRow: function () {
+    //   this.destinations.push({ name: "", description: "" });
+    // },
 
-    deleteDestinationRow: function (index) {
-      this.destinations.splice(index, 1);
-    },
+    // deleteDestinationRow: function (index) {
+    //   this.destinations.splice(index, 1);
+    // },
 
     create() {
       this.isLoading = true;
@@ -945,7 +969,7 @@ export default {
             package: this.packages,
             itenaries: this.itenaries,
             faqs: this.faqs,
-            destinations: this.destinations,
+            // destinations: this.destinations,
             featured_image: this.featured_image,
             images: this.packageImages,
           },

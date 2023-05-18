@@ -11,6 +11,7 @@ use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+
 class PackageBookingMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -21,24 +22,28 @@ class PackageBookingMail extends Mailable
      * @var \App\Models\Package
      */
     public $package;
-    
-     protected $faqs;
-     protected $itenary;
-     protected  $pdf;
-     
+
+    public $faqs;
+    public $itenaries;
+    public  $pdf;
+    public $heading;
+    public $content;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Package $package,$itenary,$faqs,$pdf)
+    public function __construct(Package $package, $itenaries, $faqs, $content, $pdf)
     {
         $this->package = $package;
-        $this->itenary = $itenary;
+        $this->itenaries = $itenaries;
         $this->faqs = $faqs;
         $this->pdf = $pdf;
+        $this->content = $content;
+    
     }
-        
+
 
     /**
      * Get the message envelope.
@@ -60,7 +65,7 @@ class PackageBookingMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'portal.mails.package-booking',
+            view: 'frontend.mails.pdf-package-booking',
         );
     }
 
@@ -72,7 +77,7 @@ class PackageBookingMail extends Mailable
     public function attachments()
     {
         return [
-            Attachment::fromData(fn () => $this->pdf,'Package.pdf')->withMime('application/pdf')
+            Attachment::fromData(fn () => $this->pdf, 'Package.pdf')->withMime('application/pdf')
         ];
     }
 }

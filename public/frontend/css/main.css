@@ -2,6 +2,7 @@
   color: red;
 }
 
+
 .ratio {
   position: relative;
   display: block;
@@ -3008,6 +3009,24 @@ h6 {
   opacity: 0;
 }
 
+
+
+
+@media(max-width:792px){
+
+  .citiesCard.-type-1 .citiesCard__top {
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 1 !important;
+  }
+
+  .citiesCard.-type-1 .citiesCard__bottom {
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+     transform: translateY(0px) !important;
+  }
+
+  /* .citiesCard.-type-1:hover .citiesCard__top {  opacity: 1;} */
+}
+
 .citiesCard.-type-1 .citiesCard__top {
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   opacity: 0;
@@ -3015,15 +3034,13 @@ h6 {
 
 .citiesCard.-type-1 .citiesCard__bottom {
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transform: translateY(80px);
+   transform: translateY(80px);
 }
+
+.citiesCard.-type-1:hover .citiesCard__top {  opacity: 1;}
 
 .citiesCard.-type-1:hover {
   cursor: pointer;
-}
-
-.citiesCard.-type-1:hover .citiesCard__top {
-  opacity: 1;
 }
 
 .citiesCard.-type-1:hover .citiesCard__bottom {
@@ -4021,6 +4038,7 @@ h6 {
 .cardImage .cardImage-slider .swiper-wrapper {
   position: relative;
   z-index: 0;
+height:100%;
 }
 
 .cardImage .cardImage-slider__pagination {
@@ -5274,7 +5292,7 @@ div[data-slider]>input[type=range]::-ms-tooltip {
 }
 
 .hotelsCard.-type-1 .hotelsCard__title span {
-  /* background-image: linear-gradient(transparent 24px, black 20px); */
+  background-image: linear-gradient(transparent 24px, black 20px);
   background-size: 0;
   background-repeat: no-repeat;
   transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
@@ -10044,11 +10062,11 @@ div[data-slider]>input[type=range]::-ms-tooltip {
 }
 
 .layout-pt-lg {
-  padding-top: 120px;
+  padding-top: 20px;
 }
 
 .layout-pb-lg {
-  padding-bottom: 120px;
+  padding-bottom: 14px;
 }
 
 .layout-pt-xl {
@@ -13082,7 +13100,7 @@ table.table-5 td {
 
 .active,
 .custom-accordion--:hover {
-  color: var(--color-purple-1);
+  color: var(--color-dark-1);
 }
 
 .custom-panel-- {
@@ -13111,7 +13129,12 @@ table.table-5 td {
 /* slider start  */
 
 .packageSectionlisting {
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("../img/package-banner.png") no-repeat;
+  /*background: linear-gradient(rgba(0, 0, 0, 0, rgba(0, 0, 0, 0)), url("../img/package-banner.png") no-repeat;*/
+  /*background-position: center;*/
+  /*background-size: cover;*/
+  /*width: 100%;*/
+  /*height: 50vh;*/
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../img/package-banner.png") no-repeat;
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -13119,7 +13142,7 @@ table.table-5 td {
 }
 
 .tourSectionlisting {
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("../img/tour-banner.png") no-repeat;
+     background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../img/tour-banner.png") no-repeat;
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -13169,7 +13192,7 @@ table.table-5 td {
 }
 
 .hero .hero__slider.owl-carousel .hero__items {
-  height: 100%;
+  /*height: 100%;*/
   padding: 50px 0px;
 }
 
@@ -13183,16 +13206,18 @@ table.table-5 td {
   position: relative;
   top: 100px;
   opacity: 0;
+text-shadow:.5px .5px #fff;
   -webkit-transition: all, 0.3s;
   -o-transition: all, 0.3s;
   transition: all, 0.3s;
 }
 
 .hero .hero__slider.owl-carousel .hero__text h1 {
-  color: var(--color-white);
+  color: var(--color-orange-1);
   font-size: 48px;
   font-weight: 700;
   line-height: 58px;
+text-shadow:.5px .5px #fff;
   margin-bottom: 30px;
   position: relative;
   top: 100px;
@@ -13415,7 +13440,7 @@ table.table-5 td {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  z-index: 10;
+  z-index: 1000;
   animation: popup 1s ease-in-out 5s forwards;
 }
 
@@ -13520,13 +13545,133 @@ table.table-5 td {
   color: var(--color-white) !important;
 }
 
+*{
+  font-family: "Poppins", sans-serif;
+}
+
+.swiper-wrapper{
+   max-height:100%;
+   height:auto;
+}
+
+@media (min-width: 992px) {
+  .d-lg-none {
+    display: none !important;
+  }
+  .d-lg-block {
+    display: block !important;
+  }
+}
+
+.travel_guide_section {
+    background: url(../img/world-map.jpg) no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+}
+
+@media(max-width: 792px) {
+  .popular_destination_main {
+    overflow: hidden;
+  }
+}
+
+/*** Header carousel ***/
+@media (max-width: 768px) {
+    .header-carousel .owl-carousel-item {
+        position: relative;
+        min-height: 500px;
+    }
+
+    .header-carousel .owl-carousel-item img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.header-carousel .owl-carousel-item .inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.header-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    right:0;
+    left:0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.header-carousel .owl-nav .owl-prev{
+    left:10px;
+    position: absolute;
+}
+
+.header-carousel .owl-nav .owl-next{
+    right:10px;
+    position: absolute;
+}
+
+.header-carousel .owl-dots{
+    position:absolute;
+    bottom:5%;
+    left:50%;
+}
+
+.header-carousel button.owl-dot {
+    background: #367D7D !important;
+    height: 15px;
+    width: 15px;
+    border-radius:50%;
+    margin: 5px;
+    border:2px solid #fff !important;
+}
+
+.header-carousel button.owl-dot.active, .header-carousel button.owl-dot:hover {
+    background: #E77145 !important;
+}
+
+.header-carousel .owl-nav .owl-prev i,
+.header-carousel .owl-nav .owl-next i{
+    margin: 7px 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    border: 1px solid #eb7346;
+    font-size: 20px;
+    transition: .5s;
+}
+
+.header-carousel .owl-nav .owl-prev i:hover,
+.header-carousel .owl-nav .owl-next i:hover {
+    background: #eb7346;
+    border: 1px solid #eb7346;
+}
+
+@media(max-width:468px){
+    .header-carousel .owl-nav{
+        display: none;
+    }
+}
 /* custom css end  */
 
 .tag_selector {
   /* border: 1px solid #009688; */
   color: #009688;
-  /* padding: 2px;
-  margin: 0px 5px 0px 0px; */
+  /*padding: 2px;*/
+  /*margin: 0px 5px 0px 0px;*/
 }
 
 .tag_selector_orange {

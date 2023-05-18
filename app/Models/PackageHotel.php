@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class PackageHotel extends Pivot
 {
 
+    protected $table = "package_hotel";
+
     
     public function hotel()
     {

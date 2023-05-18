@@ -1,5 +1,5 @@
 <template>
-    <DataTable  :columns="columns"  :options="{select: true, search:true}"  id="tour_booking_table" class="table table-striped border rounded gy-5 gs-7">
+    <table  id="tour_booking_table" class="table table-striped border rounded gy-5 gs-7">
       <thead>
         <tr>
           <th>ID</th>
@@ -48,13 +48,17 @@
           </td>
         </tr>
       </tbody>
-    </DataTable >
+    </table>
   </template>
     
   <script>
-   import DataTable from 'datatables.net-vue3'
-   import DataTablesLib from 'datatables.net';
-   DataTable.use(DataTablesLib);
+
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "datatables.net-dt/js/dataTables.dataTables";
+import "datatables.net-dt/css/jquery.dataTables.min.css";
+import $ from "jquery";
+
   export default {
     props: ["bookings"],
   
@@ -68,6 +72,15 @@
     mounted() {
       console.log("Component mounted.");
       this.bookingList = this.bookings;
+      setTimeout(() => {
+      $("#tour_booking_table").DataTable({
+        lengthMenu: [
+          [5, 10, 25, 50, -1],
+          [5, 10, 25, 50, "All"],
+        ],
+        pageLength: 10,
+      });
+    });
     },
   
     methods: {

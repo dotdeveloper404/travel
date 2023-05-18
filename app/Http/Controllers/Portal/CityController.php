@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Portal\CityStoreRequest;
 use App\Models\City;
 use App\Models\Country;
+use Elementor\Core\Utils\Str;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\Constraint\Count;
 
@@ -16,10 +17,12 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cities = City::get();
-        return view('portal.city.index', compact('cities'));
+        $countries = Country::whereIsActive('1')->get();
+        $cities = $request->has('country_id') ? City::with('country')->whereCountryId($request->country_id)->get() :  City::with('country')->get();
+     
+        return view('portal.city.index', compact('cities','countries'));
     }
 
     /**
@@ -42,9 +45,14 @@ class CityController extends Controller
     public function store(CityStoreRequest $request)
     {
         $data = $request->validated();
+        $data['city']['name'] = strtolower($data['city']['name']);
+        if ($request->hasFile('image')) {
+            $name = $this->moveFile($request->file('image'), City::getUploadPath());
+            $data['city']['image']  = $name;
+        }
         City::create($data['city']);
 
-       return  $this->success('City created successfully');
+        return  $this->success('City created successfully');
     }
 
     /**
@@ -80,10 +88,15 @@ class CityController extends Controller
     public function update(CityStoreRequest $request, City $city)
     {
         $data = $request->validated();
+        $data['city']['name'] = strtolower($data['city']['name']);
+        if ($request->hasFile('image')) {
+            $name = $this->moveFile($request->file('image'), City::getUploadPath());
+            $data['city']  =array_merge( $data['city'], ['image' => $name]);
+        }
 
         $city->update($data['city']);
 
-      return   $this->success('City updated successfully');
+        return   $this->success('City updated successfully');
     }
 
     /**

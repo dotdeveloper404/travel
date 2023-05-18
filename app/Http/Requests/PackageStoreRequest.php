@@ -41,6 +41,7 @@ class PackageStoreRequest extends FormRequest
             'package.discount' => 'nullable',
             'package.net_amount' => ['required'],
             'package.seasonality' => 'nullable',
+            'package.country' => 'nullable',
             'package.city' => 'nullable',
             'package.description' => 'nullable',
             'package.features' => 'nullable',
@@ -75,7 +76,7 @@ class PackageStoreRequest extends FormRequest
             'package.deals_and_discount' => 'nullable',
             'package.group_type' => 'nullable',
             'package.duration' => 'nullable',
-            'package.meta_title' => 'nullable',
+             'package.meta_title' => 'nullable',
             'package.meta_description' => 'nullable',
 
         ];

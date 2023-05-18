@@ -16,7 +16,8 @@
     <link href="{{ asset('portal_assets/theme/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('portal_assets/theme/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
-      
+     
+
     @vite(['resources/js/app.js'])
     @routes
     @stack('styles')

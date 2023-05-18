@@ -32,8 +32,13 @@ class PackageBookingUpdateRequest extends FormRequest
             'booking.email' => ['required'],
             'booking.cell' => ['required'],
             'booking.phone' => ['required'],
+               'booking.arrival_city' => 'nullable',
+              'booking.arrival_date'=>'nullable',
+              'booking.arrival_time' => 'nullable',
             'booking.departure_city' => ['required'],
             'booking.departure_date' => ['required'],
+             'booking.departure_time' => 'nullable',
+         
             'booking.adults' => ['required'],
             'booking.child' => 'nullable',
             'booking.infants' =>'nullable',
@@ -41,6 +46,7 @@ class PackageBookingUpdateRequest extends FormRequest
             'booking.best_time_to_call' =>'nullable',
             'booking.comment' =>'nullable',
             'booking.agent_id' =>'nullable',
+            
 
         ];
     }
