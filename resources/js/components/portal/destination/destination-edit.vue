@@ -49,11 +49,16 @@
           </div>
 
           <div class="form-group">
-            <h5>Top destination:</h5>
+            <h5>Top Place:</h5>
             <select class="form-control" v-model="destination.top">
-              <option value="1">1</option>
-              <option value="0">0</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
             </select>
+          </div>
+
+          <div class="form-group">
+            <h5>Url:</h5>
+            <a :href="'https://ilinkturkey.com/destinations/' + destination.slug">{{ destination.slug }}</a>
           </div>
 
           <div class="form-group">
@@ -123,7 +128,11 @@ export default {
       destination: this.destinationData,
       image : "",
       errors: [],
+      currentUrl: "",
     };
+  },
+  created :  function(){
+    this.currentUrl = window.location.pathname;
   },
   setup: () => {
     const modules = {

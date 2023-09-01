@@ -86145,4 +86145,7 @@ body {
 .capitalize {
     text-transform: capitalize;
 }
- 
+
+body{
+  text-transform: capitalize;
+}

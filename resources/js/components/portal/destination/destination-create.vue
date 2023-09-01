@@ -50,10 +50,10 @@
           </div>
 
           <div class="form-group">
-            <h5>Top Destination:</h5>
+            <h5>Top Place:</h5>
             <select class="form-control" v-model="destination.top">
-              <option value="1">1</option>
-              <option value="0">0</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
             </select>
           </div>
 

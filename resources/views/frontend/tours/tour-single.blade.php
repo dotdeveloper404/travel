@@ -1698,7 +1698,7 @@
 
                                 <div class="text-13 text-black">
 
-                                    <!--                                @if ($errors->any())
+                                    {{-- <!--                                @if ($errors->any())
     -->
 
                                     <!--    @foreach ($errors->all() as $error)
@@ -1710,9 +1710,7 @@
     @endforeach-->
 
                                     <!--
-    @endif-->
-
-
+    @endif--> --}}
 
                                     @if (Session::has('message'))
                                         <p class="alert {{ Session::get('alert-class', 'alert-info') }}">
@@ -1729,13 +1727,12 @@
                                 </div>
 
                                 {!! Form::open(['route' => ['tours.booking.store', $tour->id]]) !!}
+                              
                                 <!-- <form id="inquiry_form" action="https://www.ilinktours.com/includes/thanks.php" data-validate-error="Please fill all required fields." method="POST"> -->
 
                                 <div class="row  pt-30">
 
                                     <div class="col-12">
-
-
 
                                         <div class="form-group">
 

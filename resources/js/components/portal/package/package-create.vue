@@ -45,7 +45,7 @@
                 api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
                 v-model="packages.description"
                 :init="{
-                  height: 500,
+                  height: 250,
                   menubar: false,
                   plugins: [
                     'advlist autolink lists link image charmap print preview anchor',
@@ -185,7 +185,6 @@
             </h5>
             <select
               multiple
-              required
               v-model="packages.hotels"
               class="form-control"
             >
@@ -214,7 +213,6 @@
             </h5>
             <select
               multiple
-              required
               v-model="packages.transports"
               class="form-control"
             >
@@ -314,8 +312,26 @@
             </div>
           </div>
 
+
           <div class="form-group">
-              <h5>Destinations</h5>
+            <h5>Package Categories</h5>
+            <select
+              multiple
+              v-model="packages.categories"
+              class="form-control"
+            >
+              <option
+                v-for="(item, item_index) in categories"
+                :key="item_index"
+                :value="item_index"
+              >
+                {{ item.replace(/[#_]/g, " ") }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+              <h5>Places to visit</h5>
               <div>
                 <select multiple v-model="packages.destinations" class="form-control">
                     <option v-for="(item,index) in destinations" :key="index" :value="item.id">
@@ -344,7 +360,7 @@
                 api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
                 v-model="packages.features"
                 :init="{
-                  height: 500,
+                  height: 250,
                   menubar: false,
                   plugins: [
                     'advlist autolink lists link image charmap print preview anchor',
@@ -377,7 +393,7 @@
               api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
               v-model="packages.visa"
               :init="{
-                height: 500,
+                height: 250,
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image charmap print preview anchor',
@@ -408,7 +424,7 @@
               api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
               v-model="packages.meals"
               :init="{
-                height: 500,
+                height: 250,
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image charmap print preview anchor',
@@ -439,7 +455,7 @@
               api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
               v-model="packages.optional"
               :init="{
-                height: 500,
+                height: 250,
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image charmap print preview anchor',
@@ -459,7 +475,7 @@
             <div class="input-group input-group-lg">
               <input
                 type="date"
-                required
+                
                 v-model="packages.traveling_date_start"
                 class="form-control form-control-solid"
               />
@@ -471,7 +487,7 @@
             <div class="input-group input-group-lg">
               <input
                 type="date"
-                required
+                
                 v-model="packages.traveling_date_end"
                 class="form-control form-control-solid"
               />
@@ -544,7 +560,7 @@
               api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
               v-model="packages.acommodation"
               :init="{
-                height: 500,
+                height: 250,
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image charmap print preview anchor',
@@ -575,7 +591,7 @@
               api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
               v-model="packages.guide"
               :init="{
-                height: 500,
+                height: 250,
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image charmap print preview anchor',
@@ -606,7 +622,7 @@
               api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
               v-model="packages.additional_services"
               :init="{
-                height: 500,
+                height: 250,
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image charmap print preview anchor',
@@ -637,7 +653,7 @@
               api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
               v-model="packages.insurance"
               :init="{
-                height: 500,
+                height: 250,
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image charmap print preview anchor',
@@ -668,7 +684,7 @@
               api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
               v-model="packages.flights"
               :init="{
-                height: 500,
+                height: 250,
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image charmap print preview anchor',
@@ -687,7 +703,7 @@
               api-key="vr8pakupqq4xfr4f3xwlnv8dohf6u8ps301szas02f8e32ea"
               v-model="packages.more_information"
               :init="{
-                height: 500,
+                height: 250,
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image charmap print preview anchor',
@@ -886,7 +902,7 @@ import htmlEditButton from "quill-html-edit-button";
 
 import Multiselect from "vue-multiselect";
 export default {
-  props: ["packageType", "productType", "languages", "hotels", "transports","duration","cities","countries","destinations"],
+  props: ["packageType", "productType", "languages", "hotels", "transports","duration","cities","countries","destinations",'categories'],
   mounted() {
     console.log("Component mounted.");
   },

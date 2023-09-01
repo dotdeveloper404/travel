@@ -29,12 +29,12 @@ class PackageStoreRequest extends FormRequest
         return [
             'package.package_name' => [
                 'required',
-                Rule::unique('packages','package_name')
+                Rule::unique('packages', 'package_name')
             ],
             'package.package_type' => ['required'],
             'package.product_type' => ['required'],
-            'package.traveling_date_start' => ['required'],
-            'package.traveling_date_end' => ['required'],
+            'package.traveling_date_start' => ['nullable'],
+            'package.traveling_date_end' => ['nullable'],
             'package.nights' => ['required'],
             'package.days' => ['required'],
             'package.package_price' => ['required'],
@@ -70,19 +70,20 @@ class PackageStoreRequest extends FormRequest
             'package.is_additional_services_included' => 'nullable',
             'package.more_information' => 'nullable',
             'package.destinations' => 'nullable',
+            'package.categories' => 'nullable',
             'package.languages' => 'nullable',
             'package.recomended' => 'nullable',
             'package.free_cancelation' => 'nullable',
             'package.deals_and_discount' => 'nullable',
             'package.group_type' => 'nullable',
             'package.duration' => 'nullable',
-             'package.meta_title' => 'nullable',
+            'package.meta_title' => 'nullable',
             'package.meta_description' => 'nullable',
 
         ];
     }
 
-      /**
+    /**
      * Get custom messages for validator errors.
      *
      * @return array
@@ -93,8 +94,8 @@ class PackageStoreRequest extends FormRequest
             'package.package_name.unique' => 'The package name has already been taken.',
             'package.package_type' => 'The package type field is required',
             'package.product_type' => 'The product type field is required',
-            'package.traveling_date_start' => 'The traveling date start field is required',
-            'package.traveling_date_end' => 'The traveling date end field is required',
+            // 'package.traveling_date_start' => 'The traveling date start field is required',
+            // 'package.traveling_date_end' => 'The traveling date end field is required',
             'package.nights' => 'The nights  field is required',
             'package.days' => 'The days field is required',
             'package.package_price' => 'The package price field is required',

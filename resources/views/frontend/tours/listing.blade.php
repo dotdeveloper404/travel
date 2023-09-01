@@ -20,7 +20,10 @@
             padding: 2px;
 
             margin: 0px 1px 0px 0px;
-
+            
+            
+            text-transform: capitalize;
+            
         }
 
         .accordion {
@@ -124,7 +127,7 @@
 
                     <div class="text-center">
 
-                        <h1 class="text-30 text-white fw-600">tours</h1>
+                        <h1 class="text-30 text-white fw-600">Tours</h1>
 
                     </div>
 
@@ -239,8 +242,8 @@
                                                     <div class="form-checkbox ">
 
                                                         <input type="checkbox" name="cities[]"
-                                                            {{ in_array($city->name, $request_cities) ? 'checked' : '' }}
-                                                            value="{{ $city->name }}">
+                                                            {{ in_array($city->id, $request_cities) ? 'checked' : '' }}
+                                                            value="{{ $city->id }}">
 
                                                         <div class="form-checkbox__mark">
 
@@ -1571,13 +1574,15 @@
                                                         </a>
                                                     </p>
                                                     <div class="row mt-2">
-                                                        <div class="col-md-6 col-4">
+                                                        
+                                                        {{-- <div class="col-md-6 col-4">
                                                             <p class="fw-600 text-13">Country </p>
                                                         </div>
                                                         <div class="col-md-6 col-8">
                                                             <span class="text-13 tag_selector">
                                                                 {{ $tour->country }}</span>
-                                                        </div>
+                                                        </div> --}}
+
                                                         <div class="col-md-6 col-4">
                                                             <p class="fw-600 text-13">City</p>
                                                         </div>
@@ -1599,8 +1604,20 @@
                                                         </div>
 
 
-
                                                         <div class="col-md-6 col-4">
+                                                            <p class="fw-600 text-13">Description </p>
+                                                        </div>
+                                                        <div class="col-md-6 col-8">
+                                                            <span
+                                                                class="text-13 tag_selector">
+                                                                {{ strip_tags($tour->excerpt()) }}
+                                                                <a href="{{ route('tours.show', $tour->slug) }}">Read more</a>
+                                                            </span>
+                                                        </div>
+
+
+
+                                                        {{-- <div class="col-md-6 col-4">
                                                             <p class="fw-600 text-13">Language </p>
                                                         </div>
                                                         <div class="col-md-6 col-8">
@@ -1611,7 +1628,7 @@
                                                                     </span>
                                                                 @endforeach
                                                             @endif()
-                                                        </div>
+                                                        </div> --}}
 
                                                         <div class="col-md-6 col-4">
                                                             <p class="fw-600 text-13">Group/Private</p>

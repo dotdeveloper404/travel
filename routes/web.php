@@ -9,8 +9,9 @@ use App\Http\Controllers\Portal\HomeController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\TourBookingController;
 use App\Http\Controllers\TourController;
+use App\Models\Destination;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/artisancall',function(){
     \Artisan::call('migrate',[
-        '--path' =>'/database/migrations/2023_05_12_160335_create_destinations_table.php'
+        '--path' =>'/database/migrations/2023_08_09_190013_create_contact_table'
     ]);
     // array(
     //     '--path' =>'/database/migrations/2023_05_12_160335_create_destinations_table.php'
@@ -40,6 +41,22 @@ Route::get('/clear-cache',function(){
 Route::get('/storage-link',function(){
     \Artisan::call('storage:link');
     dd("storage linked");
+});
+
+Route::get('/image-optimize', function(Request $request)
+{   
+    //return public_path();
+    try{
+     //$img = Image::make($request->image)->resize(268, 268)->greyscale();
+     $img = Image::cache(function($image) use($request) {
+        $image->make($request->image)->resize(300, 200)->greyscale();
+    });
+   
+    }catch(Exception $e){
+        // return '';
+        throw $e;
+    }
+    return $img->response();
 });
 
 
@@ -69,8 +86,8 @@ Route::get('/hotels',[HotelController::class,'index'])->name('hotels.index');
 //     return $country;
 // });
 // Route::get('/packages/country/{country}',[PackageController::class,'country'])->name('packages.country');
+Route::get('/packages/locations/{country?}/{city?}',[PackageController::class,'index'])->name('packages.index');//where('country', '[A-Za-z]+')->where('city', '[A-Za-z]+')->name('packages.index');
 Route::get('/packages/{package:slug}',[PackageController::class,'show'])->name('packages.show');
-Route::get('/packages/{country?}/{city?}',[PackageController::class,'index'])->where('country', '[A-Za-z]+')->where('city', '[A-Za-z]+')->name('packages.index');
 Route::get('/packages/top-category/{package:package_type}',[PackageController::class,'packageWithTopCategory'])->name('packages.top_category');
 
 
@@ -78,7 +95,8 @@ Route::get('/tours/top-category/{package:package_type}',[TourController::class,'
 Route::get('/tours/{tour:slug}',[TourController::class,'show'])->name('tours.show');
 Route::get('/tours/{country?}/{city?}',[TourController::class,'index'])->where('city', '[A-Za-z]+')->where('city', '[A-Za-z]+')->name('tours.index');
 
-
+Route::get('/destinations/city/{city?}',[DestinationController::class,'index'])->name('destinations.index');
+Route::get('/destinations/places',[DestinationController::class,'places'])->name('destinations.places');
 Route::get('/destinations/{destination:slug}',[DestinationController::class,'show'])->name('destinations.show');
-Route::get('/destinations',[DestinationController::class,'index'])->name('destinations.index');
 
+Route::post('/contact',[PublicController::class,'contact'])->name('contact');

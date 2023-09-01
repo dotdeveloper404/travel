@@ -26,19 +26,31 @@ class PackageController extends Controller
     public function index(Request $request, $country = null, $city = null)
     {
 
+     
         $request_cities = array();
         $metas = '';
         $packages = Package::with('images', 'hotels', 'transports')->where('status', 1);
-
-        if ($city  != null && $country != null) {
-            $packages->where('country', 'like', '%' . $country . '%');
-            $packages->where('city', 'like', '%' . $city . '%');
+       
+        if ($city  != null ) {
 
             $metas  = City::where('name', 'like', '%' . $city . '%')->first();
+
+            $city =  City::whereSlug($city)->pluck('id')->first();
+         
+            $packages->where('city', 'like', '%' . $city . '%');
+
+
         }
+
+        if($country != null){
+         //   $packages->where('country', '=',  str_replace('-', ' ', strtolower($country)) );
+          $packages->where('country', 'like', '%' . str_replace('-', ' ', strtolower($country)) . '%');
+        }
+
         if ($request->has('free_cancelation')) {
             $packages->orWhere('free_cancelation', 1);
         }
+
         if ($request->has('deals_and_discount')) {
             $packages->orWhere('deals_and_discount', 1);
         }
@@ -48,16 +60,22 @@ class PackageController extends Controller
                 $packages->orWhere('package_type', $type);
             }
         }
+
         if ($request->has('cities')) {
+        
             foreach ($request->cities as $key => $value) {
-                $packages->orWhere('city', 'like', '%' . $value . '%');
+                $packages->orWhereJsonContains('city',  $value );
+                // $packages->orWhere('city', 'like', '%' . $value . '%');
             }
 
-            $request_cities =    $request->get('cities');
+            $request_cities =   $request->get('cities');
         }
+        
         if ($request->has('p1') && $request->p1 > 0) {
             $packages->orWhereBetween('net_amount', [$request->p1, $request->p2]);
         }
+
+
         if ($request->has('duration')) {
             foreach ($request->duration as $key => $values) {
                 $packages->orWhere('duration', $values);
@@ -99,8 +117,8 @@ class PackageController extends Controller
             $package->package_destination = $packageDestination;
         }
 
+       
         // dd($packages[0]['package_destination'][0][0]);
-
 
         return view('frontend.packages.listing', compact('packages', 'packageType', 'productType', 'languages', 'countries', 'cities', 'duration', 'request_cities', 'metas'));
     }

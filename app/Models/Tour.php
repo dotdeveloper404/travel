@@ -5,12 +5,14 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Tour extends Model
 {
     use HasFactory;
     use Sluggable;
     
+    const EXCERPT__LENGTH = 100;
     // protected $table = "tours";
     protected $appends = ['image_path'];
     protected $guarded = [];
@@ -58,6 +60,11 @@ class Tour extends Model
     //     return 'slug';
     // }
     
+    
+    public function excerpt()
+    {
+        return Str::limit($this->description, Tour::EXCERPT__LENGTH);
+    }
 
 
 }

@@ -604,14 +604,20 @@
                                 <span class="text-13 tag_selector_orange">{{$city}} </span>
                                 @endforeach
                             </p>
-                            <p class="mb-2">Destinations
-                                @if($tour->destinations != null)
-
-                                @foreach (json_decode($tour->destinations) as $destination)
-                                <strong class="strong tag_selector"> {{$destination->name}} &nbsp; </strong>
-                                @endforeach
-
-                                @endif()
+                            <p class="mb-2">Places to visit
+                                @if ($tour->tour_destination != null && count($tour->tour_destination) > 0)
+                                <p class="mb-2">Places to visit
+    
+                                    @foreach ($tour->tour_destination as $destinations)
+                                        @foreach ($destinations as $destination)
+                                            <a href="{{ route('destinations.show', $destination->slug) }}"
+                                                data-toggle="tooltip" title="{{ $destination->name }}"><span
+                                                    class="text-13 tag_selector"> {{ $destination->name }} &nbsp; </span></a>
+                                        @endforeach()
+                                    @endforeach()
+                                </p>
+                            @endif()
+    
 
                             </p>
                             @if($tour->languages != null)

@@ -1,3 +1,4 @@
+ 
 <div class="header-margin" style="margin-top:74px;"></div>
 
 <header data-add-bg="bg-dark-1" class="header bg-dark-3 js-header" data-x="header" data-x-toggle="is-menu-opened">
@@ -14,9 +15,10 @@
 
                     <h3>
 
-                        <a href="{{ url('/')}}" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
+                        <a href="{{ url('/') }}" class="header-logo mr-20" data-x="header-logo"
+                            data-x-toggle="is-logo-dark">
 
-                            <img src="{{ asset('frontend/img/ilinkturkey-white.png')}}" alt="logo icon">
+                            <img src="{{ asset('frontend/img/ilinkturkey-white.png') }}" alt="logo icon">
 
                             <img src="{{ asset('frontend/img/ilinkturkey-white.png') }}" alt="logo icon">
 
@@ -48,11 +50,9 @@
 
                                     <li>
 
-                                        <a href="{{ url('/')}}">Home</a>
+                                        <a href="{{ url('/') }}">Home</a>
 
                                     </li>
-
-
 
                                     <li>
 
@@ -64,69 +64,11 @@
 
                                     <li>
 
-                                        <a href="{{ route('tours.index') }}">Tours</a>
-
-                                    </li>
-
-                                    
-                                    <li class="menu-item-has-children">
-
-                                        <a data-barba href="">
-
-                                            <span class="mr-10">Destinations</span>
-
-                                            <i class="icon icon-chevron-sm-down"></i>
-
-                                        </a>
-
-                                        <ul class="subnav">
-
-                                        
-
-                                            <li><a href="{{ route('packages.index')}}">Country</a></li>
-
-                                            <li> <a href="{{ route('packages.index')}}">Multi Countries</a></li>
-
-                                            <li> <a href="{{ route('packages.index')}}">Cities</a></li>
-
-                                            <li> <a href="{{ route('packages.index')}}">Multi Cities</a></li>
-
-                                        </ul>
+                                        <a href="{{ route('destinations.places') }}">Destinations</a>
 
                                     </li>
 
 
-                                    <li class="menu-item-has-children">
-
-                                        <a data-barba href="">
-
-                                            <span class="mr-10">Category</span>
-
-                                            <i class="icon icon-chevron-sm-down"></i>
-
-                                        </a>
-
-
-                                        <ul class="subnav">
-
-
-                                            <li><a href="{{ route('packages.top_category','families-and-kids-attractions')}}">Families & Kids Attractions</a></li>
-
-                                            <li> <a href="{{ route('packages.top_category','sightseeing-and-tours')}}">Sightseeing & Tours</a></li>
-
-                                            <li> <a href="{{ route('packages.top_category','cruises')}}">Cruises</a></li>
-
-                                            <li> <a href="{{ route('packages.top_category','events-and-festivals')}}">Events & Festivals</a></li>
-
-                                            <li> <a href="{{ route('packages.top_category','food-lovers')}}">Food lovers </a></li>
-
-                                            <li> <a href="{{ route('packages.top_category','ticket-and-passes')}}">Ticket & Passes</a></li>
-
-
-                                        </ul>
-
-
-                                    </li>
 
 
                                     <li>
@@ -168,7 +110,14 @@
 
                                     </li>
 
+                                    <li><a style="width: 166px;height: 28px !important;margin-left:420px;"
+                                            class="button -md h-60 bg-blue-1 text-white phone_d" href="tel:+1-201-366-1155"
+                                            onclick=""> <i class="fa fa-phone"></i> +1-201-366-1155</a> </li>
+
+
                                 </ul>
+
+
 
                             </div>
 
@@ -238,10 +187,12 @@
 
 
 
-                    <div class="d-none xl:d-flex x-gap-20 items-center pl-30 text-white" data-x="header-mobile-icons" data-x-toggle="text-white">
+                    <div class="d-none xl:d-flex x-gap-20 items-center pl-30 text-white" data-x="header-mobile-icons"
+                        data-x-toggle="text-white">
 
 
-                        <div><button class="d-flex items-center icon-menu text-white text-20" data-x-click="header, header-logo, header-mobile-icons, mobile-menu"></button></div>
+                        <div><button class="d-flex items-center icon-menu text-white text-20"
+                                data-x-click="header, header-logo, header-mobile-icons, mobile-menu"></button></div>
 
                     </div>
 

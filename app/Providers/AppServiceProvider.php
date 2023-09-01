@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\PackageBooking;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::model('booking',PackageBooking::class);
+        Paginator::useBootstrapFour();
+
     }
 }

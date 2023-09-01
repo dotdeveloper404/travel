@@ -27,12 +27,11 @@
   App.SMcontroller = new ScrollMagic.Controller();
 
 
-
   window.onload = function () {
 
     document.fonts.ready.then(function () {
 
-      initialReveal()
+     initialReveal()
 
       initComponents()
 
@@ -41,22 +40,18 @@
   }
 
 
-
   function initialReveal() {
 
     const preloader = document.querySelector('.js-preloader')
-
     if (!preloader) return
 
-
-
-    setTimeout(() => {
+   // setTimeout(() => {
 
       preloader.classList.add('-is-hidden')
 
       RevealAnim.init()
 
-    }, 300)
+  //  }, 300)
 
   }
 
@@ -70,9 +65,9 @@
 
     Accordion.init()
 
-    Tabs.init()
+    //Tabs.init()
 
-    warmDestinySlider()
+    // warmDestinySlider()
 
     sectionSlider()
 
@@ -92,9 +87,9 @@
 
 
 
-    testimonialsSlider()
+  //  testimonialsSlider()
 
-    testimonialsSlider2()
+//    testimonialsSlider2()
 
     cardImageSlider()
 
@@ -114,23 +109,23 @@
 
     singleMenu()
 
-    calendarInteraction()
+   // calendarInteraction()
 
     testimonialsSlider3()
 
-    calendarSlider()
+  //  calendarSlider()
 
-    mastheadSlider9()
+ //   mastheadSlider9()
 
     galleryInit()
 
-    pinOnScroll()
+  //  pinOnScroll()
 
-    lineChart()
+ //   lineChart()
 
     parallaxIt()
 
-    timeRangeSliderInit()
+ //   timeRangeSliderInit()
 
     priceRangeSliderInit()
 
@@ -2497,22 +2492,21 @@
     })
 
 
+    // if (document.querySelector('.js-testimonials-slider-3')) {
 
-    if (document.querySelector('.js-testimonials-slider-3')) {
+    //   const pagination = document.querySelector('.js-testimonials-slider-pag')
 
-      const pagination = document.querySelector('.js-testimonials-slider-pag')
+    //   const current = pagination.querySelector('.js-current')
 
-      const current = pagination.querySelector('.js-current')
-
-      const all = pagination.querySelector('.js-all')
-
+    //   const all = pagination.querySelector('.js-all')
 
 
-      all.innerHTML = `0${slider.slides.length}`
 
-      slider.on('slideChangeTransitionEnd', () => current.innerHTML = `0${slider.realIndex + 1}`)
+    //   all.innerHTML = `0${slider.slides.length}`
 
-    }
+    //   slider.on('slideChangeTransitionEnd', () => current.innerHTML = `0${slider.realIndex + 1}`)
+
+    // }
 
   }
 

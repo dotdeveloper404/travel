@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Frontend;
 
+use App\Rules\ReCaptcha;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -27,6 +28,7 @@ class PackageBookingStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'g-recaptcha-response'=>['required',new ReCaptcha],
             'name' => ['required'],
             'agent_id' => 'nullable',
             'booking_status' => 'nullable',
@@ -46,6 +48,7 @@ class PackageBookingStoreRequest extends FormRequest
             'contact_preference' => 'nullable',
             'best_time_to_call' => 'nullable',
             'comment' => 'nullable',
+
         ];
     }
 

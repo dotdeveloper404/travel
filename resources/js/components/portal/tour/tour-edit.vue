@@ -418,7 +418,6 @@
             <div class="input-group input-group-lg">
               <input
                 type="date"
-                required
                 v-model="tours.traveling_date_start"
                 class="form-control form-control-solid"
               />
@@ -430,7 +429,6 @@
             <div class="input-group input-group-lg">
               <input
                 type="date"
-                required
                 v-model="tours.traveling_date_end"
                 class="form-control form-control-solid"
               />

@@ -44,10 +44,14 @@ class TourController extends Controller
             $tours->orWhere('tour_type',$type);
             }
         }
-        if($request->has('city')){
-            $tours->orWhere('city','like','%'.$request->city.'%');
-            $request_cities =    $request->get('cities');
+        if ($request->has('cities')) {
+        
+            foreach ($request->cities as $key => $value) {
+                $tours->orWhereJsonContains('city',  $value );
+                // $tours->orWhere('city', 'like', '%' . $value . '%');
+            }
 
+            $request_cities =   $request->get('cities');
         }
         if($request->has('p1') && $request->p1 > 0 ){
             $tours->orWhereBetween('net_amount',[$request->p1,$request->p2]);
@@ -78,10 +82,10 @@ class TourController extends Controller
     }
 
 
-    public function downloadPackagePdf(Tour $tour)
+    public function downloadTourPdf(Tour $tour)
     {
 
-        $tour->load('images', 'hotels', 'transports');
+        $tour->load('images', 'transports');
 
         $itenary = null;
         $faqs = null;
@@ -99,7 +103,7 @@ class TourController extends Controller
             'heading' => "tour Booking Heading",
             'message' => "tour Booking Message"
         );
-        Mail::to(env('MAIL_USERNAME'))->send(new TourBookingMail($package, $itenaries, $faqs, $content, $pdf->output()));
+        Mail::to(env('MAIL_USERNAME'))->send(new TourBookingMail($tour, $itenaries, $faqs, $content, $pdf->output()));
 
         return $pdf->download($tour->tour_name . '.pdf');
     }

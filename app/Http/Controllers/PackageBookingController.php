@@ -6,6 +6,7 @@ use App\Http\Requests\Frontend\PackageBookingStoreRequest;
 use App\Mail\PackageBookingMail;
 use App\Models\Package;
 use App\Models\PackageBooking;
+use App\Rules\ReCaptcha;
 use DateTime;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -67,7 +68,7 @@ class PackageBookingController extends Controller
                         'leads_id' => $leads_id,
                         'field_key' => $key,
                         'field_value' => $value,
-                        'sort_order' => 0,
+                        'sort_order' => 2222,
                     ]
                 );
             }
@@ -75,6 +76,7 @@ class PackageBookingController extends Controller
 
         unset($data['reference']);
         unset($data['ip']);
+        unset($data['g-recaptcha-response']);
 
         PackageBooking::create($data);
 
@@ -102,7 +104,7 @@ class PackageBookingController extends Controller
         //        Mail::to('dot.developer404@gmail.com')->send(new PackageBookingMail($package, $itenaries, $faqs,$content, $pdf->output()));
         Mail::to(env('MAIL_USERNAME'))->send(new PackageBookingMail($package, $itenaries, $faqs, $content, $pdf->output()));
 
-        return redirect()->route('thank-you');
+        return redirect()->route('thank-you')->with(['message'=>'Thank You For Booking' , 'content'=>" We've received your message. It's a privilege to have you choose our packages.Our team is currently processing your request and will get back to you as soon as possible.Kindly keep an eye on your inbox for our email. In the meantime, feel free to browse iLinkTurkey's site and our travel blogs.We also encourage you to follow us on social media platforms."]);
 
         //return redirect()->back()->with('message','your package has been successfully booked');
 

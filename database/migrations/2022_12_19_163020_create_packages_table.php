@@ -57,6 +57,7 @@ return new class extends Migration
             $table->integer('reviews')->nullable();
             $table->boolean('status')->default(1);
             $table->text('destinations')->nullable();
+            $table->text('categories')->nullable();
             $table->json('languages')->nullable();
             $table->boolean('recomended')->nullable();
             $table->string('duration')->nullable();

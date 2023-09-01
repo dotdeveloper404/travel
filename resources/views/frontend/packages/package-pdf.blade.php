@@ -763,13 +763,18 @@
                                 @endforeach
                             </p>
                             <p class="mb-2">Destinations
-                                @if($package->destinations != null)
-
-                                @foreach (json_decode($package->destinations) as $destination)
-                                <strong class="strong tag_selector"> {{$destination->name}} &nbsp; </strong>
-                                @endforeach
-
-                                @endif()
+                                @if ($package->package_destination != null && count($package->package_destination) > 0)
+                                <p class="mb-2">Places to visit
+    
+                                    @foreach ($package->package_destination as $destinations)
+                                        @foreach ($destinations as $destination)
+                                            <a href="{{ route('destinations.show', $destination->slug) }}"
+                                                data-toggle="tooltip" title="{{ $destination->name }}"><span
+                                                    class="text-13 tag_selector"> {{ $destination->name }} &nbsp; </span></a>
+                                        @endforeach()
+                                    @endforeach()
+                                </p>
+                            @endif()
 
                             </p>
                             @if($package->languages != null)

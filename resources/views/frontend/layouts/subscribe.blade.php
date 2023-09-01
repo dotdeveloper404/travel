@@ -14,17 +14,20 @@
             </div>
           </div>
           <div class="col col-md-6">
-         <form method="POST" action="{{route('subscribe')}}">
+         <form method="POST" action="https://ilinkturkey.com/blog/?na=s">
+          @csrf
           <div class="col-auto">
             <div class="single-field -w-410 d-flex x-gap-10 y-gap-20">
-              
-                    @csrf
+          
+
+              <input type="hidden" name="nlang" value="">
+                  
               <div>
-                <input class="bg-white h-60" type="text" placeholder="Your Email">
+                <input class="bg-white h-60 tnp-email" type="email" name="ne" id="tnp-1" value="" required="" placeholder="Your Email">
               </div>
 
               <div>
-                <button type="submit" class="button -md h-60 bg-blue-1 text-white">Subscribe</button>
+                <button type="submit" class="button -md h-60 bg-blue-1 text-white tnp-submit">Subscribe</button>
               </div>
             
             </div>

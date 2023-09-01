@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Portal;
 
 use App\Enums\Duration;
 use App\Enums\Languages;
+use App\Enums\PackageCategories;
 use App\Enums\PackageType;
 use App\Enums\ProductType;
 use App\Http\Controllers\Controller;
@@ -50,7 +51,8 @@ class PackageController extends Controller
         $transports =  Transport::get();
         $duration = Duration::values();
         $destinations = Destination::get();
-        return view('portal.packages.create', ['product_type' => $productType, 'package_type' => $packageType, 'languages' => $languages, 'hotels' => $hotels, 'transports' => $transports, 'duration' => $duration , 'cities' => $city,'countries'=>$country,'destinations'=>$destinations]);
+        $categories = PackageCategories::values();
+        return view('portal.packages.create', ['product_type' => $productType, 'package_type' => $packageType, 'languages' => $languages, 'hotels' => $hotels, 'transports' => $transports, 'duration' => $duration , 'cities' => $city,'countries'=>$country,'destinations'=>$destinations,'categories'=>$categories]);
     }
 
     /**
@@ -61,6 +63,7 @@ class PackageController extends Controller
      */
     public function store(PackageStoreRequest $request)
     {
+         
         $data = $request->validated();
         $data['package']['itenary'] = json_encode($request->itenaries);
         $data['package']['faqs'] = json_encode($request->faqs);
@@ -72,9 +75,13 @@ class PackageController extends Controller
             $data['package']['featured_image']  = $name;
         }
         $package = Package::create($data['package']);
-
-        $package->hotels()->sync($request->package['hotels']);
-        $package->transports()->sync($request->package['transports']);
+     
+        if(isset($request->package['hotels'])){
+            $package->hotels()->sync($request->package['hotels']);
+        }
+        if(isset($request->package['transports'])){
+            $package->transports()->sync($request->package['transports']);
+        }
 
         if ($request->has('images')) {
             foreach ($request->images as $image) {
@@ -139,7 +146,8 @@ class PackageController extends Controller
         $transports =  Transport::get();
         $duration =  Duration::values();
         $destinations = Destination::get();
-        return view('portal.packages.edit', ['package' => $package, 'product_type' => $productType, 'package_type' => $packageType, 'languages' => $languages, 'hotels' => $hotels, 'transports' => $transports , 'duration' => $duration ,'cities'=> $city ,'countries'=>$country,'destinations'=>$destinations]);
+        $categories = PackageCategories::values();
+        return view('portal.packages.edit', ['package' => $package, 'product_type' => $productType, 'package_type' => $packageType, 'languages' => $languages, 'hotels' => $hotels, 'transports' => $transports , 'duration' => $duration ,'cities'=> $city ,'countries'=>$country,'destinations'=>$destinations,'categories'=>$categories]);
     }
 
     /**
@@ -163,8 +171,14 @@ class PackageController extends Controller
 
       
         $package = tap($package)->update($data);
-        $package->hotels()->sync($request->package_hotel);
-        $package->transports()->sync($request->package_transport);
+
+        if(isset($request->package_hotel)){
+            $package->hotels()->sync($request->package_hotel);
+        }
+        if(isset($request->package_transport)){
+            $package->transports()->sync($request->package_transport);
+        }
+      
 
         if ($request->has('addedImages')) {
             foreach ($request->addedImages as $image) {

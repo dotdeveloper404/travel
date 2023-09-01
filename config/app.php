@@ -185,6 +185,8 @@ return [
 
         Barryvdh\DomPDF\ServiceProvider::class,
 
+        Intervention\Image\ImageServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -218,6 +220,8 @@ return [
         'Form' => Collective\Html\FormFacde::class,
         'Html' => Collective\Html\HtmlFacde::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class
+
 
     ])->toArray(),
 

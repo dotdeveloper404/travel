@@ -6,11 +6,15 @@ use App\Traits\UploadFile;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class Package extends Model
 {
     use HasFactory;
     use Sluggable;
+
+    const EXCERPT_LENGTH = 100;
     protected $table = "packages";
     protected $appends = ['image_path'];
     protected $guarded = [];
@@ -29,7 +33,8 @@ class Package extends Model
     protected $casts = [
         'languages' => 'array',
         'city' => 'array',
-        'destinations'=>'array'
+        'destinations'=>'array',
+        'categories' => 'array'
         // 'is_transport_included' => 'boolean',
         // 'is_acommodation_included' => 'boolean',
         // 'is_guide_included' => 'boolean',
@@ -72,6 +77,11 @@ class Package extends Model
 
     public static function getUploadPath(){
         return 'uploads/package_images/featured_image/';
+    }
+
+    public function excerpt()
+    {
+        return Str::limit($this->description,Package::EXCERPT_LENGTH);
     }
     
 }

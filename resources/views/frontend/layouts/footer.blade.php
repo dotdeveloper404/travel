@@ -3,17 +3,32 @@
         <div class="pt-60 pb-60">
             <div class="row y-gap-40 justify-between xl:justify-start">
 
-                <div class="col-xl-2 col-lg-4 col-sm-6">
+
+                <div class="col-xl-3 col-lg-3 col-sm-3">
+                    <span class="text-14 fw-900 website-color">Your Travel Journey to Turkey Starts Here</span>
+                    <div class="mt-10">
+                        <span class="text-15 fw-500 text-blue-1 mt-5">
+                            iLinkTurkey is a leading tour service specializing in offering high-quality travel
+                            experiences all around the world. <a class="website-color" href="{{ route('packages.index') }}">Book a tour</a>
+                            with us now and get started on your next
+                            adventure.
+
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-2 col-lg-3 col-sm-3">
 
 
                     <div class="mt-30">
                         <img src="{{ asset('frontend/img/ilinkturkey.png') }}" />
-                        <span class="text-14 fw-500 text-blue-1">Your Travel Journey to Turkey Starts Here</span>
+
                     </div>
 
                 </div>
 
-                <div class="col-xl-2 col-lg-4 col-sm-6">
+                <div class="col-xl-2 col-lg-4 col-sm-4">
                     <h5 class="text-16 fw-500 mb-30">CONTACT US</h5>
 
                     <div class="mt-30">
@@ -27,53 +42,18 @@
                     </div>
                 </div>
 
-                <div class="col-xl-2 col-lg-4 col-sm-6">
+                <div class="col-xl-2 col-lg-4 col-sm-4">
                     <h5 class="text-16 fw-500 mb-30">SITE NAVIGATION</h5>
                     <div class="d-flex y-gap-10 flex-column">
                         <a href="{{ route('about_us') }}">About Us</a>
                         <a href="{{ route('contact_us') }}">Contact Us</a>
                         <a href="/blog/">Blog</a>
                         <a href="{{ route('packages.index') }}">Packages</a>
-                        <a href="{{ route('tours.index') }}">Tours</a>
                         <a href="{{ route('travel-guide') }}">Travel Guide</a>
                     </div>
                 </div>
 
-                <div class="col-lg-8 col-md-12">
-
-                  <div >
-                      <span class="text-15 fw-500 text-blue-1 mt-5">
-                        Unveil ancient ruins, vibrant bazaars, and breathtaking landscapes on our unforgettable tours. Immerse yourself in the magic of Turkey and create
- memories that will last a lifetime. Book Now!
-                      </span>
-                  </div>
-
-              </div>
-
-                <!--<div class="col-xl-2 col-lg-4 col-sm-6">-->
-                <!--  <h5 class="text-16 fw-500 mb-30">Support</h5>-->
-                <!--  <div class="d-flex y-gap-10 flex-column">-->
-                <!--    <a href="#">Contact</a>-->
-                <!--    <a href="#">Legal Notice</a>-->
-                <!--    <a href="#">Privacy Policy</a>-->
-                <!--    <a href="#">Terms and Conditions</a>-->
-                <!--    <a href="#">Sitemap</a>-->
-                <!--  </div>-->
-                <!--</div>-->
-
-                <!--<div class="col-xl-2 col-lg-4 col-sm-6">-->
-                <!--  <h5 class="text-16 fw-500 mb-30">Other Services</h5>-->
-                <!--  <div class="d-flex y-gap-10 flex-column">-->
-                <!--    <a href="#">Car hire</a>-->
-                <!--    <a href="#">Activity Finder</a>-->
-                <!--    <a href="#">Tour List</a>-->
-                <!--    <a href="#">Flight finder</a>-->
-                <!--    <a href="#">Cruise Ticket</a>-->
-                <!--    <a href="#">Holiday Rental</a>-->
-                <!--    <a href="#">Travel Agents</a>-->
-                <!--  </div>-->
-                <!--</div>-->
-
+               
 
             </div>
         </div>
@@ -84,17 +64,10 @@
                     <div class="row x-gap-30 y-gap-10">
                         <div class="col-auto">
                             <div class="d-flex items-center">
-                                © {{ date('Y') }} iLinkTurkey All rights reserved.
+                                &#169; {{ date('Y') }} iLinkTurkey All rights reserved.
                             </div>
                         </div>
 
-                        <!--<div class="col-auto">-->
-                        <!--  <div class="d-flex x-gap-15">-->
-                        <!--    <a href="#">Privacy</a>-->
-                        <!--    <a href="#">Terms</a>-->
-                        <!--    <a href="#">Site Map</a>-->
-                        <!--  </div>-->
-                        <!--</div>-->
                     </div>
                 </div>
 
@@ -107,10 +80,6 @@
                                     <span class="underline">English (US)</span>
                                 </button>
 
-                                <!--<button class="d-flex items-center text-14 fw-500 text-dark-1">-->
-                                <!--  <i class="icon-usd text-16 mr-10"></i>-->
-                                <!--  <span class="underline">USD</span>-->
-                                <!--</button>-->
                             </div>
                         </div>
 
@@ -131,6 +100,10 @@
 
 
 
+<script src="{{ asset('frontend/js/jquery_3.6.3_jquery.min.js') }}"></script>
+<script src="{{ asset('frontend/js/OwlCarousel2_2.3.4_owl.carousel.min.js') }}"></script>
+
+<link rel="stylesheet" href="{{ asset('frontend/js/bootstrap.min.js') }}">
 
 <script src="{{ asset('frontend/js/vendors.js') }}"></script>
 <script src="{{ asset('frontend/js/main.js') }}"></script>

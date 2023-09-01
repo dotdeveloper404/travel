@@ -19,49 +19,19 @@ class DestinationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request,$city = null)
     {
-        $request_cities = array();
+        $city_id = City::whereSlug($city)->pluck('id')->first();
+       
+        $destinations = Destination::with('city.country')->where('city_id',$city_id)->get();
+      
+        return view('frontend.destinations.destinations',compact('destinations'));
+    }
 
-        $packages = Package::with('images', 'hotels', 'transports')->where('status', 1);
-
-        if ($request->has('free_cancelation')) {
-            $packages->orWhere('free_cancelation', 1);
-        }
-        if ($request->has('deals_and_discount')) {
-            $packages->orWhere('deals_and_discount', 1);
-        }
-
-        if ($request->has('package_type')) {
-            foreach ($request->package_type as $key => $type) {
-                $packages->orWhere('package_type', $type);
-            }
-        }
-        if ($request->has('cities')) {
-            foreach ($request->cities as $key => $value) {
-                $packages->orWhere('city', 'like', '%' . $value . '%');
-            }
-
-            $request_cities =    $request->get('cities');
-        }
-        if ($request->has('p1') && $request->p1 > 0) {
-            $packages->orWhereBetween('net_amount', [$request->p1, $request->p2]);
-        }
-        if ($request->has('duration')) {
-            foreach ($request->duration as $key => $values) {
-                $packages->orWhere('duration', $values);
-            }
-        }
-
-        $packages  =  $packages->paginate(10);
-        $packageType = PackageType::values();
-        $productType = ProductType::values();
-        $languages = Languages::values();
-        $countries = Country::whereIsActive(1)->get();
-        $cities = City::get();
-        $duration = Duration::values();
-
-        return view('frontend.packages.listing', compact('packages', 'packageType', 'productType', 'languages', 'countries', 'cities', 'duration', 'request_cities'));
+    public function places(Request $request)
+    {
+        $places = City::with('country')->get();
+        return view('frontend.destinations.places',compact('places'));
     }
 
 
@@ -75,6 +45,5 @@ class DestinationController extends Controller
     {
         $destination->load('city');
         return view('frontend.destinations.destination-single', ['destination' => $destination]);
-
     }
 }

@@ -69,6 +69,7 @@ class PackageUpdateRequest extends FormRequest
             'package.optional' => 'nullable',
             'package.more_information' => 'nullable',
             'package.destinations' => 'nullable',
+            'package.categories' => 'nullable',
             'package.languages' => 'nullable',
             'package.recomended' => 'nullable',
             'package.free_cancelation' => 'nullable',
